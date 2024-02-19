@@ -1,0 +1,37 @@
+---
+description: Pipeline for processing sample logs
+processors:
+  - set:
+      field: ecs.version
+      value: '8.11.0'
+  - set:
+      field: event.ingested
+      value: '{{_ingest.timestamp}}'
+  - rename:
+      field: '@timestamp'
+      target_field: event.created
+      ignore_missing: true
+  - rename:
+      field: message
+      target_field: event.original
+      ignore_missing: true
+      if: 'ctx.event?.original == null'
+  - grok:
+      field: event.original
+      patterns:
+        - ^%{CHAR:first_char}
+      pattern_definitions:
+        CHAR: .
+#   - pipeline:
+#       if: ctx.first_char != '{'
+#       name: '{{ IngestPipeline "format-common" }}'
+  - pipeline:
+      if: ctx.first_char == '{'
+      name: '{{ IngestPipeline "format-json" }}'
+  - remove:
+      field:
+        - first_char
+on_failure:
+- set:
+    field: error.message
+    value: '{{ _ingest.on_failure_message }}'

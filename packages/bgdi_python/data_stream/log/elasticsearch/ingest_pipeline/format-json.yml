@@ -1,0 +1,29 @@
+---
+description: Pipeline for processing sample logs
+processors:
+  - json:
+      field: event.original
+      target_field: bgdi.app
+  - rename:
+      field: bgdi.python.event
+      target_field: event
+      ignore_missing: true
+  - lowercase:
+      field: log.level
+      ignore_missing: true
+  - rename:
+      field: bgdi.python.logger
+      target_field: log.logger
+      ignore_missing: true
+  - remove:
+      field: message
+      ignore_missing: true
+  - rename:
+      field: bgdi.python.message
+      target_field: message
+      ignore_missing: true
+on_failure:
+- set:
+    field: error.message
+    value: '{{ _ingest.on_failure_message }}'
+
