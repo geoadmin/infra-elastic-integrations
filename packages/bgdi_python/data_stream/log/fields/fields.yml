@@ -1,0 +1,31 @@
+- name: bgdi.app
+  type: group
+  fields:
+    - name: excInfo
+      type: boolean
+      description: Indicates if the event has stack-trace information
+    - name: layer
+      type: group
+      description: BGDI layer information
+      fields:
+        - name: id
+          type: keyword
+          description: The id / name of the layer
+        - name: srid
+          type: long
+          description: The projection type of the layer
+        - name: extension
+          type: keyword
+          description: The file extention
+        - name: column
+          type: long
+          description: The easting orientation of a tile
+        - name: row
+          type: long
+          description: The northing orientation of the tile
+        - name: zoom
+          type: long
+          description: The zoom level of the tile
+        - name: time
+          type: keyword
+          description: The publication time of the resource

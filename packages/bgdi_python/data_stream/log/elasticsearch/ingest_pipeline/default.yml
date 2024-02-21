@@ -8,10 +8,6 @@ processors:
       field: event.ingested
       value: '{{_ingest.timestamp}}'
   - rename:
-      field: '@timestamp'
-      target_field: event.created
-      ignore_missing: true
-  - rename:
       field: message
       target_field: event.original
       ignore_missing: true
@@ -31,6 +27,26 @@ processors:
   - remove:
       field:
         - first_char
+  - set:
+      field: event.outcome
+      value: failure
+      if: "ctx?.http?.response?.status_code != null && ctx?.http?.response?.status_code >= 400"
+  - set:
+      field: event.outcome
+      value: failure
+      if: "ctx?.event?.severity >= 40"
+  - set:
+      field: event.outcome
+      value: success
+      if: "ctx?.http?.response?.status_code < 400"
+  - set:
+      field: event.outcome
+      value: success
+      if: "ctx?.event?.outcome == null && ctx?.event?.severity < 40"
+  - remove:
+      field: event.original
+      if: "ctx?.tags == null || !ctx?.tags.contains('preserve_original_event')"
+
 on_failure:
 - set:
     field: error.message

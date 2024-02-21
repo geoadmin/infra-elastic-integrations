@@ -1,0 +1,101 @@
+{
+    "expected": [
+        {
+            "@timestamp": "2024-02-21T14:23:05.317219Z",
+            "bgdi": {
+                "app": {
+                    "excInfo": false,
+                    "layer": {
+                        "column": 14,
+                        "extension": "jpeg",
+                        "id": "ch.swisstopo.pixelkarte-farbe",
+                        "row": 6,
+                        "srid": 2056,
+                        "time": "current",
+                        "zoom": 17
+                    }
+                }
+            },
+            "ecs": {
+                "version": "8.11.0"
+            },
+            "event": {
+                "created": "2024-02-21T14:23:05.317219Z",
+                "duration": 65687656,
+                "id": "cz-jZMcl-32k4WsWdfJA8deokTBbWIULR9B2EZ8inrpd2OqWE8gnKQ==",
+                "ingested": "2024-02-21T16:52:44.823638736Z",
+                "module": "routes",
+                "outcome": "success",
+                "severity": 20
+            },
+            "http": {
+                "request": {
+                    "headers": {
+                        "accept": "*/*",
+                        "accept-encoding": "gzip",
+                        "cloudfront-forwarded-proto": "https",
+                        "host": "sys-wmts.dev.bgdi.ch",
+                        "if-none-match": "ba16a946-d0c4-11ee-809e-c39292991fef",
+                        "via": "2.0 b50b0f4274b74414c7dcdb544e6090a2.cloudfront.net (CloudFront)",
+                        "x-forwarded-for": "10.220.53.58",
+                        "x-forwarded-host": "sys-wmts.dev.bgdi.ch",
+                        "x-forwarded-port": "80",
+                        "x-forwarded-proto": "http",
+                        "x-forwarded-server": "traefik-ingress-controller-c45nn",
+                        "x-real-ip": "10.220.53.58"
+                    },
+                    "method": "GET"
+                },
+                "response": {
+                    "bytes": 27369,
+                    "headers": {
+                        "cache-control": "public, max-age=3600, s-maxage=31556952",
+                        "etag": "\"d2f8aab2153c4f31d4bec0da6888bdb8\"",
+                        "x-tile-generation-time": "0.062146",
+                        "x-tiles-s3-cache": "miss",
+                        "x-wms-time": "0.05847"
+                    },
+                    "mime_type": "image/jpeg",
+                    "status_code": 200
+                }
+            },
+            "log": {
+                "level": "info",
+                "logger": "app.routes",
+                "origin": {
+                    "file": {
+                        "line": 34,
+                        "name": "routes"
+                    },
+                    "function": "log_response"
+                }
+            },
+            "message": "GET /1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/2056/17/14/6.jpeg - 200 OK",
+            "process": {
+                "pid": 39,
+                "thread": {
+                    "id": 139859453263520
+                }
+            },
+            "source": {
+                "address": "10.220.52.30"
+            },
+            "url": {
+                "domain": "sys-wmts.dev.bgdi.ch",
+                "extension": "jpeg",
+                "original": "https://sys-wmts.dev.bgdi.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/2056/17/14/6.jpeg",
+                "path": "/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/2056/17/14/6.jpeg",
+                "scheme": "https"
+            },
+            "user_agent": {
+                "device": {
+                    "name": "Other",
+                    "type": "Other"
+                },
+                "name": "curl",
+                "original": "curl/7.81.0",
+                "version": "7.81.0"
+            }
+        }
+    ]
+}
