@@ -12,11 +12,6 @@
                     "edge_response_result_type": "Hit",
                     "edge_result_type": "Hit",
                     "time_to_first_byte": 0.001
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -62,11 +57,6 @@
                 "protocol": "https",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net"
@@ -74,9 +64,6 @@
                 "ip": [
                     "89.160.20.112"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "89.160.20.112",
@@ -143,11 +130,6 @@
                     "edge_response_result_type": "Hit",
                     "edge_result_type": "Hit",
                     "time_to_first_byte": 0.0
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -193,11 +175,6 @@
                 "protocol": "https",
                 "type": "ipv6"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net"
@@ -205,9 +182,6 @@
                 "ip": [
                     "2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6",
@@ -265,11 +239,6 @@
                     "edge_response_result_type": "Hit",
                     "edge_result_type": "Hit",
                     "time_to_first_byte": 0.001
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -315,11 +284,6 @@
                 "protocol": "https",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net"
@@ -327,9 +291,6 @@
                 "ip": [
                     "89.160.20.112"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "89.160.20.112",
@@ -396,11 +357,6 @@
                     "edge_response_result_type": "Error",
                     "edge_result_type": "Error",
                     "time_to_first_byte": 0.102
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -447,11 +403,6 @@
                 "protocol": "http",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net",
@@ -460,9 +411,6 @@
                 "ip": [
                     "89.160.20.112"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "89.160.20.112",
@@ -524,11 +472,6 @@
                     "edge_response_result_type": "Error",
                     "edge_result_type": "Error",
                     "time_to_first_byte": 0.107
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -574,11 +517,6 @@
                 "protocol": "http",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net",
@@ -587,9 +525,6 @@
                 "ip": [
                     "89.160.20.112"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "89.160.20.112",
@@ -650,11 +585,6 @@
                     "edge_response_result_type": "Error",
                     "edge_result_type": "Error",
                     "time_to_first_byte": 0.103
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -700,11 +630,6 @@
                 "protocol": "http",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net",
@@ -713,9 +638,6 @@
                 "ip": [
                     "89.160.20.112"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "89.160.20.112",
@@ -771,11 +693,6 @@
                     "edge_response_result_type": "Miss",
                     "edge_result_type": "Miss",
                     "time_to_first_byte": 0.238
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -819,11 +736,6 @@
                 "protocol": "https",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net",
@@ -832,9 +744,6 @@
                 "ip": [
                     "81.2.69.143"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "81.2.69.143",
@@ -894,11 +803,6 @@
                     "edge_response_result_type": "Miss",
                     "edge_result_type": "Miss",
                     "time_to_first_byte": 0.238
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -942,11 +846,6 @@
                 "protocol": "https",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net",
@@ -955,9 +854,6 @@
                 "ip": [
                     "81.2.69.143"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "81.2.69.143",
@@ -1017,11 +913,6 @@
                     "edge_response_result_type": "Miss",
                     "edge_result_type": "Miss",
                     "time_to_first_byte": 0.093
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -1069,11 +960,6 @@
                 "protocol": "https",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net",
@@ -1084,9 +970,6 @@
                     "81.2.69.142",
                     "216.160.83.56"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "81.2.69.143",
@@ -1143,11 +1026,6 @@
                     "edge_response_result_type": "Miss",
                     "edge_result_type": "Miss",
                     "time_to_first_byte": 0.093
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -1195,11 +1073,6 @@
                 "protocol": "https",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net",
@@ -1210,9 +1083,6 @@
                     "81.2.69.142",
                     "216.160.83.56"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "81.2.69.143",
@@ -1269,11 +1139,6 @@
                     "edge_response_result_type": "Miss",
                     "edge_result_type": "Miss",
                     "time_to_first_byte": 0.093
-                },
-                "s3": {
-                    "object": {
-                        "key": "geo.admin.ch"
-                    }
                 }
             },
             "cloud": {
@@ -1320,11 +1185,6 @@
                 "protocol": "https",
                 "type": "ipv4"
             },
-            "ppbgdi": {
-                "app": {
-                    "system": "geo"
-                }
-            },
             "related": {
                 "hosts": [
                     "d111111abcdef8.cloudfront.net",
@@ -1334,9 +1194,6 @@
                     "81.2.69.143",
                     "127.0.0.1"
                 ]
-            },
-            "service": {
-                "environment": "prod"
             },
             "source": {
                 "address": "81.2.69.143",
