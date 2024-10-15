@@ -1,6 +1,7 @@
 {
     "expected": [
         {
+            "_tmp": {},
             "aws": {
                 "cloudfront": {
                     "cache_behavior": {
@@ -40,22 +41,22 @@
                 "request": {
                     "bytes": 347,
                     "headers": {
-                        "CloudFront-Forwarded-Proto": "https",
                         "accept": [
                             "*/*"
                         ],
-                        "accept-encoding": "gzip, deflate, br, zstd",
-                        "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
-                        "access-control-request-headers": "content-type",
-                        "access-control-request-method": "POST",
+                        "accept_encoding": "gzip, deflate, br, zstd",
+                        "accept_language": "en-GB,en-US;q=0.9,en;q=0.8",
+                        "access_control_request_headers": "content-type",
+                        "access_control_request_method": "POST",
+                        "cloudfront_forwarded_proto": "https",
                         "host": "sys-s.dev.bgdi.ch",
                         "origin": "https://sys-map.dev.bgdi.ch",
                         "priority": "u=1, i",
                         "referer": "https://sys-map.dev.bgdi.ch/",
-                        "sec-fetch-dest": "empty",
-                        "sec-fetch-mode": "cors",
-                        "sec-fetch-site": "same-site",
-                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+                        "sec_fetch_dest": "empty",
+                        "sec_fetch_mode": "cors",
+                        "sec_fetch_site": "same-site",
+                        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
                     },
                     "id": "blORvR9k6bDav5DhBGxZK6hnXSCN2P3ydFPTZd-Y5gXW9lQlakimbA==",
                     "method": "OPTIONS",
@@ -127,6 +128,7 @@
             }
         },
         {
+            "_tmp": {},
             "aws": {
                 "cloudfront": {
                     "cache_behavior": {
@@ -182,21 +184,17 @@
                 "request": {
                     "bytes": 278,
                     "headers": {
-                        "Accept": [
-                            "*/*",
+                        "accept": [
                             "*/*"
                         ],
-                        "Accept-Encoding": [
-                            "gzip,%20deflate",
-                            "gzip, deflate"
-                        ],
-                        "CloudFront-Forwarded-Proto": "https",
-                        "Connection": "keep-alive",
-                        "Content-Length": "40",
-                        "Content-Type": "application/json",
-                        "Host": "sys-s.dev.bgdi.ch",
-                        "Origin": "https://map.geo.admin.ch",
-                        "user-agent": "python-requests/e2e-tests"
+                        "accept_encoding": "gzip, deflate",
+                        "cloudfront_forwarded_proto": "https",
+                        "connection": "keep-alive",
+                        "content_length": "40",
+                        "content_type": "application/json",
+                        "host": "sys-s.dev.bgdi.ch",
+                        "origin": "https://map.geo.admin.ch",
+                        "user_agent": "python-requests/e2e-tests"
                     },
                     "id": "ZyBGSqwl_McXhM_5vAFPnMdDKTObCWEcGDSgn6Z7S6sUJTaEgk4ZxA==",
                     "method": "POST"
@@ -261,6 +259,7 @@
             }
         },
         {
+            "_tmp": {},
             "aws": {
                 "cloudfront": {
                     "cache_behavior": {
@@ -319,16 +318,15 @@
                 "request": {
                     "bytes": 1616,
                     "headers": {
-                        "Accept": "*/*",
                         "accept": [
                             "*/*"
                         ],
-                        "content-type": "application/json",
+                        "content_type": "application/json",
                         "header1": "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789",
                         "header2": "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789",
                         "host": "sys-s.dev.bgdi.ch",
                         "origin": "sys-map.dev.bgdi.ch",
-                        "user-agent": "curl/8.5.0"
+                        "user_agent": "curl/8.5.0"
                     },
                     "id": "QwYI6Y5kZedAhjEzOoT4LXKgDLQV6Pyfnrw-zDH-zIM1KXkKSzajyg==",
                     "method": "POST"
@@ -365,6 +363,130 @@
                     }
                 },
                 "ip": "1.128.0.3",
+                "port": 44812
+            },
+            "tags": [
+                "preserve_original_event",
+                "cs_headers_truncated"
+            ],
+            "tls": {
+                "cipher": "TLS_AES_128_GCM_SHA256",
+                "version": "1.3",
+                "version_protocol": "tls"
+            },
+            "url": {
+                "domain": "d2u7012t9m3e26.cloudfront.net",
+                "full": "https://d2u7012t9m3e26.cloudfront.net/",
+                "path": "/",
+                "registered_domain": "cloudfront.net",
+                "scheme": "https",
+                "subdomain": "d2u7012t9m3e26",
+                "top_level_domain": "net"
+            },
+            "user_agent": {
+                "device": {
+                    "name": "Other"
+                },
+                "name": "curl",
+                "original": "curl/8.5.0",
+                "version": "8.5.0"
+            }
+        },
+        {
+            "_tmp": {},
+            "aws": {
+                "cloudfront": {
+                    "cache_behavior": {
+                        "path_pattern": "*"
+                    },
+                    "client": {
+                        "country": "CH"
+                    },
+                    "cs_header_names": [
+                        "host",
+                        "user-agent",
+                        "accept",
+                        "content-type",
+                        "header1",
+                        "header2",
+                        "origin",
+                        "header3",
+                        "header4",
+                        "header5",
+                        "content-length",
+                        "CloudFront-Forwarded-Proto"
+                    ],
+                    "cs_headers_count": 12,
+                    "domain": "sys-s.dev.bgdi.ch",
+                    "edge_detailed_result_type": "Error",
+                    "edge_location": "ZRH55-P2",
+                    "edge_response_result_type": "Error",
+                    "edge_result_type": "Error",
+                    "time_to_first_byte": 0.021
+                }
+            },
+            "cloud": {
+                "provider": "aws"
+            },
+            "destination": {
+                "address": "d2u7012t9m3e26.cloudfront.net",
+                "domain": "d2u7012t9m3e26.cloudfront.net"
+            },
+            "ecs": {
+                "version": "8.11.0"
+            },
+            "event": {
+                "category": [
+                    "web"
+                ],
+                "duration": 21000000,
+                "id": "QwYI6Y5kZedAhjEzOoT4LXKgDLQV6Pyfnrw-zDH-zIM1KXkKSzajyg==",
+                "kind": "event",
+                "original": "{\"timestamp\": \"1727709612.556\", \"c_ip\": \"1.128.0.4\", \"time_to_first_byte\": \"0.021\", \"sc_status\": \"403\", \"sc_bytes\": \"438\", \"cs_method\": \"POST\", \"cs_protocol\": \"https\", \"cs_host\": \"sys-s.dev.bgdi.ch\", \"cs_uri_stem\": \"/\", \"cs_bytes\": \"1616\", \"x_edge_location\": \"ZRH55-P2\", \"x_edge_request_id\": \"QwYI6Y5kZedAhjEzOoT4LXKgDLQV6Pyfnrw-zDH-zIM1KXkKSzajyg==\", \"x_host_header\": \"d2u7012t9m3e26.cloudfront.net\", \"time_taken\": \"0.021\", \"cs_protocol_version\": \"HTTP/2.0\", \"c_ip_version\": \"IPv4\", \"cs_user_agent\": \"curl/8.5.0\", \"cs_referer\": \"-\", \"cs_cookie\": \"-\", \"cs_uri_query\": \"-\", \"x_edge_response_result_type\": \"Error\", \"x_forwarded_for\": \"-\", \"ssl_protocol\": \"TLSv1.3\", \"ssl_cipher\": \"TLS_AES_128_GCM_SHA256\", \"x_edge_result_type\": \"Error\", \"fle_encrypted_fields\": \"-\", \"fle_status\": \"-\", \"sc_content_type\": \"application/json;%20charset=utf-8\", \"sc_content_len\": \"69\", \"sc_range_start\": \"-\", \"sc_range_end\": \"-\", \"c_port\": \"44812\", \"x_edge_detailed_result_type\": \"Error\", \"c_country\": \"CH\", \"cs_accept_encoding\": \"-\", \"cs_accept\": \"*/*\", \"cache_behavior_path_pattern\": \"*\", \"cs_headers\": \"\", \"cs_header_names\": \"host%0Auser-agent%0Aaccept%0Acontent-type%0Aheader1%0Aheader2%0Aorigin%0Aheader3%0Aheader4%0Aheader5%0Acontent-length%0ACloudFront-Forwarded-Proto%0A\", \"cs_headers_count\": \"12\"}",
+                "outcome": "failure",
+                "type": [
+                    "access"
+                ]
+            },
+            "http": {
+                "request": {
+                    "bytes": 1616,
+                    "headers": {},
+                    "id": "QwYI6Y5kZedAhjEzOoT4LXKgDLQV6Pyfnrw-zDH-zIM1KXkKSzajyg==",
+                    "method": "POST"
+                },
+                "response": {
+                    "body": {
+                        "bytes": 69
+                    },
+                    "bytes": 438,
+                    "mime_type": "application/json;%20charset=utf-8",
+                    "status_code": 403
+                },
+                "version": "2.0"
+            },
+            "network": {
+                "protocol": "https",
+                "type": "ipv4"
+            },
+            "related": {
+                "hosts": [
+                    "sys-s.dev.bgdi.ch",
+                    "d2u7012t9m3e26.cloudfront.net"
+                ],
+                "ip": [
+                    "1.128.0.4"
+                ]
+            },
+            "source": {
+                "address": "1.128.0.4",
+                "as": {
+                    "number": 1221,
+                    "organization": {
+                        "name": "Telstra Pty Ltd"
+                    }
+                },
+                "ip": "1.128.0.4",
                 "port": 44812
             },
             "tags": [

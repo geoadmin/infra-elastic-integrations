@@ -1,5 +1,5 @@
 ---
-description: Pipeline for processing sample logs
+description: Pipeline for processing Kubernetes scheduler logs.
 processors:
   - set:
       field: ecs.version
@@ -13,6 +13,9 @@ processors:
   - append:
       field: event.type
       value: ["access"]
+  - set:
+      field: orchestrator.type
+      value: kubernetes
   - rename:
       field: message
       target_field: event.original
@@ -24,168 +27,92 @@ processors:
       ignore_missing: true
       if: 'ctx.event?.original != null'
       description: 'The `message` field is no longer required if the document has an `event.original` field.'
-  # Process root level (k8s attribute) fields
-  - rename:
-      field: k8s.cluster.name
-      target_field: orchestrator.cluster.name
-      ignore_missing: true
-  - rename:
-      field: k8s.resource.name
-      target_field: orchestrator.resource.name
-      ignore_missing: true
-
-  # Process message (event)
-  - json:
+  - grok:
       field: event.original
-      target_field: _tmp
-  - set:
-      description: Set kubernetes event object type on events collected by otel
-      field: kubernetes.object.type
-      copy_from: _tmp.type
-      ignore_empty_value: true
-      if: ctx._tmp?.object != null
-  - lowercase:
-      field: kubernetes.object.type
-      ignore_missing: true
-  - set:
-      description: Remove object nesting on events collected by otel k8sobjects receiver
-      field: _tmp
-      copy_from: _tmp.object
-      ignore_empty_value: true
-  - rename:
-      field: _tmp.apiVersion
-      target_field: orchestrator.api_version
-      ignore_missing: true
-  - rename:
-      field: _tmp.deprecatedCount
-      target_field: kubernetes.event.deprecated.count
-      ignore_missing: true
-  - rename:
-      field: _tmp.deprecatedFirstTimestamp
-      target_field: kubernetes.event.deprecated.timestamp.first
-      ignore_missing: true
-  - rename:
-      field: _tmp.deprecatedLastTimestamp
-      target_field: kubernetes.event.deprecated.timestamp.last
-      ignore_missing: true
-  - rename:
-      field: _tmp.deprecatedSource
-      target_field: kubernetes.event.deprecated.source
-      ignore_missing: true
-  - date:
-      field: _tmp.metadata.creationTimestamp
-      formats:
-        - ISO8601
-      if: ctx._tmp?.metadata.creationTimestamp != null
-  - remove:
-      field: _tmp.metadata.creationTimestamp
-      ignore_missing: true
-  - rename:
-      field: _tmp.metadata.managedFields
-      target_field: kubernetes.event.metadata.managed_fields
-      ignore_missing: true
-  - rename:
-      field: _tmp.metadata.name
-      target_field: event.id
-      ignore_missing: true
-  - rename:
-      field: _tmp.metadata.namespace
-      target_field: kubernetes.event.metadata.namespace
-      ignore_missing: true
-  - rename:
-      field: _tmp.metadata.resourceVersion
-      target_field: kubernetes.event.metadata.resource.version
-      ignore_missing: true
-  - rename:
-      field: _tmp.metadata.uid
-      target_field: kubernetes.event.metadata.uid
-      ignore_missing: true
-  - lowercase:
-      field: _tmp.kind
-  - set:
-      field: event.kind
-      copy_from: _tmp.event.kind
-      ignore_empty_value: true
-  - remove:
-      field: _tmp.kind
-  - rename:
-      field: _tmp.note
-      target_field: message
-      ignore_missing: true
-  - rename:
-      field: _tmp.reason
-      target_field: event.reason
-      ignore_missing: true
-  - set:
-      field: orchestrator.api_version
-      copy_from: _tmp.regarding.apiVersion
-      ignore_empty_value: true
-  - remove:
-      field: _tmp.regarding.apiVersion
-      ignore_missing: true
-  - set:
-      field: orchestrator.resource.type
-      copy_from: _tmp.regarding.kind
-      ignore_empty_value: true
-  - remove:
-      field: _tmp.regarding.kind
-      ignore_missing: true
-  - set:
-      field: orchestrator.resource.name
-      copy_from: _tmp.regarding.name
-      ignore_empty_value: true
-  - remove:
-      field: _tmp.regarding.name
-      ignore_missing: true
-  - set:
-      field: orchestrator.namespace
-      copy_from: _tmp.regarding.namespace
-      ignore_empty_value: true
-  - remove:
-      field: _tmp.regarding.namespace
-      ignore_missing: true
-  - rename:
-      field: _tmp.regarding.resourceVersion
-      target_field: kubernetes.event.regarding.version
-      ignore_missing: true
-  - rename:
-      field: _tmp.regarding.uid
-      target_field: kubernetes.event.regarding.uid
-      ignore_missing: true
-  - rename:
-      field: _tmp.reportingController
-      target_field: kubernetes.event.reporting_controller
-      ignore_missing: true
-  - rename:
-      field: _tmp.type
-      target_field: kubernetes.event.type
-      ignore_missing: true
-
-
-  # Cleanup
+      patterns:
+      # Format as defined in klog docs: https://github.com/kubernetes/klog/blob/75663bb798999a49e3e4c0f2375ed5cca8164194/klog.go#L639C2-L639C50
+      # Lmmdd hh:mm:ss.uuuuuu threadid file:line] msg...
+       - '^%{KLOGSEVERITY:_tmp.severity_char}%{KLOGTIMESTAMP:_tmp.timestamp}\s+%{POSINT:process.thread.id:long} %{DATA:log.origin.file.name}\:%{POSINT:log.origin.file.line:long}\] "%{DATA:message}" %{KLOGPARAMETERS:_tmp.klog_kv_string}$'
+       - '^%{KLOGSEVERITY:_tmp.severity_char}%{KLOGTIMESTAMP:_tmp.timestamp}\s+%{POSINT:process.thread.id:long} %{DATA:log.origin.file.name}\:%{POSINT:log.origin.file.line:long}\] %{GREEDYDATA:message}$'
+      pattern_definitions:
+        KLOGSEVERITY: '[D,I,W,E,C]'
+        KLOGTIMESTAMP: '\d{4}\s%{TIME}'
+        KLOGPARAMETERS: '[a-zA-Z0-9_\-]+=.*'
   - script:
+      description: Parse klog severity
       lang: painless
-      source: |-
-        boolean drop(Object o) {
-          if (o == null || o == '') {
-            return true;
-          } else if (o instanceof Map) {
-            ((Map) o).values().removeIf(v -> drop(v));
-            return (((Map) o).size() == 0);
-          } else if (o instanceof List) {
-            ((List) o).removeIf(v -> drop(v));
-            return (((List) o).length == 0);
-          }
-          return false;
+      source: |
+        String severity_char = ctx._tmp?.severity_char;
+        if (severity_char == 'D') {
+          ctx.log.level = 'debug';
+          ctx.event.severity = 7;
         }
-        drop(ctx);
-      description: Drops null/empty values recursively.
-
+        else if (severity_char == 'I') {
+          ctx.log.level = 'informational';
+          ctx.event.severity = 6;
+        }
+        else if (severity_char == 'W') {
+          ctx.log.level = 'warning';
+          ctx.event.severity = 4;
+        }
+        else if (severity_char == 'E') {
+          ctx.log.level = 'error';
+          ctx.event.severity = 3;
+        }
+        else if (severity_char == 'C') {
+          ctx.log.level = 'critical';
+          ctx.event.severity = 2;
+        }
+  - date:
+      field: _tmp.timestamp
+      formats:
+        - MMdd HH:mm:ss.SSSSSS
+  - kv:
+      field: _tmp.klog_kv_string
+      field_split: ' (?=[a-zA-Z0-9_\-]+=)'
+      value_split: '(?<=\S+)='
+      target_field: _tmp.klog_parameters
+      strip_brackets: true
+      ignore_missing: true
+  - rename:
+      field: _tmp.klog_parameters.node
+      target_field: kubernetes.node.name
+      ignore_missing: true
+  - rename:
+      field: _tmp.klog_parameters.pod
+      target_field: kubernetes.pod.name
+      ignore_missing: true
+  - convert:
+      field: _tmp.klog_parameters.evaluatedNodes
+      target_field: kubernetes.scheduler.evaluated_nodes
+      type: long
+      ignore_missing: true
+  - remove:
+      field: _tmp.klog_parameters.evaluatedNodes
+      ignore_missing: true
+  - convert:
+      field: _tmp.klog_parameters.feasibleNodes
+      target_field: kubernetes.scheduler.feasible_nodes
+      type: long
+      ignore_missing: true
+  - remove:
+      field: _tmp.klog_parameters.feasibleNodes
+      ignore_missing: true
+  - rename:
+      field: _tmp.klog_parameters
+      target_field: kubernetes.scheduler.parameters
+      if: 'ctx?._tmp?.klog_parameters != null && ctx._tmp.klog_parameters.size() > 0'
+  - remove:
+      field: _tmp
 
 on_failure:
-  - set:
+  - append:
       field: event.kind
       value: pipeline_error
   - append:
       field: error.message
-      value: '{{{ _ingest.on_failure_message }}}'
+      value: >-
+        Processor '{{ _ingest.on_failure_processor_type }}'
+        {{#_ingest.on_failure_processor_tag}}with tag '{{ _ingest.on_failure_processor_tag }}'
+        {{/_ingest.on_failure_processor_tag}}failed with message '{{ _ingest.on_failure_message }}'
+
