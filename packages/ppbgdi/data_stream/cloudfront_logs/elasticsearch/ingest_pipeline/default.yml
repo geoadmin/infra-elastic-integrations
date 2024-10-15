@@ -88,6 +88,7 @@ processors:
       description: This script processor iterates over the whole document to remove fields with '-' (empty) values.
       if: 'ctx._tmp != null'
       source: 'ctx._tmp.values().removeIf(v -> v == "-");'
+      tag: remove_empty_values
 
   ### Cloudfront common fields (standard- and realtime logs) #######################################
 
@@ -236,6 +237,7 @@ processors:
         S_TO_NS: 1000000000
       source: >-
         ctx.event.duration = (Long)(Float.parseFloat(ctx._tmp.time_taken) * params.S_TO_NS);
+      tag: seconds_to_nanoseconds
   - remove:
       field: _tmp.time_taken
       ignore_missing: true
@@ -278,6 +280,7 @@ processors:
         if (bad_ips.length > 0 ) {
           ctx['_tmp']['error_message'] = "Invalid ip addresses: " + bad_ips.join(',');
         }
+      tag: network_forwarded_ips
   - remove:
       field: _tmp.x_forwarded_for
       ignore_missing: true
@@ -411,6 +414,7 @@ processors:
       source: >-
         ctx._tmp.timestamp = ctx._tmp.date + 'T' + ctx._tmp.time;
       if: ctx._tmp?.date != null && ctx._tmp?.time != null
+      tag: standard_logs_compose_timestamp
   - remove:
       field: _tmp.date
       ignore_missing: true
@@ -475,13 +479,32 @@ processors:
   - urldecode:
       field: _tmp.cs_headers
       ignore_missing: true
-  - kv:
-      field: _tmp.cs_headers
-      description: Parse request headers string into individual header fields.
-      target_field: http.request.headers
-      field_split: '\n'
-      value_split: ':'
-      ignore_missing: true
+  - script:
+      lang: painless
+      description: This script parses and standardizes the http headers
+      source: |
+        String header_string = ctx._tmp.cs_headers;
+        if (header_string != null) {
+          header_string = header_string.trim();
+          Map header_map = new HashMap();
+
+          // https://gist.github.com/vjt/06b28fbd988788c2a7a71c63dd9163be
+          def header_list = header_string.splitOnToken((String)(char)0x0a);
+
+          for (item in header_list) {
+            def kv = item.splitOnToken(':', 2);
+            if (kv.length == 2) {
+              String key = kv[0].toLowerCase();
+              header_map.put(key, kv[1]);
+            }
+          }
+
+          // Sometimes cloudfront sends empty cs_headers fields, which will result in a empty
+          // header map. In this case, we add the map anyway, to check for truncated (empty)
+          // headers later on in the pipeline.
+          ctx.http.request.headers = header_map;
+        }
+      tag: parse_http_request_headers
   - remove:
       field: _tmp.cs_headers
       ignore_missing: true
@@ -570,6 +593,7 @@ processors:
           // Get tags
           ctx.tags = tags;
         }
+      tag: add_truncated_tags
 
 
 
@@ -595,6 +619,7 @@ processors:
         if(full != "") {
             ctx._tmp.url_full = full
         }
+      tag: build_url_full
   - uri_parts:
       field: _tmp.url_full
       target_field: url
@@ -663,9 +688,9 @@ processors:
 
 
 ### Cleanup ########################################################################################
-  - remove:
-      field: _tmp
-      ignore_missing: true
+#   - remove:
+#       field: _tmp
+#       ignore_missing: true
 
 
 
@@ -676,4 +701,7 @@ on_failure:
       value: pipeline_error
   - append:
       field: error.message
-      value: '{{{ _ingest.on_failure_message }}}'
+      value: >-
+        Processor '{{ _ingest.on_failure_processor_type }}'
+        {{#_ingest.on_failure_processor_tag}}with tag '{{ _ingest.on_failure_processor_tag }}'
+        {{/_ingest.on_failure_processor_tag}}failed with message '{{ _ingest.on_failure_message }}'

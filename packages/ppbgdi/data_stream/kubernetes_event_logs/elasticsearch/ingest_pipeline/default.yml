@@ -1,5 +1,5 @@
 ---
-description: Pipeline for processing sample logs
+description: Pipeline for processing kubernetes event logs
 processors:
   - set:
       field: ecs.version
@@ -123,6 +123,10 @@ processors:
   - remove:
       field: _tmp.regarding.apiVersion
       ignore_missing: true
+  - rename:
+      field: _tmp.regarding.fieldPath
+      target_field: kubernetes.event.regarding.field_path
+      ignore_missing: true
   - set:
       field: orchestrator.resource.type
       copy_from: _tmp.regarding.kind
@@ -147,6 +151,10 @@ processors:
   - rename:
       field: _tmp.regarding.resourceVersion
       target_field: kubernetes.event.regarding.version
+      ignore_missing: true
+  - rename:
+      field: _tmp.regarding.reportingInstance
+      target_field: kubernetes.event.reporting_instance
       ignore_missing: true
   - rename:
       field: _tmp.regarding.uid

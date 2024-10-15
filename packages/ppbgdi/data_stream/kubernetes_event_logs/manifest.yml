@@ -1,3 +1,2 @@
 title: "Kubernetes Event logs"
 type: logs
-dataset: kubernetes.event_logs
