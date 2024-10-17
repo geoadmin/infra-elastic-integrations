@@ -141,7 +141,6 @@ An example event for `python` looks as following:
         "version": "7.81.0"
     }
 }
-
 ```
 
 **Exported fields**
