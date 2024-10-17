@@ -7,7 +7,7 @@
       namespace:
         - "{{data_stream.namespace}}"
         - default
-    - target_dataset: kubernetes.apiserver_logs
+    - target_dataset: ppbgdi.kubernetes_apiserver_logs
       if: "ctx?.event?.dataset == 'kubernetes.apiserver_logs'"
       namespace:
         - "{{data_stream.namespace}}"
