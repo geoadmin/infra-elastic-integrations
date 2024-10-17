@@ -49,7 +49,7 @@ processors:
             ctx.event.dataset = 'kubernetes.audit_logs';
           }
           else if (log_stream.startsWith('kube-apiserver')) {
-            ctx.event.dataset = 'kubernetes.apiserver_logs';
+            ctx.event.dataset = 'ppbgdi.kubernetes_apiserver_logs';
           }
           else if (log_stream.startsWith('authenticator')) {
             ctx.event.dataset = 'ppbgdi.eks_authenticator_logs';
