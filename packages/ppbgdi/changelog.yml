@@ -1,4 +1,9 @@
 # newer versions go on top
+- version: "0.7.8"
+  changes:
+    - description: Standardized cloudfront http headers and fix ppbgdi.kubernetes_event_logs
+      type: enhancement
+      link: https://github.com/geoadmin/infra-elastic-integrations/pull/22
 - version: "0.7.2"
   changes:
     - description: Added EKS logs support

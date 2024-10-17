@@ -3,8 +3,74 @@
         "controlGroupInput": {
             "chainingSystem": "HIERARCHICAL",
             "controlStyle": "oneLine",
-            "ignoreParentSettingsJSON": "{\"ignoreFilters\":false,\"ignoreQuery\":false,\"ignoreTimerange\":false,\"ignoreValidations\":false}",
-            "panelsJSON": "{\"5f29bcbf-fe4d-42a8-9edd-9384adee1c9e\":{\"type\":\"optionsListControl\",\"order\":2,\"grow\":false,\"width\":\"medium\",\"explicitInput\":{\"id\":\"5f29bcbf-fe4d-42a8-9edd-9384adee1c9e\",\"fieldName\":\"data_stream.namespace\",\"title\":\"data_stream.namespace\",\"grow\":true,\"width\":\"medium\",\"searchTechnique\":\"prefix\",\"selectedOptions\":[],\"enhancements\":{}}},\"be4e97e6-85d3-4a5e-8c22-eca0b6964a78\":{\"type\":\"optionsListControl\",\"order\":1,\"grow\":true,\"width\":\"medium\",\"explicitInput\":{\"id\":\"be4e97e6-85d3-4a5e-8c22-eca0b6964a78\",\"fieldName\":\"destination.domain\",\"title\":\"destination.domain\",\"grow\":true,\"width\":\"medium\",\"searchTechnique\":\"wildcard\",\"selectedOptions\":[],\"enhancements\":{}}},\"198f9f6d-a5cc-4aae-a892-37d5652da971\":{\"type\":\"optionsListControl\",\"order\":0,\"grow\":true,\"width\":\"medium\",\"explicitInput\":{\"id\":\"198f9f6d-a5cc-4aae-a892-37d5652da971\",\"fieldName\":\"ppbgdi.app.system\",\"title\":\"System\",\"grow\":true,\"width\":\"medium\",\"searchTechnique\":\"exact\",\"enhancements\":{}}},\"9755d32e-9d76-41e7-b7f6-4de7808cfe2c\":{\"type\":\"timeSlider\",\"order\":3,\"grow\":true,\"width\":\"large\",\"explicitInput\":{\"id\":\"9755d32e-9d76-41e7-b7f6-4de7808cfe2c\",\"title\":\"Time slider\",\"timesliceStartAsPercentageOfTimeRange\":0.2447923043827297,\"timesliceEndAsPercentageOfTimeRange\":0.6119807609568242,\"enhancements\":{}}}}",
+            "ignoreParentSettingsJSON": {
+                "ignoreFilters": false,
+                "ignoreQuery": false,
+                "ignoreTimerange": false,
+                "ignoreValidations": false
+            },
+            "panelsJSON": {
+                "198f9f6d-a5cc-4aae-a892-37d5652da971": {
+                    "explicitInput": {
+                        "enhancements": {},
+                        "fieldName": "ppbgdi.app.system",
+                        "grow": true,
+                        "id": "198f9f6d-a5cc-4aae-a892-37d5652da971",
+                        "searchTechnique": "exact",
+                        "title": "System",
+                        "width": "medium"
+                    },
+                    "grow": true,
+                    "order": 0,
+                    "type": "optionsListControl",
+                    "width": "medium"
+                },
+                "5f29bcbf-fe4d-42a8-9edd-9384adee1c9e": {
+                    "explicitInput": {
+                        "enhancements": {},
+                        "fieldName": "data_stream.namespace",
+                        "grow": true,
+                        "id": "5f29bcbf-fe4d-42a8-9edd-9384adee1c9e",
+                        "searchTechnique": "prefix",
+                        "selectedOptions": [],
+                        "title": "data_stream.namespace",
+                        "width": "medium"
+                    },
+                    "grow": false,
+                    "order": 2,
+                    "type": "optionsListControl",
+                    "width": "medium"
+                },
+                "9755d32e-9d76-41e7-b7f6-4de7808cfe2c": {
+                    "explicitInput": {
+                        "enhancements": {},
+                        "id": "9755d32e-9d76-41e7-b7f6-4de7808cfe2c",
+                        "timesliceEndAsPercentageOfTimeRange": 0.6119807609568242,
+                        "timesliceStartAsPercentageOfTimeRange": 0.2447923043827297,
+                        "title": "Time slider"
+                    },
+                    "grow": true,
+                    "order": 3,
+                    "type": "timeSlider",
+                    "width": "large"
+                },
+                "be4e97e6-85d3-4a5e-8c22-eca0b6964a78": {
+                    "explicitInput": {
+                        "enhancements": {},
+                        "fieldName": "destination.domain",
+                        "grow": true,
+                        "id": "be4e97e6-85d3-4a5e-8c22-eca0b6964a78",
+                        "searchTechnique": "wildcard",
+                        "selectedOptions": [],
+                        "title": "destination.domain",
+                        "width": "medium"
+                    },
+                    "grow": true,
+                    "order": 1,
+                    "type": "optionsListControl",
+                    "width": "medium"
+                }
+            },
             "showApplySelections": false
         },
         "description": "PPBGDI Dashboard for AWS cloudfront logs",
@@ -722,6 +788,7 @@
                             "adHocDataViews": {},
                             "datasourceStates": {
                                 "formBased": {
+                                    "currentIndexPatternId": "logs-*",
                                     "layers": {
                                         "127384f0-f5c5-4922-aed3-1032201624a9": {
                                             "columnOrder": [
@@ -732,7 +799,7 @@
                                                 "8128a6f2-1411-46b7-a59f-a57884d95763": {
                                                     "dataType": "string",
                                                     "isBucketed": true,
-                                                    "label": "Top 10 values of destination.domain",
+                                                    "label": "Top 10 values of aws.cloudfront.domain",
                                                     "operationType": "terms",
                                                     "params": {
                                                         "exclude": [],
@@ -749,10 +816,11 @@
                                                         "parentFormat": {
                                                             "id": "terms"
                                                         },
+                                                        "secondaryFields": [],
                                                         "size": 10
                                                     },
                                                     "scale": "ordinal",
-                                                    "sourceField": "destination.domain"
+                                                    "sourceField": "aws.cloudfront.domain"
                                                 },
                                                 "b483ce02-07a2-4933-9f4f-82acce9a3b62": {
                                                     "dataType": "number",
@@ -767,6 +835,7 @@
                                                 }
                                             },
                                             "incompleteColumns": {},
+                                            "indexPatternId": "logs-*",
                                             "sampling": 1
                                         }
                                     }
@@ -843,13 +912,206 @@
                 "embeddableConfig": {
                     "attributes": {
                         "description": "",
-                        "layerListJSON": "[{\"locale\":\"autoselect\",\"sourceDescriptor\":{\"type\":\"EMS_TMS\",\"isAutoSelect\":true,\"lightModeDefault\":\"road_map_desaturated\"},\"id\":\"b23d9dd2-4f64-489c-a98a-c68da2448082\",\"label\":null,\"minZoom\":0,\"maxZoom\":24,\"alpha\":1,\"visible\":true,\"style\":{\"type\":\"EMS_VECTOR_TILE\",\"color\":\"\"},\"includeInFitToBounds\":true,\"type\":\"EMS_VECTOR_TILE\"},{\"sourceDescriptor\":{\"geoField\":\"source.geo.location\",\"scalingType\":\"MVT\",\"id\":\"140d1d95-6f10-4b33-abd8-a44888b0eb80\",\"type\":\"ES_SEARCH\",\"applyGlobalQuery\":true,\"applyGlobalTime\":true,\"applyForceRefresh\":true,\"filterByMapBounds\":true,\"tooltipProperties\":[],\"sortField\":\"\",\"sortOrder\":\"desc\",\"topHitsGroupByTimeseries\":false,\"topHitsSplitField\":\"\",\"topHitsSize\":1,\"indexPatternRefName\":\"layer_1_source_index_pattern\"},\"id\":\"274078f8-9415-4dcb-a0a9-d13b632a8d9d\",\"label\":\"Cloudfront Client Locations\",\"minZoom\":0,\"maxZoom\":24,\"alpha\":0.75,\"visible\":true,\"style\":{\"type\":\"VECTOR\",\"properties\":{\"icon\":{\"type\":\"STATIC\",\"options\":{\"value\":\"marker\"}},\"fillColor\":{\"type\":\"STATIC\",\"options\":{\"color\":\"#54B399\"}},\"lineColor\":{\"type\":\"STATIC\",\"options\":{\"color\":\"#41937c\"}},\"lineWidth\":{\"type\":\"STATIC\",\"options\":{\"size\":0}},\"iconSize\":{\"type\":\"STATIC\",\"options\":{\"size\":6}},\"iconOrientation\":{\"type\":\"STATIC\",\"options\":{\"orientation\":0}},\"labelText\":{\"type\":\"STATIC\",\"options\":{\"value\":\"\"}},\"labelColor\":{\"type\":\"STATIC\",\"options\":{\"color\":\"#FFFFFF\"}},\"labelSize\":{\"type\":\"STATIC\",\"options\":{\"size\":14}},\"labelZoomRange\":{\"options\":{\"useLayerZoomRange\":true,\"minZoom\":0,\"maxZoom\":24}},\"labelBorderColor\":{\"type\":\"STATIC\",\"options\":{\"color\":\"#000000\"}},\"symbolizeAs\":{\"options\":{\"value\":\"circle\"}},\"labelBorderSize\":{\"options\":{\"size\":\"SMALL\"}},\"labelPosition\":{\"options\":{\"position\":\"CENTER\"}}},\"isTimeAware\":true},\"includeInFitToBounds\":true,\"type\":\"MVT_VECTOR\",\"joins\":[],\"disableTooltips\":false}]",
-                        "mapStateJSON": "{\"adHocDataViews\":[],\"zoom\":2.39,\"center\":{\"lon\":38.85948,\"lat\":-33.62763},\"timeFilters\":{\"from\":\"now-24h/h\",\"to\":\"now\"},\"refreshConfig\":{\"isPaused\":true,\"interval\":60000},\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filters\":[],\"settings\":{\"autoFitToDataBounds\":false,\"backgroundColor\":\"#1d1e24\",\"customIcons\":[],\"disableInteractive\":false,\"disableTooltipControl\":false,\"hideToolbarOverlay\":false,\"hideLayerControl\":false,\"hideViewControl\":false,\"initialLocation\":\"LAST_SAVED_LOCATION\",\"fixedLocation\":{\"lat\":0,\"lon\":0,\"zoom\":2},\"browserLocation\":{\"zoom\":2},\"keydownScrollZoom\":false,\"maxZoom\":24,\"minZoom\":0,\"showScaleControl\":false,\"showSpatialFilters\":true,\"showTimesliderToggleButton\":true,\"spatialFiltersAlpa\":0.3,\"spatialFiltersFillColor\":\"#DA8B45\",\"spatialFiltersLineColor\":\"#DA8B45\"}}",
+                        "layerListJSON": [
+                            {
+                                "alpha": 1,
+                                "id": "b23d9dd2-4f64-489c-a98a-c68da2448082",
+                                "includeInFitToBounds": true,
+                                "label": null,
+                                "locale": "autoselect",
+                                "maxZoom": 24,
+                                "minZoom": 0,
+                                "sourceDescriptor": {
+                                    "isAutoSelect": true,
+                                    "lightModeDefault": "road_map_desaturated",
+                                    "type": "EMS_TMS"
+                                },
+                                "style": {
+                                    "color": "",
+                                    "type": "EMS_VECTOR_TILE"
+                                },
+                                "type": "EMS_VECTOR_TILE",
+                                "visible": true
+                            },
+                            {
+                                "alpha": 0.75,
+                                "disableTooltips": false,
+                                "id": "274078f8-9415-4dcb-a0a9-d13b632a8d9d",
+                                "includeInFitToBounds": true,
+                                "joins": [],
+                                "label": "Cloudfront Client Locations",
+                                "maxZoom": 24,
+                                "minZoom": 0,
+                                "sourceDescriptor": {
+                                    "applyForceRefresh": true,
+                                    "applyGlobalQuery": true,
+                                    "applyGlobalTime": true,
+                                    "filterByMapBounds": true,
+                                    "geoField": "source.geo.location",
+                                    "id": "140d1d95-6f10-4b33-abd8-a44888b0eb80",
+                                    "indexPatternRefName": "layer_1_source_index_pattern",
+                                    "scalingType": "MVT",
+                                    "sortField": "",
+                                    "sortOrder": "desc",
+                                    "tooltipProperties": [],
+                                    "topHitsGroupByTimeseries": false,
+                                    "topHitsSize": 1,
+                                    "topHitsSplitField": "",
+                                    "type": "ES_SEARCH"
+                                },
+                                "style": {
+                                    "isTimeAware": true,
+                                    "properties": {
+                                        "fillColor": {
+                                            "options": {
+                                                "color": "#54B399"
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "icon": {
+                                            "options": {
+                                                "value": "marker"
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "iconOrientation": {
+                                            "options": {
+                                                "orientation": 0
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "iconSize": {
+                                            "options": {
+                                                "size": 6
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "labelBorderColor": {
+                                            "options": {
+                                                "color": "#000000"
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "labelBorderSize": {
+                                            "options": {
+                                                "size": "SMALL"
+                                            }
+                                        },
+                                        "labelColor": {
+                                            "options": {
+                                                "color": "#FFFFFF"
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "labelPosition": {
+                                            "options": {
+                                                "position": "CENTER"
+                                            }
+                                        },
+                                        "labelSize": {
+                                            "options": {
+                                                "size": 14
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "labelText": {
+                                            "options": {
+                                                "value": ""
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "labelZoomRange": {
+                                            "options": {
+                                                "maxZoom": 24,
+                                                "minZoom": 0,
+                                                "useLayerZoomRange": true
+                                            }
+                                        },
+                                        "lineColor": {
+                                            "options": {
+                                                "color": "#41937c"
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "lineWidth": {
+                                            "options": {
+                                                "size": 0
+                                            },
+                                            "type": "STATIC"
+                                        },
+                                        "symbolizeAs": {
+                                            "options": {
+                                                "value": "circle"
+                                            }
+                                        }
+                                    },
+                                    "type": "VECTOR"
+                                },
+                                "type": "MVT_VECTOR",
+                                "visible": true
+                            }
+                        ],
+                        "mapStateJSON": {
+                            "adHocDataViews": [],
+                            "center": {
+                                "lat": -33.62763,
+                                "lon": 38.85948
+                            },
+                            "filters": [],
+                            "query": {
+                                "language": "kuery",
+                                "query": ""
+                            },
+                            "refreshConfig": {
+                                "interval": 60000,
+                                "isPaused": true
+                            },
+                            "settings": {
+                                "autoFitToDataBounds": false,
+                                "backgroundColor": "#1d1e24",
+                                "browserLocation": {
+                                    "zoom": 2
+                                },
+                                "customIcons": [],
+                                "disableInteractive": false,
+                                "disableTooltipControl": false,
+                                "fixedLocation": {
+                                    "lat": 0,
+                                    "lon": 0,
+                                    "zoom": 2
+                                },
+                                "hideLayerControl": false,
+                                "hideToolbarOverlay": false,
+                                "hideViewControl": false,
+                                "initialLocation": "LAST_SAVED_LOCATION",
+                                "keydownScrollZoom": false,
+                                "maxZoom": 24,
+                                "minZoom": 0,
+                                "showScaleControl": false,
+                                "showSpatialFilters": true,
+                                "showTimesliderToggleButton": true,
+                                "spatialFiltersAlpa": 0.3,
+                                "spatialFiltersFillColor": "#DA8B45",
+                                "spatialFiltersLineColor": "#DA8B45"
+                            },
+                            "timeFilters": {
+                                "from": "now-24h/h",
+                                "to": "now"
+                            },
+                            "zoom": 2.39
+                        },
                         "title": "",
-                        "uiStateJSON": "{\"isLayerTOCOpen\":false,\"openTOCDetails\":[]}"
+                        "uiStateJSON": {
+                            "isLayerTOCOpen": false,
+                            "openTOCDetails": []
+                        }
                     },
                     "description": "",
-                    "enhancements": {},
+                    "enhancements": {
+                        "dynamicActions": {
+                            "events": []
+                        }
+                    },
                     "hiddenLayers": [],
                     "isLayerTOCOpen": true,
                     "mapBuffer": {
@@ -1724,7 +1986,54 @@
                         "hideChart": false,
                         "isTextBasedQuery": false,
                         "kibanaSavedObjectMeta": {
-                            "searchSourceJSON": "{\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"field\":\"data_stream.dataset\",\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index\",\"key\":\"data_stream.dataset\",\"negate\":false,\"params\":[\"ppbgdi.cloudfront_logs\",\"aws.cloudfront_logs\"],\"type\":\"phrases\",\"value\":[\"ppbgdi.cloudfront_logs\",\"aws.cloudfront_logs\"]},\"query\":{\"bool\":{\"minimum_should_match\":1,\"should\":[{\"match_phrase\":{\"data_stream.dataset\":\"ppbgdi.cloudfront_logs\"}},{\"match_phrase\":{\"data_stream.dataset\":\"aws.cloudfront_logs\"}}]}}}],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+                            "searchSourceJSON": {
+                                "filter": [
+                                    {
+                                        "$state": {
+                                            "store": "appState"
+                                        },
+                                        "meta": {
+                                            "alias": null,
+                                            "disabled": false,
+                                            "field": "data_stream.dataset",
+                                            "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+                                            "key": "data_stream.dataset",
+                                            "negate": false,
+                                            "params": [
+                                                "ppbgdi.cloudfront_logs",
+                                                "aws.cloudfront_logs"
+                                            ],
+                                            "type": "phrases",
+                                            "value": [
+                                                "ppbgdi.cloudfront_logs",
+                                                "aws.cloudfront_logs"
+                                            ]
+                                        },
+                                        "query": {
+                                            "bool": {
+                                                "minimum_should_match": 1,
+                                                "should": [
+                                                    {
+                                                        "match_phrase": {
+                                                            "data_stream.dataset": "ppbgdi.cloudfront_logs"
+                                                        }
+                                                    },
+                                                    {
+                                                        "match_phrase": {
+                                                            "data_stream.dataset": "aws.cloudfront_logs"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                ],
+                                "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.index",
+                                "query": {
+                                    "language": "kuery",
+                                    "query": ""
+                                }
+                            }
                         },
                         "references": [
                             {
@@ -1736,16 +2045,6 @@
                                 "id": "logs-*",
                                 "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
                                 "type": "index-pattern"
-                            },
-                            {
-                                "id": "fleet-managed-default",
-                                "name": "tag-ref-fleet-managed-default",
-                                "type": "tag"
-                            },
-                            {
-                                "id": "fleet-pkg-ppbgdi-default",
-                                "name": "tag-ref-fleet-pkg-ppbgdi-default",
-                                "type": "tag"
                             }
                         ],
                         "sort": [
@@ -1775,7 +2074,7 @@
         "version": 2
     },
     "coreMigrationVersion": "8.8.0",
-    "created_at": "2024-07-01T15:58:28.491Z",
+    "created_at": "2024-10-15T12:16:15.921Z",
     "id": "ppbgdi-d5dae57d-6529-4bb4-9ef5-10d755817398",
     "managed": false,
     "references": [
@@ -1822,11 +2121,6 @@
         {
             "id": "logs-*",
             "name": "30960b0d-186e-4211-aa9c-e7fcc320b742:indexpattern-datasource-layer-127384f0-f5c5-4922-aed3-1032201624a9",
-            "type": "index-pattern"
-        },
-        {
-            "id": "logs-*",
-            "name": "0da80727-f01d-4b79-9b5c-80f206ea6a18:layer_1_source_index_pattern",
             "type": "index-pattern"
         },
         {
@@ -1883,8 +2177,14 @@
             "id": "logs-*",
             "name": "controlGroup_198f9f6d-a5cc-4aae-a892-37d5652da971:optionsListDataView",
             "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "0da80727-f01d-4b79-9b5c-80f206ea6a18:layer_1_source_index_pattern",
+            "type": "index-pattern"
         }
     ],
     "type": "dashboard",
-    "typeMigrationVersion": "10.2.0"
+    "typeMigrationVersion": "10.2.0",
+    "updated_by": "u_eJJ-NgPmABOw9Ujg5NmDFZ7oYxBIxYOqY2oF6RmehDk_0"
 }

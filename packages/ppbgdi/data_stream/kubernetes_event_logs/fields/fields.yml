@@ -11,6 +11,9 @@
     - name: type
       type: keyword
       description: The type of the kubernetes event
+    - name: reporting_instance
+      type: keyword
+      description: The reporting instance of the event
 - name: kubernetes.event.deprecated
   type: group
   description: Deprecated kubernetes api fields, used for backwards compatibility with older api version
@@ -54,3 +57,6 @@
     - name: uid
       type: keyword
       description: The uid of the regarding resource
+    - name: field_path
+      type: keyword
+      description: The field path of the regarding resource
