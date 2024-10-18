@@ -42,6 +42,11 @@
       namespace:
         - "{{data_stream.namespace}}"
         - default
+    - target_dataset: ppbgdi.service_proxy_logs
+      if: ctx?.service?.name != null && ctx?.service?.name == 'service-proxy'
+      namespace:
+        - "{{data_stream.namespace}}"
+        - default
     - target_dataset: ppbgdi.service_search_logs
       if: ctx?.service?.name != null && ctx?.service?.name == 'service-search'
       namespace:
