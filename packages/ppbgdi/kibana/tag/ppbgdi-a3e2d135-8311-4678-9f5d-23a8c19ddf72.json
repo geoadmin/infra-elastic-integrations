@@ -1,0 +1,15 @@
+{
+    "attributes": {
+        "color": "#6092C0",
+        "description": "",
+        "name": "brice-schaffner"
+    },
+    "coreMigrationVersion": "8.8.0",
+    "created_at": "2024-08-14T13:55:24.278Z",
+    "created_by": "u_7WHX17RaewF0_21iu-BxM2W14nmqCtzJzKgr9bhNzN8_0",
+    "id": "ppbgdi-a3e2d135-8311-4678-9f5d-23a8c19ddf72",
+    "managed": false,
+    "references": [],
+    "type": "tag",
+    "typeMigrationVersion": "8.0.0"
+}

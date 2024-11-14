@@ -1,0 +1,16 @@
+{
+    "attributes": {
+        "color": "#c718a8",
+        "description": "",
+        "name": "service-proxy"
+    },
+    "coreMigrationVersion": "8.8.0",
+    "created_at": "2024-09-05T09:53:50.857Z",
+    "created_by": "u_7WHX17RaewF0_21iu-BxM2W14nmqCtzJzKgr9bhNzN8_0",
+    "id": "ppbgdi-c2a01b8f-9868-4e16-bc03-82a7ba85c8de",
+    "managed": false,
+    "references": [],
+    "type": "tag",
+    "typeMigrationVersion": "8.0.0",
+    "updated_by": "u_7WHX17RaewF0_21iu-BxM2W14nmqCtzJzKgr9bhNzN8_0"
+}

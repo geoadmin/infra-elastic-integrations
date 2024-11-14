@@ -1,0 +1,16 @@
+{
+    "attributes": {
+        "color": "#d135d2",
+        "description": "",
+        "name": "PROD"
+    },
+    "coreMigrationVersion": "8.8.0",
+    "created_at": "2024-08-21T04:35:13.555Z",
+    "created_by": "u_7WHX17RaewF0_21iu-BxM2W14nmqCtzJzKgr9bhNzN8_0",
+    "id": "ppbgdi-498dc860-fb1a-4804-ae1b-eb150fc489c5",
+    "managed": false,
+    "references": [],
+    "type": "tag",
+    "typeMigrationVersion": "8.0.0",
+    "updated_by": "u_7WHX17RaewF0_21iu-BxM2W14nmqCtzJzKgr9bhNzN8_0"
+}
