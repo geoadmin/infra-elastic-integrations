@@ -1,9 +1,10 @@
 # newer versions go on top
-- version: "1.0.1"
+- version: "1.0.2"
   changes:
     - description: Add service control log parsing
       type: enhancement
       link: https://github.com/geoadmin/infra-elastic-integrations/pull/32
+# skipped 1.0.1 as it deployed a broken state that couldn't be remedied
 - version: "1.0.0"
   changes:
     - description: Enhance cloudfront realtime log parsing
