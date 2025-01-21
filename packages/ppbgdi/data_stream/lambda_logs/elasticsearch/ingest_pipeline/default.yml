@@ -1,0 +1,14 @@
+---
+description: Pipeline for processing Lambda logs
+processors:
+- rename:
+    field: "time"
+    target_field: "timestamp"
+    override: false
+    description: "Normalize timestamp field name"
+    ignore_missing: true
+- date:
+    field: "timestamp"
+    formats: ["ISO8601"]
+- remove:
+    field: "timestamp"
