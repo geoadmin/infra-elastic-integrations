@@ -1,0 +1,8 @@
+
+- name: http.request.headers.*
+  type: keyword
+  description: Not yet but already in use ecs fields
+- name: http.response.headers.*
+  type: keyword
+  description: Not yet but already in use ecs fields
+
