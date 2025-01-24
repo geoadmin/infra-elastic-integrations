@@ -8,6 +8,20 @@ processors:
   - json:
       field: event.original
       target_field: temp
+  - dot_expander:
+      path: temp
+      field: "*"
+      ignore_failure: true
+      description: expand the fields with dots sent by ecs logging
+  - date:
+      field: temp.@timestamp
+      formats:
+        - ISO8601
+      if: 'ctx?.temp["@timestamp"] != null'
+      description: ecs logging package sets @timestamp, thus we need to parse it here
+  - remove:
+      field: temp.@timestamp
+      ignore_missing: true
   - foreach:
       field: temp.error
       ignore_missing: true
@@ -31,6 +45,12 @@ processors:
   - set:
       field: "@timestamp"
       copy_from: event.created
+      ignore_empty_value: true
+  - set:
+      field: "event.created"
+      copy_from: "@timestamp"
+      if: 'ctx?.event?.created == null'
+      description: ecs logging package doesn't set event.created
   - convert:
       field: event.severity
       type: integer
@@ -285,6 +305,7 @@ processors:
         - temp.response
         - temp.time
         - temp.excInfo
+        - temp.ecs.version
       ignore_missing: true
 
 on_failure:
