@@ -13,15 +13,6 @@ processors:
       field: "*"
       ignore_failure: true
       description: expand the fields with dots sent by ecs logging
-  - set:
-      field: ecs.version
-      copy_from: temp.ecs.version
-      override: true
-      if: 'ctx?.temp?.ecs != null'
-      description: retrieve the ecs.version if it's set in the log record
-  - remove:
-      field: temp.ecs
-      ignore_missing: true
   - date:
       field: temp.@timestamp
       formats:
@@ -314,6 +305,7 @@ processors:
         - temp.response
         - temp.time
         - temp.excInfo
+        - temp.ecs.version
       ignore_missing: true
 
 on_failure:
