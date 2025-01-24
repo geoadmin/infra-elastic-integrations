@@ -4,6 +4,7 @@ processors:
   - set:
       field: ecs.version
       value: '8.11.0'
+      description: Setting the version of the log output of this pipeline
   - set:
       field: event.kind
       value: event
