@@ -1,0 +1,377 @@
+---
+description: Pipeline for custom API Gateway log fields
+
+processors:
+- rename:
+    field: aws.apigateway.accountId
+    target_field: aws.apigateway.account_id
+    ignore_missing: true
+    if: ctx.aws?.apigateway?.accountId != '-'
+- remove:
+    field: "aws.apigateway.accountId"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.authorizerAuthenticated"
+    target_field: "aws.apigateway.authorizer.authenticated"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.authorizerAuthenticated != '-'"
+- remove:
+    field: "aws.apigateway.authorizerAuthenticated"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.authorizerError"
+    target_field: "aws.apigateway.authorizer.error"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.authorizerError != '-'"
+- remove:
+    field: "aws.apigateway.authorizerError"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.authorizerPrincipalId"
+    target_field: "aws.apigateway.authorizer.principal_id"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.authorizerPrincipalId != '-'"
+- remove:
+    field: "aws.apigateway.authorizerPrincipalId"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.authorizerUsername"
+    target_field: "aws.apigateway.authorizer.username"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.authorizerUsername != '-'"
+- remove:
+    field: "aws.apigateway.authorizerUsername"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.awsEndpointRequestId"
+    target_field: "aws.apigateway.aws_endpoint_request_id"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.awsEndpointRequestId != '-'"
+- remove:
+    field: "aws.apigateway.awsEndpointRequestId"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.awsEndpointRequestId2"
+    target_field: "aws.apigateway.aws_endpoint_request_id2"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.awsEndpointRequestId2 != '-'"
+- remove:
+    field: "aws.apigateway.awsEndpointRequestId2"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.customDomainBasePathMatched"
+    target_field: "aws.apigateway.custom_domain_base_path_matched"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.customDomainBasePathMatched != '-'"
+- remove:
+    field: "aws.apigateway.customDomainBasePathMatched"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.dataProcessed"
+    target_field: "aws.apigateway.data_processed"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.dataProcessed != '-'"
+- remove:
+    field: "aws.apigateway.dataProcessed"
+    ignore_missing: true
+- convert:
+    field: aws.apigateway.data_processed
+    type: long
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.domainPrefix"
+    target_field: "aws.apigateway.domain_prefix"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.domainPrefix != '-'"
+- remove:
+    field: "aws.apigateway.domainPrefix"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.errorMessage"
+    target_field: "aws.apigateway.error.message"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.errorMessage != '-'"
+- remove:
+    field: "aws.apigateway.errorMessage"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.errorResponseType"
+    target_field: "aws.apigateway.error.response_type"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.errorResponseType != '-'"
+- remove:
+    field: "aws.apigateway.errorResponseType"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.httpMethod"
+    target_field: "aws.apigateway.http_method"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.httpMethod != '-'"
+- remove:
+    field: "aws.apigateway.httpMethod"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityAccountId"
+    target_field: "aws.apigateway.identity.account_id"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityAccountId != '-'"
+- remove:
+    field: "aws.apigateway.identityAccountId"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityCaller"
+    target_field: "aws.apigateway.identity.caller"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityCaller != '-'"
+- remove:
+    field: "aws.apigateway.identityCaller"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityClientCertClientCertPem"
+    target_field: "aws.apigateway.identity.client_cert.client_cert_pem"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityClientCertClientCertPem != '-'"
+- remove:
+    field: "aws.apigateway.identityClientCertClientCertPem"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityClientCertIssuerDN"
+    target_field: "aws.apigateway.identity.client_cert.issuer_dn"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityClientCertIssuerDN != '-'"
+- remove:
+    field: "aws.apigateway.identityClientCertIssuerDN"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityClientCertSerialNumber"
+    target_field: "aws.apigateway.identity.client_cert.serial_number"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityClientCertSerialNumber != '-'"
+- remove:
+    field: "aws.apigateway.identityClientCertSerialNumber"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityClientCertSubjectDN"
+    target_field: "aws.apigateway.identity.client_cert.subject_dn"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityClientCertSubjectDN != '-'"
+- remove:
+    field: "aws.apigateway.identityClientCertSubjectDN"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityClientCertValidityNotAfter"
+    target_field: "aws.apigateway.identity.client_cert.validity_not_after"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityClientCertValidityNotAfter != '-'"
+- remove:
+    field: "aws.apigateway.identityClientCertValidityNotAfter"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityClientCertValidityNotBefore"
+    target_field: "aws.apigateway.identity.client_cert.validity_not_before"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityClientCertValidityNotBefore != '-'"
+- remove:
+    field: "aws.apigateway.identityClientCertValidityNotBefore"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityCognitoAuthenticationProvider"
+    target_field: "aws.apigateway.identity.cognito_authentication_provider"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityCognitoAuthenticationProvider != '-'"
+- remove:
+    field: "aws.apigateway.identityCognitoAuthenticationProvider"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityCognitoAuthenticationType"
+    target_field: "aws.apigateway.identity.cognito_authentication_type"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityCognitoAuthenticationType != '-'"
+- remove:
+    field: "aws.apigateway.identityCognitoAuthenticationType"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityCognitoIdentityId"
+    target_field: "aws.apigateway.identity.cognito_identity_id"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityCognitoIdentityId != '-'"
+- remove:
+    field: "aws.apigateway.identityCognitoIdentityId"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityCognitoIdentityPoolId"
+    target_field: "aws.apigateway.identity.cognito_identity_pool_id"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityCognitoIdentityPoolId != '-'"
+- remove:
+    field: "aws.apigateway.identityCognitoIdentityPoolId"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityPrincipalOrgId"
+    target_field: "aws.apigateway.identity.principal_org_id"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityPrincipalOrgId != '-'"
+- remove:
+    field: "aws.apigateway.identityPrincipalOrgId"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identitySourceIp"
+    target_field: "aws.apigateway.identity.source_ip"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identitySourceIp != '-'"
+- remove:
+    field: "aws.apigateway.identitySourceIp"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityUser"
+    target_field: "aws.apigateway.identity.user"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityUser != '-'"
+- remove:
+    field: "aws.apigateway.identityUser"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityUserAgent"
+    target_field: "aws.apigateway.identity.user_agent"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityUserAgent != '-'"
+- remove:
+    field: "aws.apigateway.identityUserAgent"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.identityUserArn"
+    target_field: "aws.apigateway.identity.user_arn"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.identityUserArn != '-'"
+- remove:
+    field: "aws.apigateway.identityUserArn"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.integrationErrorMessage"
+    target_field: "aws.apigateway.integration_error_message"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.integrationErrorMessage != '-'"
+- remove:
+    field: "aws.apigateway.integrationErrorMessage"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.integrationIntegrationStatus"
+    target_field: "aws.apigateway.integration.integration_status"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.integrationIntegrationStatus != '-'"
+- remove:
+    field: "aws.apigateway.integrationIntegrationStatus"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.integrationLatency"
+    target_field: "aws.apigateway.integration.latency"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.integrationLatency != '-'"
+- remove:
+    field: "aws.apigateway.integrationLatency"
+    ignore_missing: true
+- convert:
+    field: aws.apigateway.integration.latency
+    type: long
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.integrationProxyStatus"
+    target_field: "aws.apigateway.integration.proxy_status"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.integrationProxyStatus != '-'"
+- remove:
+    field: "aws.apigateway.integrationProxyStatus"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.integrationStatus"
+    target_field: "aws.apigateway.integration.status"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.integrationStatus != '-'"
+- remove:
+    field: "aws.apigateway.integrationStatus"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.requestId"
+    target_field: "aws.apigateway.request_id"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.requestId != '-'"
+- remove:
+    field: "aws.apigateway.requestId"
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.responseLatency"
+    target_field: "aws.apigateway.response_latency"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.responseLatency != '-'"
+- remove:
+    field: "aws.apigateway.responseLatency"
+    ignore_missing: true
+- convert:
+    field: aws.apigateway.response_latency
+    type: long
+    ignore_missing: true
+- rename:
+    field: "aws.apigateway.responseLength"
+    target_field: "aws.apigateway.response_length"
+    ignore_missing: true
+    if: "ctx.aws?.apigateway?.responseLength != '-'"
+- remove:
+    field: "aws.apigateway.responseLength"
+    ignore_missing: true
+- set:
+    field: "error.message"
+    copy_from: "aws.apigateway.error.message"
+    ignore_empty_value: true
+- set:
+    field: "error.type"
+    copy_from: "aws.apigateway.error.response_type"
+    ignore_empty_value: true
+- set:
+    field: "http.request.method"
+    copy_from: "aws.apigateway.http_method"
+    ignore_empty_value: true
+- set:
+    field: "source.address"
+    copy_from: "aws.apigateway.identity.source_ip"
+    ignore_empty_value: true
+- set:
+    field: "source.ip"
+    copy_from: "aws.apigateway.identity.source_ip"
+    ignore_empty_value: true
+- set:
+    field: "tls.client.certificate"
+    copy_from: "aws.apigateway.identity.client_cert.client_cert_pem"
+    ignore_empty_value: true
+- set:
+    field: "tls.client.issuer"
+    copy_from: "aws.apigateway.identity.client_cert.issuer_dn"
+    ignore_empty_value: true
+- set:
+    field: "tls.client.not_after"
+    copy_from: "aws.apigateway.identity.client_cert.validity_not_after"
+    ignore_empty_value: true
+- set:
+    field: "tls.client.not_before"
+    copy_from: "aws.apigateway.identity.client_cert.validity_not_before"
+    ignore_empty_value: true
+- set:
+    field: "tls.client.subject"
+    copy_from: "aws.apigateway.identity.client_cert.subject_dn"
+    ignore_empty_value: true
+- set:
+    field: "url.domain"
+    copy_from: "aws.apigateway.domain_name"
+    ignore_empty_value: true
+- set:
+    field: "url.path"
+    copy_from: "aws.apigateway.path"
+    ignore_empty_value: true
+- set:
+    field: "user_agent.original"
+    copy_from: "aws.apigateway.identity.user_agent"
+    ignore_empty_value: true
+
+on_failure:
+- set:
+    field: "error_information"
+    value: "Processor {{ _ingest.on_failure_processor_type }} with tag {{ _ingest.on_failure_processor_tag }} in pipeline {{ _ingest.on_failure_pipeline }} failed with message {{ _ingest.on_failure_message }}"

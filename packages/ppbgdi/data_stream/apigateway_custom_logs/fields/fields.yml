@@ -1,0 +1,148 @@
+- name: aws.apigateway
+  type: group
+  fields:
+    - name: account_id
+      type: keyword
+    - name: api_id
+      type: keyword
+    - name: authorizer.authenticated
+      type: boolean
+    - name: authorizer.error
+      type: match_only_text
+    - name: authorizer.principal_id
+      type: keyword
+    - name: authorizer.username
+      type: keyword
+    - name: aws_endpoint_request_id
+      type: keyword
+    - name: aws_endpoint_request_id2
+      type: keyword
+    - name: caller
+      type: keyword
+    - name: connection_id
+      type: keyword
+    - name: custom_domain_base_path_matched
+      type: keyword
+    - name: data_processed
+      type: long
+    - name: domain_name
+      type: keyword
+    - name: domain_prefix
+      type: keyword
+    - name: event_type
+      type: keyword
+    - name: error.message
+      type: match_only_text
+    - name: error.response_type
+      type: keyword
+    - name: http_method
+      type: keyword
+    - name: identity.account_id
+      type: keyword
+    - name: identity.caller
+      type: keyword
+    - name: identity.client_cert.client_cert_pem
+      type: wildcard
+    - name: identity.client_cert.issuer_dn
+      type: keyword
+    - name: identity.client_cert.serial_number
+      type: keyword
+    - name: identity.client_cert.subject_dn
+      type: keyword
+    - name: identity.client_cert.validity_not_after
+      type: text
+    - name: identity.client_cert.validity_not_before
+      type: text
+    - name: identity.cognito_authentication_provider
+      type: keyword
+    - name: identity.cognito_authentication_type
+      type: keyword
+    - name: identity.cognito_identity_id
+      type: keyword
+    - name: identity.cognito_identity_pool_id
+      type: keyword
+    - name: identity.principal_org_id
+      type: keyword
+    - name: identity.source_ip
+      type: ip
+    - name: identity.user
+      type: keyword
+    - name: identity.user_agent
+      type: wildcard
+    - name: identity.user_arn
+      type: keyword
+    - name: integration_error_message
+      type: match_only_text
+    - name: integration.proxy_status
+      type: keyword
+    - name: integration.integration_status
+      type: keyword
+    - name: integration.latency
+      type: long
+    - name: integration.status
+      type: keyword
+    - name: path
+      type: wildcard
+    - name: protocol
+      type: keyword
+    - name: request_length
+      type: long
+    - name: request_id
+      type: keyword
+    - name: request_time
+    - name: resource_path
+      type: keyword
+    - name: response_latency
+      type: long
+    - name: response_length
+      type: long
+    - name: route_key
+      type: keyword
+    - name: stage
+      type: keyword
+    - name: status
+      type: long
+    - name: user
+      type: keyword
+
+- name: aws.cloudwatch
+  type: group
+  fields:
+    - name: log_group
+      type: keyword
+      description: Cloudwatch log group
+    - name: log_stream
+      type: keyword
+      description: Cloudwatch log stream
+
+- name: aws.firehose
+  type: group
+  fields:
+    - name: arn
+      type: keyword
+      description: |
+        Firehose ARN.
+    - name: request_id
+      type: keyword
+      description: |
+        Firehose request ID.
+    - name: subscription_filters
+      type: keyword
+      description: |
+        Firehose request ID.
+    - name: parameters.*
+      type: flattened
+      description: |
+        Key-value pairs users set up when creating the Kinesis Data Firehose. These parameters are included in each HTTP call.
+
+- name: aws.kinesis
+  type: group
+  fields:
+    - name: name
+      type: keyword
+      description: |
+        Kinesis name.
+    - name: type
+      type: keyword
+      description: |-
+        Kinesis type.

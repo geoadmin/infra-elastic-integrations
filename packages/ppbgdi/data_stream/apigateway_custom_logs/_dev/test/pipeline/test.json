@@ -1,0 +1,92 @@
+{
+    "events": [
+        {
+            "@timestamp": "2025-01-31T10:13:53.847Z",
+            "ecs": {
+                "version": "8.11.0"
+            },
+            "event": {
+                "agent_id_status": "missing",
+                "id": "38765796467130757907164842895664880603525942057011249152",
+                "ingested": "2025-01-31T10:15:42.000Z",
+                "module": "aws"
+            },
+            "cloud": {
+                "account.id": "839910802816",
+                "region": "eu-central-1",
+                "provider": "aws"
+            },
+            "data_stream": {
+                "dataset": "ppbgdi.apigateway_custom_logs",
+                "type": "logs",
+                "namespace": "dev"
+            },
+            "aws": {
+                "apigateway": {
+                    "http_method": "GET",
+                    "authorizerUsername": "-",
+                    "identityClientCertValidityNotBefore": "-",
+                    "integrationIntegrationStatus": "200",
+                    "identityCaller": "-",
+                    "identityUser": "-",
+                    "identityUserAgent": "Elastic-Heartbeat/8.16.3 (linux; amd64; 0951e7a8c1fe2b31d9b07e5bc0084a2a0a4520a8; 2025-01-02 17:03:21 +0000 UTC)",
+                    "request_time": "2025-01-31T10:13:53.000Z",
+                    "identityAccountId": "-",
+                    "integrationLatency": "639",
+                    "status": 200,
+                    "integrationProxyStatus": "200",
+                    "stage": "$default",
+                    "identityPrincipalOrgId": "-",
+                    "request_id": "FP5PWjk6FiAEJzA=",
+                    "protocol": "HTTP/1.1",
+                    "identityClientCertClientCertPem": "-",
+                    "integrationStatus": "200",
+                    "identityUserArn": "-",
+                    "route_key": "ANY /api/stac/v1/{proxy+}",
+                    "identityClientCertIssuerDN": "-",
+                    "identitySourceIp": "1.128.0.0",
+                    "identityCognitoAuthenticationProvider": "-",
+                    "api_id": "05jus8nlxi",
+                    "response_length": 144696,
+                    "integrationErrorMessage": "-",
+                    "identityCognitoIdentityPoolId": "-",
+                    "identityClientCertSerialNumber": "-",
+                    "identityClientCertSubjectDN": "-",
+                    "customDomainBasePathMatched": "-",
+                    "authorizerPrincipalId": "-",
+                    "awsEndpointRequestId": "-",
+                    "identityClientCertValidityNotAfter": "-",
+                    "domain_name": "05jus8nlxi.execute-api.eu-central-1.amazonaws.com",
+                    "errorMessage": "-",
+                    "identityCognitoIdentityId": "-",
+                    "awsEndpointRequestId2": "-",
+                    "domainPrefix": "05jus8nlxi",
+                    "path": "/api/stac/v1/collections",
+                    "dataProcessed": "146549",
+                    "authorizerAuthenticated": "false",
+                    "accountId": "839910802816",
+                    "identityCognitoAuthenticationType": "-",
+                    "errorResponseType": "-",
+                    "responseLatency": "669",
+                    "authorizerError": "-"
+                },
+                "cloudwatch": {
+                    "log_group": "/aws/apigateway/access/stac/dev",
+                    "log_stream": "05jus8nlxi_.default-2025-01-31-10-13"
+                },
+                "firehose": {
+                    "arn": "arn:aws:firehose:eu-central-1:839910802816:deliverystream/logs-dev-cloudwatch-apigateway",
+                    "parameters": {
+                        "es_datastream_name": "logs-aws.apigateway_logs-dev"
+                    },
+                    "request_id": "65319715-b378-42b1-8379-abbe7f5a9933",
+                    "subscription_filters": "[/aws/apigateway/access/stac/dev-dev-logs-apigateway-stac-elastic-firehose]"
+                },
+                "kinesis": {
+                    "name": "logs-dev-cloudwatch-apigateway",
+                    "type": "deliverystream"
+                }
+            }
+        }
+    ]
+}
