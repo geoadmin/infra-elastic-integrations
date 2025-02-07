@@ -13,7 +13,7 @@
             "event": {
                 "created": "2025-01-23T14:51:01.662Z",
                 "id": "njwalBLM_dqqLUZdIEDfMx09m4mxekKTAQ7dzX-EeiP0Tp-jEBwgqg==",
-                "ingested": "2025-02-07T14:50:58.738497653Z",
+                "ingested": "2025-02-07T14:51:00.154349319Z",
                 "kind": "event",
                 "original": "{\"@timestamp\":\"2025-01-23T14:51:01.662Z\",\"log.level\":\"debug\",\"message\":\"Response 401\",\"ecs.version\":\"1.6.0\",\"http\":{\"request\":{\"headers\":{\"accept\":\"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\",\"accept-encoding\":\"br,gzip\",\"accept-language\":\"en-US,de-CH;q=0.7,en;q=0.3\",\"cloudfront-forwarded-proto\":\"https\",\"cloudfront-is-android-viewer\":\"false\",\"cloudfront-is-desktop-viewer\":\"true\",\"cloudfront-is-ios-viewer\":\"false\",\"cloudfront-is-mobile-viewer\":\"false\",\"cloudfront-is-smarttv-viewer\":\"false\",\"cloudfront-is-tablet-viewer\":\"false\",\"cloudfront-viewer-address\":\"185.12.128.197:38732\",\"cloudfront-viewer-asn\":\"61287\",\"cloudfront-viewer-city\":\"Zurich\",\"cloudfront-viewer-country\":\"CH\",\"cloudfront-viewer-country-name\":\"Switzerland\",\"cloudfront-viewer-country-region\":\"ZH\",\"cloudfront-viewer-country-region-name\":\"Zurich\",\"cloudfront-viewer-http-version\":\"2.0\",\"cloudfront-viewer-latitude\":\"47.41970\",\"cloudfront-viewer-longitude\":\"8.51390\",\"cloudfront-viewer-postal-code\":\"8046\",\"cloudfront-viewer-time-zone\":\"Europe/Zurich\",\"cloudfront-viewer-tls\":\"TLSv1.3:TLS_AES_128_GCM_SHA256:connectionReused\",\"cookie\":\"csrftoken=WtVSMwIrt9xBPxzbxikLR7akRsdzoyDx\",\"dnt\":\"1\",\"host\":\"sys-control.dev.bgdi.ch\",\"priority\":\"u=0, i\",\"sec-fetch-dest\":\"document\",\"sec-fetch-mode\":\"navigate\",\"sec-fetch-site\":\"none\",\"sec-fetch-user\":\"?1\",\"sec-gpc\":\"1\",\"te\":\"trailers\",\"upgrade-insecure-requests\":\"1\",\"user-agent\":\"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0\",\"via\":\"2.0 179ba4c3ce59451c080c2ed7517bcb96.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"njwalBLM_dqqLUZdIEDfMx09m4mxekKTAQ7dzX-EeiP0Tp-jEBwgqg==\",\"x-forwarded-for\":\"10.220.52.26\",\"x-forwarded-host\":\"sys-control.dev.bgdi.ch\",\"x-forwarded-port\":\"80\",\"x-forwarded-proto\":\"http\",\"x-forwarded-server\":\"traefik-ingress-controller-ghn5c\",\"x-real-ip\":\"10.220.52.26\"},\"method\":\"GET\"},\"response\":{\"headers\":{\"content-type\":\"application/json; charset=utf-8\"},\"status_code\":401}},\"log\":{\"logger\":\"config.api\",\"origin\":{\"file\":{\"line\":93,\"name\":\"api.py\"},\"function\":\"create_response\"}},\"process\":{\"name\":\"MainProcess\",\"pid\":8,\"thread\":{\"id\":140697981062336,\"name\":\"Dummy-1\"}},\"url\":{\"path\":\"/api/v1/providers\",\"scheme\":\"https\"}}",
                 "outcome": "success"
@@ -70,11 +70,13 @@
                     "status_code": 401
                 }
             },
-            "kubernetes": {
-                "namespace_labels": {
-                    "env": "dev",
-                    "service": "service-control",
-                    "system": "control"
+            "k8s": {
+                "namespace": {
+                    "labels": {
+                        "env": "dev",
+                        "service": "service-control",
+                        "system": "control"
+                    }
                 }
             },
             "log": {

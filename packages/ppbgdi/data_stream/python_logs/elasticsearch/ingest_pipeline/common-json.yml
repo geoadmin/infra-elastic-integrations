@@ -271,7 +271,13 @@ processors:
       ignore_missing: true
   - set:
       field: service.name
-      copy_from: kubernetes.namespace_labels.service
+      copy_from: kubernetes.namespace_labels.service # Elastic-Agent
+      ignore_empty_value: true
+      override: true
+  - set:
+      description: OTEL service name
+      field: service.name
+      copy_from: k8s.namespace.labels.service # OTEL-Collector
       ignore_empty_value: true
       override: true
   - rename:
@@ -286,10 +292,6 @@ processors:
       field: ppbgdi.app.epsg
       type: integer
       ignore_missing: true
-  - set:
-      field: service.name
-      copy_from: kubernetes.namespace_labels.service
-      ignore_empty_value: true
 
   # TODO: Set ip.address and or ip. domain.
   # TODO: Set related ip and related.domain
