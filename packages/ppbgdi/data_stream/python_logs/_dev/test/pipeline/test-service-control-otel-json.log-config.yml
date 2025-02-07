@@ -1,0 +1,15 @@
+fields:
+  tags:
+    - preserve_original_event
+  data_stream:
+    dataset: ppbgdi.python_logs
+    namespace: dev
+  k8s:
+    namespace:
+      labels:
+        system: control
+        service: service-control
+        env: dev
+dynamic_fields:
+  'event.ingested': "^.*$"
+  'data_stream.dataset': "^.*$"
