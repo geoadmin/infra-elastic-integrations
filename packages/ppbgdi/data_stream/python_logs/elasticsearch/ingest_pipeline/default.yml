@@ -21,7 +21,11 @@ processors:
       if: 'ctx?.message != null && ctx?.message == ""'
   - set:
       field: ppbgdi.app.system
-      copy_from: kubernetes.namespace_labels.system
+      copy_from: kubernetes.namespace_labels.system # Elastic-Agent
+      ignore_empty_value: true
+  - set:
+      field: ppbgdi.app.system
+      copy_from: k8s.namespace.labels.system # OTEL-Collector
       ignore_empty_value: true
   - rename:
       field: message
@@ -97,8 +101,14 @@ processors:
 #       ignore_missing: true
   - set:
       field: service.environment
-      copy_from: kubernetes.namespace_labels.env
+      copy_from: kubernetes.namespace_labels.env # Elastic-Agent
       ignore_empty_value: true
+
+  - set:
+      field: service.environment
+      copy_from: k8s.namespace.labels.env # Otel-Collector
+      ignore_empty_value: true
+
   - script:
       lang: painless
       description: This script processor iterates over the whole document to remove fields with null or empty values.
