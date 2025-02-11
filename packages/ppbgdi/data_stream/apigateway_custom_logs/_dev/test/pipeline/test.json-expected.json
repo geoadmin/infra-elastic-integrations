@@ -1,0 +1,90 @@
+{
+    "expected": [
+        {
+            "@timestamp": "2025-01-31T10:13:53.847Z",
+            "aws": {
+                "apigateway": {
+                    "account_id": "839910802816",
+                    "api_id": "05jus8nlxi",
+                    "authorizer": {
+                        "authenticated": "false"
+                    },
+                    "data_processed": 146549,
+                    "domain_prefix": "05jus8nlxi",
+                    "domain_name": "05jus8nlxi.execute-api.eu-central-1.amazonaws.com",
+                    "http_method": "GET",
+                    "identity": {
+                        "source_ip": "1.128.0.0",
+                        "user_agent": "Elastic-Heartbeat/8.16.3 (linux; amd64; 0951e7a8c1fe2b31d9b07e5bc0084a2a0a4520a8; 2025-01-02 17:03:21 +0000 UTC)"
+                    },
+                    "integration": {
+                        "integration_status": "200",
+                        "latency": 639,
+                        "proxy_status": "200",
+                        "status": "200"
+                    },
+                    "path": "/api/stac/v1/collections",
+                    "protocol": "HTTP/1.1",
+                    "request_id": "FP5PWjk6FiAEJzA=",
+                    "request_time": "2025-01-31T10:13:53.000Z",
+                    "response_latency": 669,
+                    "response_length": 144696,
+                    "route_key": "ANY /api/stac/v1/{proxy+}",
+                    "stage": "$default",
+                    "status": 200
+                },
+                "cloudwatch": {
+                    "log_group": "/aws/apigateway/access/stac/dev",
+                    "log_stream": "05jus8nlxi_.default-2025-01-31-10-13"
+                },
+                "firehose": {
+                    "arn": "arn:aws:firehose:eu-central-1:839910802816:deliverystream/logs-dev-cloudwatch-apigateway",
+                    "parameters": {
+                        "es_datastream_name": "logs-aws.apigateway_logs-dev"
+                    },
+                    "request_id": "65319715-b378-42b1-8379-abbe7f5a9933",
+                    "subscription_filters": "[/aws/apigateway/access/stac/dev-dev-logs-apigateway-stac-elastic-firehose]"
+                },
+                "kinesis": {
+                    "name": "logs-dev-cloudwatch-apigateway",
+                    "type": "deliverystream"
+                }
+            },
+            "cloud": {
+                "account.id": "839910802816",
+                "provider": "aws",
+                "region": "eu-central-1"
+            },
+            "data_stream": {
+                "dataset": "ppbgdi.apigateway_custom_logs",
+                "namespace": "dev",
+                "type": "logs"
+            },
+            "ecs": {
+                "version": "8.11.0"
+            },
+            "event": {
+                "agent_id_status": "missing",
+                "id": "38765796467130757907164842895664880603525942057011249152",
+                "ingested": "2025-01-31T10:15:42.000Z",
+                "module": "aws"
+            },
+            "http": {
+                "request": {
+                    "method": "GET"
+                }
+            },
+            "source": {
+                "address": "1.128.0.0",
+                "ip": "1.128.0.0"
+            },
+            "url": {
+                "domain": "05jus8nlxi.execute-api.eu-central-1.amazonaws.com",
+                "path": "/api/stac/v1/collections"
+            },
+            "user_agent": {
+                "original": "Elastic-Heartbeat/8.16.3 (linux; amd64; 0951e7a8c1fe2b31d9b07e5bc0084a2a0a4520a8; 2025-01-02 17:03:21 +0000 UTC)"
+            }
+        }
+    ]
+}
