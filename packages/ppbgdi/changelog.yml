@@ -1,4 +1,9 @@
 # newer versions go on top
+- version: "1.2.0"
+  changes:
+    - description: Add api gateway custom logs parsing
+      type: enhancement
+      link: https://github.com/geoadmin/infra-elastic-integrations/pull/34
 - version: "1.1.0"
   changes:
     - description: Add service control log parsing
