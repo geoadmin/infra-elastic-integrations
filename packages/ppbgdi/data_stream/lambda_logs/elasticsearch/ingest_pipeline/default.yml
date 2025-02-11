@@ -12,3 +12,9 @@ processors:
     formats: ["ISO8601"]
 - remove:
     field: "timestamp"
+- rename:
+    field: "msg"
+    target_field: "message"
+    override: false
+    description: "Normalize message field name"
+    ignore_missing: true
