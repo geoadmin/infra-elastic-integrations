@@ -1,0 +1,3 @@
+- name: temp
+  type: flattened
+  description: temp field. To be processed by specific service data_stream pipelines
