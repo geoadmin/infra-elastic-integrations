@@ -1,0 +1,109 @@
+{
+    "expected": [
+        {
+            "@timestamp": "2025-02-14T12:33:01.895Z",
+            "data_stream": {
+                "dataset": "ppbgdi.service_print3_logs",
+                "namespace": "dev"
+            },
+            "ecs": {
+                "version": "8.11.0"
+            },
+            "event": {
+                "ingested": "2025-02-14T15:10:30.439808307Z",
+                "kind": "event",
+                "original": "14-Feb-2025 12:33:01.895 INFO [GT authority factory disposer] org.geotools.referencing.factory.DeferredAuthorityFactory.disposeBackingStore Disposing class org.mapfish.print.map.CustomEPSGCodes backing store"
+            },
+            "kubernetes": {
+                "namespace_labels": {
+                    "env": "dev",
+                    "service": "service-print3",
+                    "system": "map"
+                }
+            },
+            "log": {
+                "level": "info",
+                "logger": "org.geotools.referencing.factory.DeferredAuthorityFactory.disposeBackingStore",
+                "syslog": {
+                    "appname": "GT authority factory disposer"
+                }
+            },
+            "message": "Disposing class org.mapfish.print.map.CustomEPSGCodes backing store",
+            "ppbgdi": {
+                "app": {
+                    "system": "map"
+                }
+            },
+            "tags": [
+                "preserve_original_event",
+                "k8s_log_raw"
+            ]
+        },
+        {
+            "data_stream": {
+                "dataset": "ppbgdi.service_print3_logs",
+                "namespace": "dev"
+            },
+            "ecs": {
+                "version": "8.11.0"
+            },
+            "event": {
+                "ingested": "2025-02-14T15:10:30.439828155Z",
+                "kind": "event",
+                "original": "WARNING: Illegal reflective access by net.sf.jasperreports.engine.util.ClassUtils (file:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/jasperreports-6.20.5.jar) to constructor com.sun.org.apache.xerces.internal.util.XMLGrammarPoolImpl()"
+            },
+            "kubernetes": {
+                "namespace_labels": {
+                    "env": "dev",
+                    "service": "service-print3",
+                    "system": "map"
+                }
+            },
+            "log": {
+                "level": "warning"
+            },
+            "message": "Illegal reflective access by net.sf.jasperreports.engine.util.ClassUtils (file:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/jasperreports-6.20.5.jar) to constructor com.sun.org.apache.xerces.internal.util.XMLGrammarPoolImpl()",
+            "ppbgdi": {
+                "app": {
+                    "system": "map"
+                }
+            },
+            "tags": [
+                "preserve_original_event",
+                "k8s_log_raw"
+            ]
+        },
+        {
+            "data_stream": {
+                "dataset": "ppbgdi.service_print3_logs",
+                "namespace": "dev"
+            },
+            "ecs": {
+                "version": "8.11.0"
+            },
+            "event": {
+                "ingested": "2025-02-14T15:10:30.439834093Z",
+                "kind": "event",
+                "original": "java.base@11.0.20.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:176)"
+            },
+            "kubernetes": {
+                "namespace_labels": {
+                    "env": "dev",
+                    "service": "service-print3",
+                    "system": "map"
+                }
+            },
+            "message": "java.base@11.0.20.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:176)",
+            "ppbgdi": {
+                "app": {
+                    "system": "map"
+                }
+            },
+            "tags": [
+                "preserve_original_event",
+                "k8s_log_raw",
+                "not_parsed"
+            ]
+        }
+    ]
+}
