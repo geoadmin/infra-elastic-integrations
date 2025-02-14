@@ -153,6 +153,9 @@ An example event for `python` looks as following:
 | data_stream.type | An overarching type for the data stream. Currently allowed values are "logs" and "metrics". We expect to also add "traces" and "synthetics" in the near future. | constant_keyword |
 | http.request.headers.\* | Not yet but already in use ecs fields | keyword |
 | http.response.headers.\* | Not yet but already in use ecs fields | keyword |
+| k8s.namespace.labels.env | Kubernetes namespace-label 'env' | keyword |
+| k8s.namespace.labels.service | Kubernetes namespace-label 'service' | keyword |
+| k8s.namespace.labels.system | Kubernetes namespace-label 'system' | keyword |
 | kubernetes.container.name | The name of the kubernetes container | keyword |
 | kubernetes.namespace_labels.\* | Used to set the ppbgdi.app.system field | keyword |
 | kubernetes.namespace_labels.env | Used to set the service.environment field | keyword |
@@ -176,5 +179,6 @@ An example event for `python` looks as following:
 | ppbgdi.app.layer.time | The publication time of the resource | keyword |
 | ppbgdi.app.layer.zoom | The zoom level of the tile | long |
 | ppbgdi.app.system | The BGDI system | keyword |
+| temp | temp field. To be processed by specific service data_stream pipelines | flattened |
 | user_agent.device.type | ECS beta field | keyword |
 
