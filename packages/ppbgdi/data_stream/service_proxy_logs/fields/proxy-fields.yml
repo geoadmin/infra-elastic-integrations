@@ -1,0 +1,18 @@
+- name: ppbgdi.app.proxy.downstream.http.request.headers.*
+  type: keyword
+  description: Service proxy downstream http request headers.
+- name: ppbgdi.app.proxy.downstream.http.response.headers.*
+  type: keyword
+  description: Service proxy downstream http response headers.
+- name: ppbgdi.app.proxy.downstream.http.response.status_code
+  type: long
+  description: Service proxy downstream http response status code.
+- name: ppbgdi.app.proxy.downstream.url.domain
+  type: keyword
+  description: Service proxy downstream url domain.
+- name: ppbgdi.app.proxy.downstream.url.full
+  type: keyword
+  description: Service proxy downstream full url.
+- name: ppbgdi.app.proxy.downstream.url.path
+  type: keyword
+  description: Service proxy downstream url path.
