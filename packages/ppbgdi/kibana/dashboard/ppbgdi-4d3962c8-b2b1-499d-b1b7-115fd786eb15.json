@@ -1,0 +1,1180 @@
+{
+  "attributes": {
+    "controlGroupInput": {
+      "chainingSystem": "HIERARCHICAL",
+      "controlStyle": "oneLine",
+      "ignoreParentSettingsJSON": {
+        "ignoreFilters": false,
+        "ignoreQuery": false,
+        "ignoreTimerange": false,
+        "ignoreValidations": false
+      },
+      "panelsJSON": {
+        "1682493f-a7e1-4b03-bebf-7a815419d58c": {
+          "grow": false,
+          "order": 0,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "id": "1682493f-a7e1-4b03-bebf-7a815419d58c",
+            "dataViewId": "logs-*",
+            "fieldName": "aws.apigateway.api_id",
+            "title": "API ID",
+            "searchTechnique": "prefix",
+            "selectedOptions": [],
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        },
+        "d7e19a10-1a74-4334-a9b1-c8321f7db6ca": {
+          "grow": false,
+          "order": 1,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "id": "d7e19a10-1a74-4334-a9b1-c8321f7db6ca",
+            "dataViewId": "logs-*",
+            "fieldName": "aws.apigateway.domain_name",
+            "title": "Domain Name",
+            "searchTechnique": "prefix",
+            "selectedOptions": [],
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        },
+        "6c1136bb-cbc4-4c55-8670-85d9787d3473": {
+          "grow": false,
+          "order": 2,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "id": "6c1136bb-cbc4-4c55-8670-85d9787d3473",
+            "dataViewId": "logs-*",
+            "fieldName": "aws.apigateway.stage",
+            "title": "Stage",
+            "searchTechnique": "prefix",
+            "selectedOptions": [],
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        },
+        "6efddfbf-ba7a-47ba-b9dd-5d7ecfb0cb6b": {
+          "grow": false,
+          "order": 3,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "id": "6efddfbf-ba7a-47ba-b9dd-5d7ecfb0cb6b",
+            "dataViewId": "logs-*",
+            "fieldName": "cloud.region",
+            "title": "AWS Region",
+            "searchTechnique": "prefix",
+            "selectedOptions": [],
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        }
+      },
+      "showApplySelections": false
+    },
+    "description": "Overview of AWS API Gateway Logs",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": {
+        "query": {
+          "language": "kuery",
+          "query": ""
+        },
+        "filter": [
+          {
+            "meta": {
+              "alias": null,
+              "disabled": false,
+              "key": "data_stream.dataset",
+              "negate": false,
+              "params": {
+                "query": "ppbgdi.apigateway_custom_logs"
+              },
+              "type": "phrase",
+              "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index"
+            },
+            "query": {
+              "match_phrase": {
+                "data_stream.dataset": "ppbgdi.apigateway_custom_logs"
+              }
+            },
+            "$state": {
+              "store": "appState"
+            }
+          }
+        ]
+      }
+    },
+    "optionsJSON": {
+      "useMargins": true,
+      "syncColors": false,
+      "syncCursor": true,
+      "syncTooltips": false,
+      "hidePanelTitles": false
+    },
+    "panelsJSON": [{
+      "type": "lens",
+      "title": "HTTP Method",
+      "embeddableConfig": {
+        "attributes": {
+          "description": "",
+          "references": [
+            {
+              "id": "logs-*",
+              "name": "indexpattern-datasource-layer-06dccdd0-c0b9-4519-a299-53546adbc735",
+              "type": "index-pattern"
+            }
+          ],
+          "state": {
+            "adHocDataViews": {},
+            "datasourceStates": {
+              "formBased": {
+                "layers": {
+                  "06dccdd0-c0b9-4519-a299-53546adbc735": {
+                    "columnOrder": [
+                      "03ad11f6-344c-43a3-91fe-b70024c79ead",
+                      "850d3e92-043f-4460-9290-10ca1311dc97"
+                    ],
+                    "columns": {
+                      "03ad11f6-344c-43a3-91fe-b70024c79ead": {
+                        "dataType": "string",
+                        "isBucketed": true,
+                        "label": "Top 5 values of aws.apigateway.http_method",
+                        "operationType": "terms",
+                        "params": {
+                          "exclude": [],
+                          "excludeIsRegex": false,
+                          "include": [],
+                          "includeIsRegex": false,
+                          "missingBucket": false,
+                          "orderBy": {
+                            "columnId": "850d3e92-043f-4460-9290-10ca1311dc97",
+                            "type": "column"
+                          },
+                          "orderDirection": "desc",
+                          "otherBucket": true,
+                          "parentFormat": {
+                            "id": "terms"
+                          },
+                          "size": 5
+                        },
+                        "scale": "ordinal",
+                        "sourceField": "aws.apigateway.http_method"
+                      },
+                      "850d3e92-043f-4460-9290-10ca1311dc97": {
+                        "dataType": "number",
+                        "isBucketed": false,
+                        "label": "Count of records",
+                        "operationType": "count",
+                        "params": {
+                          "emptyAsNull": true
+                        },
+                        "scale": "ratio",
+                        "sourceField": "___records___"
+                      }
+                    },
+                    "incompleteColumns": {},
+                    "sampling": 1
+                  }
+                }
+              },
+              "textBased": {
+                "layers": {}
+              }
+            },
+            "filters": [],
+            "internalReferences": [],
+            "query": {
+              "language": "kuery",
+              "query": ""
+            },
+            "visualization": {
+              "layers": [
+                {
+                  "categoryDisplay": "default",
+                  "layerId": "06dccdd0-c0b9-4519-a299-53546adbc735",
+                  "layerType": "data",
+                  "legendDisplay": "default",
+                  "metrics": [
+                    "850d3e92-043f-4460-9290-10ca1311dc97"
+                  ],
+                  "nestedLegend": false,
+                  "numberDisplay": "percent",
+                  "primaryGroups": [
+                    "03ad11f6-344c-43a3-91fe-b70024c79ead"
+                  ]
+                }
+              ],
+              "shape": "treemap"
+            }
+          },
+          "title": "",
+          "type": "lens",
+          "visualizationType": "lnsPie"
+        },
+        "enhancements": {},
+        "hidePanelTitles": false
+      },
+      "panelIndex": "311149a4-cba9-4cd0-a5ae-bfbde78c9f42",
+      "gridData": {
+        "h": 15,
+        "i": "311149a4-cba9-4cd0-a5ae-bfbde78c9f42",
+        "w": 16,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "type": "lens",
+      "title": "Status Code",
+      "embeddableConfig": {
+        "attributes": {
+          "description": "",
+          "references": [
+            {
+              "id": "logs-*",
+              "name": "indexpattern-datasource-layer-06dccdd0-c0b9-4519-a299-53546adbc735",
+              "type": "index-pattern"
+            }
+          ],
+          "state": {
+            "adHocDataViews": {},
+            "datasourceStates": {
+              "formBased": {
+                "layers": {
+                  "06dccdd0-c0b9-4519-a299-53546adbc735": {
+                    "columnOrder": [
+                      "03ad11f6-344c-43a3-91fe-b70024c79ead",
+                      "850d3e92-043f-4460-9290-10ca1311dc97"
+                    ],
+                    "columns": {
+                      "03ad11f6-344c-43a3-91fe-b70024c79ead": {
+                        "dataType": "number",
+                        "isBucketed": true,
+                        "label": "Top 10 values of aws.apigateway.status",
+                        "operationType": "terms",
+                        "params": {
+                          "exclude": [],
+                          "excludeIsRegex": false,
+                          "include": [],
+                          "includeIsRegex": false,
+                          "missingBucket": false,
+                          "orderBy": {
+                            "columnId": "850d3e92-043f-4460-9290-10ca1311dc97",
+                            "type": "column"
+                          },
+                          "orderDirection": "desc",
+                          "otherBucket": true,
+                          "parentFormat": {
+                            "id": "terms"
+                          },
+                          "secondaryFields": [],
+                          "size": 10
+                        },
+                        "scale": "ordinal",
+                        "sourceField": "aws.apigateway.status"
+                      },
+                      "850d3e92-043f-4460-9290-10ca1311dc97": {
+                        "dataType": "number",
+                        "isBucketed": false,
+                        "label": "Count of records",
+                        "operationType": "count",
+                        "params": {
+                          "emptyAsNull": true
+                        },
+                        "scale": "ratio",
+                        "sourceField": "___records___"
+                      }
+                    },
+                    "incompleteColumns": {},
+                    "sampling": 1
+                  }
+                }
+              },
+              "textBased": {
+                "layers": {}
+              }
+            },
+            "filters": [],
+            "internalReferences": [],
+            "query": {
+              "language": "kuery",
+              "query": ""
+            },
+            "visualization": {
+              "layers": [
+                {
+                  "categoryDisplay": "default",
+                  "layerId": "06dccdd0-c0b9-4519-a299-53546adbc735",
+                  "layerType": "data",
+                  "legendDisplay": "default",
+                  "metrics": [
+                    "850d3e92-043f-4460-9290-10ca1311dc97"
+                  ],
+                  "nestedLegend": false,
+                  "numberDisplay": "percent",
+                  "primaryGroups": [
+                    "03ad11f6-344c-43a3-91fe-b70024c79ead"
+                  ]
+                }
+              ],
+              "shape": "treemap"
+            }
+          },
+          "title": "",
+          "type": "lens",
+          "visualizationType": "lnsPie"
+        },
+        "enhancements": {},
+        "hidePanelTitles": false
+      },
+      "panelIndex": "e7d80d7a-48bc-4f04-8f44-a22378e420e8",
+      "gridData": {
+        "h": 15,
+        "i": "e7d80d7a-48bc-4f04-8f44-a22378e420e8",
+        "w": 16,
+        "x": 16,
+        "y": 0
+      }
+    },
+    {
+      "type": "lens",
+      "title": "[WebSocket] Event Type",
+      "embeddableConfig": {
+        "attributes": {
+          "description": "",
+          "references": [
+            {
+              "id": "logs-*",
+              "name": "indexpattern-datasource-layer-06dccdd0-c0b9-4519-a299-53546adbc735",
+              "type": "index-pattern"
+            }
+          ],
+          "state": {
+            "adHocDataViews": {},
+            "datasourceStates": {
+              "formBased": {
+                "layers": {
+                  "06dccdd0-c0b9-4519-a299-53546adbc735": {
+                    "columnOrder": [
+                      "03ad11f6-344c-43a3-91fe-b70024c79ead",
+                      "850d3e92-043f-4460-9290-10ca1311dc97"
+                    ],
+                    "columns": {
+                      "03ad11f6-344c-43a3-91fe-b70024c79ead": {
+                        "dataType": "string",
+                        "isBucketed": true,
+                        "label": "Top 10 values of aws.apigateway.event_type",
+                        "operationType": "terms",
+                        "params": {
+                          "exclude": [],
+                          "excludeIsRegex": false,
+                          "include": [],
+                          "includeIsRegex": false,
+                          "missingBucket": false,
+                          "orderBy": {
+                            "columnId": "850d3e92-043f-4460-9290-10ca1311dc97",
+                            "type": "column"
+                          },
+                          "orderDirection": "desc",
+                          "otherBucket": true,
+                          "parentFormat": {
+                            "id": "terms"
+                          },
+                          "secondaryFields": [],
+                          "size": 10
+                        },
+                        "scale": "ordinal",
+                        "sourceField": "aws.apigateway.event_type"
+                      },
+                      "850d3e92-043f-4460-9290-10ca1311dc97": {
+                        "dataType": "number",
+                        "isBucketed": false,
+                        "label": "Count of records",
+                        "operationType": "count",
+                        "params": {
+                          "emptyAsNull": true
+                        },
+                        "scale": "ratio",
+                        "sourceField": "___records___"
+                      }
+                    },
+                    "incompleteColumns": {},
+                    "sampling": 1
+                  }
+                }
+              },
+              "textBased": {
+                "layers": {}
+              }
+            },
+            "filters": [],
+            "internalReferences": [],
+            "query": {
+              "language": "kuery",
+              "query": ""
+            },
+            "visualization": {
+              "layers": [
+                {
+                  "categoryDisplay": "default",
+                  "layerId": "06dccdd0-c0b9-4519-a299-53546adbc735",
+                  "layerType": "data",
+                  "legendDisplay": "default",
+                  "metrics": [
+                    "850d3e92-043f-4460-9290-10ca1311dc97"
+                  ],
+                  "nestedLegend": false,
+                  "numberDisplay": "percent",
+                  "primaryGroups": [
+                    "03ad11f6-344c-43a3-91fe-b70024c79ead"
+                  ]
+                }
+              ],
+              "shape": "treemap"
+            }
+          },
+          "title": "",
+          "type": "lens",
+          "visualizationType": "lnsPie"
+        },
+        "enhancements": {},
+        "hidePanelTitles": false
+      },
+      "panelIndex": "0d370391-898c-40be-83fb-a29b2def1b66",
+      "gridData": {
+        "h": 15,
+        "i": "0d370391-898c-40be-83fb-a29b2def1b66",
+        "w": 16,
+        "x": 32,
+        "y": 0
+      }
+    },
+    {
+      "type": "lens",
+      "title": "Top Accessed Resource Paths",
+      "embeddableConfig": {
+        "attributes": {
+          "references": [
+            {
+              "id": "logs-*",
+              "name": "indexpattern-datasource-layer-e0c50ea5-82ba-4ee6-be31-497faf705f15",
+              "type": "index-pattern"
+            }
+          ],
+          "state": {
+            "adHocDataViews": {},
+            "datasourceStates": {
+              "formBased": {
+                "layers": {
+                  "e0c50ea5-82ba-4ee6-be31-497faf705f15": {
+                    "columnOrder": [
+                      "56bc0501-4f72-4b55-8998-f3aeceed9834",
+                      "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b"
+                    ],
+                    "columns": {
+                      "56bc0501-4f72-4b55-8998-f3aeceed9834": {
+                        "customLabel": true,
+                        "dataType": "string",
+                        "isBucketed": true,
+                        "label": "Path",
+                        "operationType": "terms",
+                        "params": {
+                          "exclude": [],
+                          "excludeIsRegex": false,
+                          "include": [],
+                          "includeIsRegex": false,
+                          "missingBucket": false,
+                          "orderBy": {
+                            "columnId": "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b",
+                            "type": "column"
+                          },
+                          "orderDirection": "desc",
+                          "otherBucket": true,
+                          "parentFormat": {
+                            "id": "terms"
+                          },
+                          "secondaryFields": [],
+                          "size": 10
+                        },
+                        "scale": "ordinal",
+                        "sourceField": "aws.apigateway.resource_path"
+                      },
+                      "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b": {
+                        "dataType": "number",
+                        "isBucketed": false,
+                        "label": "Count of records",
+                        "operationType": "count",
+                        "params": {
+                          "emptyAsNull": true
+                        },
+                        "scale": "ratio",
+                        "sourceField": "___records___"
+                      }
+                    },
+                    "incompleteColumns": {},
+                    "sampling": 1
+                  }
+                }
+              },
+              "textBased": {
+                "layers": {}
+              }
+            },
+            "filters": [],
+            "internalReferences": [],
+            "query": {
+              "language": "kuery",
+              "query": ""
+            },
+            "visualization": {
+              "columns": [
+                {
+                  "columnId": "56bc0501-4f72-4b55-8998-f3aeceed9834"
+                },
+                {
+                  "columnId": "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b",
+                  "isTransposed": false
+                }
+              ],
+              "layerId": "e0c50ea5-82ba-4ee6-be31-497faf705f15",
+              "layerType": "data"
+            }
+          },
+          "title": "",
+          "type": "lens",
+          "visualizationType": "lnsDatatable"
+        },
+        "enhancements": {},
+        "hidePanelTitles": false
+      },
+      "panelIndex": "c9327010-22a6-47ab-ac93-cfb5bbddbaa9",
+      "gridData": {
+        "h": 15,
+        "i": "c9327010-22a6-47ab-ac93-cfb5bbddbaa9",
+        "w": 16,
+        "x": 0,
+        "y": 15
+      }
+    },
+    {
+      "type": "lens",
+      "title": "Top Accessed Route Keys",
+      "embeddableConfig": {
+        "attributes": {
+          "references": [
+            {
+              "id": "logs-*",
+              "name": "indexpattern-datasource-layer-e0c50ea5-82ba-4ee6-be31-497faf705f15",
+              "type": "index-pattern"
+            }
+          ],
+          "state": {
+            "adHocDataViews": {},
+            "datasourceStates": {
+              "formBased": {
+                "layers": {
+                  "e0c50ea5-82ba-4ee6-be31-497faf705f15": {
+                    "columnOrder": [
+                      "56bc0501-4f72-4b55-8998-f3aeceed9834",
+                      "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b"
+                    ],
+                    "columns": {
+                      "56bc0501-4f72-4b55-8998-f3aeceed9834": {
+                        "customLabel": true,
+                        "dataType": "string",
+                        "isBucketed": true,
+                        "label": "Route Key",
+                        "operationType": "terms",
+                        "params": {
+                          "exclude": [],
+                          "excludeIsRegex": false,
+                          "include": [],
+                          "includeIsRegex": false,
+                          "missingBucket": false,
+                          "orderBy": {
+                            "columnId": "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b",
+                            "type": "column"
+                          },
+                          "orderDirection": "desc",
+                          "otherBucket": true,
+                          "parentFormat": {
+                            "id": "terms"
+                          },
+                          "secondaryFields": [],
+                          "size": 10
+                        },
+                        "scale": "ordinal",
+                        "sourceField": "aws.apigateway.route_key"
+                      },
+                      "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b": {
+                        "dataType": "number",
+                        "isBucketed": false,
+                        "label": "Count of records",
+                        "operationType": "count",
+                        "params": {
+                          "emptyAsNull": true
+                        },
+                        "scale": "ratio",
+                        "sourceField": "___records___"
+                      }
+                    },
+                    "incompleteColumns": {},
+                    "sampling": 1
+                  }
+                }
+              },
+              "textBased": {
+                "layers": {}
+              }
+            },
+            "filters": [],
+            "internalReferences": [],
+            "query": {
+              "language": "kuery",
+              "query": ""
+            },
+            "visualization": {
+              "columns": [
+                {
+                  "columnId": "56bc0501-4f72-4b55-8998-f3aeceed9834"
+                },
+                {
+                  "columnId": "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b",
+                  "isTransposed": false
+                }
+              ],
+              "layerId": "e0c50ea5-82ba-4ee6-be31-497faf705f15",
+              "layerType": "data"
+            }
+          },
+          "title": "",
+          "type": "lens",
+          "visualizationType": "lnsDatatable"
+        },
+        "enhancements": {},
+        "hidePanelTitles": false
+      },
+      "panelIndex": "ee8a69c2-9bf8-49e6-bdad-f96b10da7dff",
+      "gridData": {
+        "h": 15,
+        "i": "ee8a69c2-9bf8-49e6-bdad-f96b10da7dff",
+        "w": 16,
+        "x": 16,
+        "y": 15
+      }
+    },
+    {
+      "type": "lens",
+      "title": "Top IP Addresses",
+      "embeddableConfig": {
+        "attributes": {
+          "references": [
+            {
+              "id": "logs-*",
+              "name": "indexpattern-datasource-layer-e0c50ea5-82ba-4ee6-be31-497faf705f15",
+              "type": "index-pattern"
+            }
+          ],
+          "state": {
+            "adHocDataViews": {},
+            "datasourceStates": {
+              "formBased": {
+                "layers": {
+                  "e0c50ea5-82ba-4ee6-be31-497faf705f15": {
+                    "columnOrder": [
+                      "56bc0501-4f72-4b55-8998-f3aeceed9834",
+                      "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b"
+                    ],
+                    "columns": {
+                      "56bc0501-4f72-4b55-8998-f3aeceed9834": {
+                        "customLabel": true,
+                        "dataType": "ip",
+                        "isBucketed": true,
+                        "label": "IP Address",
+                        "operationType": "terms",
+                        "params": {
+                          "exclude": [],
+                          "excludeIsRegex": false,
+                          "include": [],
+                          "includeIsRegex": false,
+                          "missingBucket": false,
+                          "orderBy": {
+                            "columnId": "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b",
+                            "type": "column"
+                          },
+                          "orderDirection": "desc",
+                          "otherBucket": true,
+                          "parentFormat": {
+                            "id": "terms"
+                          },
+                          "size": 10
+                        },
+                        "scale": "ordinal",
+                        "sourceField": "aws.apigateway.ip_address"
+                      },
+                      "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b": {
+                        "dataType": "number",
+                        "isBucketed": false,
+                        "label": "Count of records",
+                        "operationType": "count",
+                        "params": {
+                          "emptyAsNull": true
+                        },
+                        "scale": "ratio",
+                        "sourceField": "___records___"
+                      }
+                    },
+                    "incompleteColumns": {},
+                    "sampling": 1
+                  }
+                }
+              },
+              "textBased": {
+                "layers": {}
+              }
+            },
+            "filters": [],
+            "internalReferences": [],
+            "query": {
+              "language": "kuery",
+              "query": ""
+            },
+            "visualization": {
+              "columns": [
+                {
+                  "columnId": "56bc0501-4f72-4b55-8998-f3aeceed9834"
+                },
+                {
+                  "columnId": "9afd9da3-ed66-4c33-a4a6-d9dc7f89119b",
+                  "isTransposed": false
+                }
+              ],
+              "layerId": "e0c50ea5-82ba-4ee6-be31-497faf705f15",
+              "layerType": "data"
+            }
+          },
+          "title": "",
+          "type": "lens",
+          "visualizationType": "lnsDatatable"
+        },
+        "enhancements": {},
+        "hidePanelTitles": false
+      },
+      "panelIndex": "e9b38807-f7f4-4e62-8db2-d9bec818e80f",
+      "gridData": {
+        "h": 15,
+        "i": "e9b38807-f7f4-4e62-8db2-d9bec818e80f",
+        "w": 16,
+        "x": 32,
+        "y": 15
+      }
+    },
+    {
+      "type": "lens",
+      "title": "Number of Requests",
+      "embeddableConfig": {
+        "attributes": {
+          "description": "",
+          "references": [
+            {
+              "id": "logs-*",
+              "name": "indexpattern-datasource-layer-c7dca2ac-c8e3-48eb-b604-609a2a808cae",
+              "type": "index-pattern"
+            }
+          ],
+          "state": {
+            "adHocDataViews": {},
+            "datasourceStates": {
+              "formBased": {
+                "layers": {
+                  "c7dca2ac-c8e3-48eb-b604-609a2a808cae": {
+                    "columnOrder": [
+                      "557d1ba6-226e-488e-a132-6ec8f52d67b8",
+                      "23df4873-e94e-4c79-ab57-5c6deeb180a4"
+                    ],
+                    "columns": {
+                      "23df4873-e94e-4c79-ab57-5c6deeb180a4": {
+                        "dataType": "number",
+                        "isBucketed": false,
+                        "label": "Count of aws.apigateway.request_time",
+                        "operationType": "count",
+                        "params": {
+                          "emptyAsNull": true
+                        },
+                        "scale": "ratio",
+                        "sourceField": "aws.apigateway.request_time"
+                      },
+                      "557d1ba6-226e-488e-a132-6ec8f52d67b8": {
+                        "dataType": "date",
+                        "isBucketed": true,
+                        "label": "@timestamp",
+                        "operationType": "date_histogram",
+                        "params": {
+                          "dropPartials": false,
+                          "includeEmptyRows": true,
+                          "interval": "60s"
+                        },
+                        "scale": "interval",
+                        "sourceField": "@timestamp"
+                      }
+                    },
+                    "incompleteColumns": {},
+                    "sampling": 1
+                  }
+                }
+              },
+              "textBased": {
+                "layers": {}
+              }
+            },
+            "filters": [],
+            "internalReferences": [],
+            "query": {
+              "language": "kuery",
+              "query": ""
+            },
+            "visualization": {
+              "axisTitlesVisibilitySettings": {
+                "x": true,
+                "yLeft": false,
+                "yRight": true
+              },
+              "curveType": "LINEAR",
+              "fittingFunction": "None",
+              "gridlinesVisibilitySettings": {
+                "x": true,
+                "yLeft": true,
+                "yRight": true
+              },
+              "labelsOrientation": {
+                "x": 0,
+                "yLeft": 0,
+                "yRight": 0
+              },
+              "layers": [
+                {
+                  "accessors": [
+                    "23df4873-e94e-4c79-ab57-5c6deeb180a4"
+                  ],
+                  "layerId": "c7dca2ac-c8e3-48eb-b604-609a2a808cae",
+                  "layerType": "data",
+                  "position": "top",
+                  "seriesType": "line",
+                  "showGridlines": false,
+                  "xAccessor": "557d1ba6-226e-488e-a132-6ec8f52d67b8"
+                }
+              ],
+              "legend": {
+                "isVisible": true,
+                "position": "right"
+              },
+              "preferredSeriesType": "line",
+              "tickLabelsVisibilitySettings": {
+                "x": true,
+                "yLeft": true,
+                "yRight": true
+              },
+              "valueLabels": "hide"
+            }
+          },
+          "title": "",
+          "type": "lens",
+          "visualizationType": "lnsXY"
+        },
+        "enhancements": {},
+        "hidePanelTitles": false
+      },
+      "panelIndex": "b9dbf35c-f699-4349-b4ec-cb3232e3a11a",
+      "gridData": {
+        "h": 15,
+        "i": "b9dbf35c-f699-4349-b4ec-cb3232e3a11a",
+        "w": 24,
+        "x": 0,
+        "y": 30
+      }
+    },
+    {
+      "type": "lens",
+      "title": "Response Length",
+      "embeddableConfig": {
+        "attributes": {
+          "references": [
+            {
+              "id": "logs-*",
+              "name": "indexpattern-datasource-layer-8fb38a54-10e3-47e3-83c5-8853e0afe9da",
+              "type": "index-pattern"
+            }
+          ],
+          "state": {
+            "adHocDataViews": {},
+            "datasourceStates": {
+              "formBased": {
+                "layers": {
+                  "8fb38a54-10e3-47e3-83c5-8853e0afe9da": {
+                    "columnOrder": [
+                      "9d3e6d3a-28ff-4ccd-9fc2-c4e6ef6355b7",
+                      "8fa54c3a-d913-4266-bf1d-8047e35b8a16"
+                    ],
+                    "columns": {
+                      "8fa54c3a-d913-4266-bf1d-8047e35b8a16": {
+                        "customLabel": false,
+                        "dataType": "number",
+                        "isBucketed": false,
+                        "label": "Average of aws.apigateway.response_length",
+                        "operationType": "average",
+                        "params": {
+                          "emptyAsNull": true,
+                          "format": {
+                            "id": "bytes",
+                            "params": {
+                              "decimals": 2
+                            }
+                          }
+                        },
+                        "scale": "ratio",
+                        "sourceField": "aws.apigateway.response_length"
+                      },
+                      "9d3e6d3a-28ff-4ccd-9fc2-c4e6ef6355b7": {
+                        "dataType": "date",
+                        "isBucketed": true,
+                        "label": "@timestamp",
+                        "operationType": "date_histogram",
+                        "params": {
+                          "dropPartials": false,
+                          "includeEmptyRows": true,
+                          "interval": "60s"
+                        },
+                        "scale": "interval",
+                        "sourceField": "@timestamp"
+                      }
+                    },
+                    "incompleteColumns": {},
+                    "sampling": 1
+                  }
+                }
+              },
+              "textBased": {
+                "layers": {}
+              }
+            },
+            "filters": [],
+            "internalReferences": [],
+            "query": {
+              "language": "kuery",
+              "query": ""
+            },
+            "visualization": {
+              "axisTitlesVisibilitySettings": {
+                "x": true,
+                "yLeft": false,
+                "yRight": true
+              },
+              "fittingFunction": "None",
+              "gridlinesVisibilitySettings": {
+                "x": true,
+                "yLeft": true,
+                "yRight": true
+              },
+              "labelsOrientation": {
+                "x": 0,
+                "yLeft": 0,
+                "yRight": 0
+              },
+              "layers": [
+                {
+                  "accessors": [
+                    "8fa54c3a-d913-4266-bf1d-8047e35b8a16"
+                  ],
+                  "layerId": "8fb38a54-10e3-47e3-83c5-8853e0afe9da",
+                  "layerType": "data",
+                  "position": "top",
+                  "seriesType": "line",
+                  "showGridlines": false,
+                  "xAccessor": "9d3e6d3a-28ff-4ccd-9fc2-c4e6ef6355b7"
+                }
+              ],
+              "legend": {
+                "isVisible": true,
+                "position": "right"
+              },
+              "preferredSeriesType": "line",
+              "tickLabelsVisibilitySettings": {
+                "x": true,
+                "yLeft": true,
+                "yRight": true
+              },
+              "valueLabels": "hide"
+            }
+          },
+          "title": "",
+          "type": "lens",
+          "visualizationType": "lnsXY"
+        },
+        "enhancements": {},
+        "hidePanelTitles": false
+      },
+      "panelIndex": "3f3f1f1c-8183-4968-a539-1865b75dee10",
+      "gridData": {
+        "h": 15,
+        "i": "3f3f1f1c-8183-4968-a539-1865b75dee10",
+        "w": 24,
+        "x": 24,
+        "y": 30
+      }
+    },
+    {
+      "type": "search",
+      "title": "API Gateway Logs",
+      "embeddableConfig": {
+        "description": "",
+        "attributes": {
+          "kibanaSavedObjectMeta": {
+            "searchSourceJSON": "{\"query\":{\"language\":\"kuery\",\"query\":\"data_stream.dataset : \\\"ppbgdi.apigateway_custom_logs\\\" \"},\"highlightAll\":true,\"fields\":[{\"field\":\"*\",\"include_unmapped\":true}],\"sort\":[{\"@timestamp\":{\"order\":\"desc\",\"format\":\"strict_date_optional_time\"}},{\"_doc\":\"desc\"}],\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+          },
+          "title": "",
+          "sort": [
+            [
+              "@timestamp",
+              "desc"
+            ]
+          ],
+          "columns": [],
+          "description": "",
+          "grid": {},
+          "hideChart": false,
+          "isTextBasedQuery": false,
+          "timeRestore": false,
+          "references": [
+            {
+              "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+              "type": "index-pattern",
+              "id": "logs-*"
+            }
+          ]
+        },
+        "enhancements": {}
+      },
+      "panelIndex": "e86e0044-e789-44eb-952f-12b88cf8a388",
+      "gridData": {
+        "h": 15,
+        "i": "e86e0044-e789-44eb-952f-12b88cf8a388",
+        "w": 48,
+        "x": 0,
+        "y": 45
+      }
+    }],
+    "timeRestore": false,
+    "title": "[Logs PPBGDI] API Gateway Overview",
+    "version": 3
+  },
+  "coreMigrationVersion": "8.8.0",
+  "created_at": "2025-02-25T09:45:02.733Z",
+  "created_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
+  "id": "ppbgdi-4d3962c8-b2b1-499d-b1b7-115fd786eb15",
+  "managed": false,
+  "references": [
+    {
+      "id": "logs-*",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "311149a4-cba9-4cd0-a5ae-bfbde78c9f42:indexpattern-datasource-layer-06dccdd0-c0b9-4519-a299-53546adbc735",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "e7d80d7a-48bc-4f04-8f44-a22378e420e8:indexpattern-datasource-layer-06dccdd0-c0b9-4519-a299-53546adbc735",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "0d370391-898c-40be-83fb-a29b2def1b66:indexpattern-datasource-layer-06dccdd0-c0b9-4519-a299-53546adbc735",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "c9327010-22a6-47ab-ac93-cfb5bbddbaa9:indexpattern-datasource-layer-e0c50ea5-82ba-4ee6-be31-497faf705f15",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "ee8a69c2-9bf8-49e6-bdad-f96b10da7dff:indexpattern-datasource-layer-e0c50ea5-82ba-4ee6-be31-497faf705f15",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "e9b38807-f7f4-4e62-8db2-d9bec818e80f:indexpattern-datasource-layer-e0c50ea5-82ba-4ee6-be31-497faf705f15",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "b9dbf35c-f699-4349-b4ec-cb3232e3a11a:indexpattern-datasource-layer-c7dca2ac-c8e3-48eb-b604-609a2a808cae",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "3f3f1f1c-8183-4968-a539-1865b75dee10:indexpattern-datasource-layer-8fb38a54-10e3-47e3-83c5-8853e0afe9da",
+      "type": "index-pattern"
+    },
+    {
+      "id": "fleet-pkg-aws-default",
+      "name": "tag-ref-fleet-pkg-aws-default",
+      "type": "tag"
+    },
+    {
+      "id": "fleet-pkg-ppbgdi-default",
+      "name": "tag-ref-fleet-pkg-ppbgdi-default",
+      "type": "tag"
+    },
+    {
+      "id": "cb696a82-3b44-48fd-b2e2-a3246524463e",
+      "name": "tag-ref-cb696a82-3b44-48fd-b2e2-a3246524463e",
+      "type": "tag"
+    },
+    {
+      "id": "logs-*",
+      "name": "e86e0044-e789-44eb-952f-12b88cf8a388:kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "controlGroup_a37ffee4-1e60-4eb6-8658-df1e2c8dfc0d:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "controlGroup_a4d7b381-b2d3-4d14-9a56-bf485c410a7f:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "controlGroup_5631dfb4-29cf-4d7f-b6be-18987b565284:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "controlGroup_eabaca78-48e1-4215-8c7c-54125e76b585:optionsListDataView",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0",
+  "updated_at": "2025-02-25T09:47:26.837Z",
+  "updated_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
+  "version": "WzQ3MzEyLDM5XQ=="
+}

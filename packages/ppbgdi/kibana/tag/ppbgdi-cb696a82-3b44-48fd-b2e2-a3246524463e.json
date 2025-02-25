@@ -1,0 +1,18 @@
+{
+  "attributes": {
+    "color": "#41965a",
+    "description": "",
+    "name": "apigateway"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "created_at": "2025-02-25T09:44:43.036Z",
+  "created_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
+  "id": "ppbgdi-cb696a82-3b44-48fd-b2e2-a3246524463e",
+  "managed": false,
+  "references": [],
+  "type": "tag",
+  "typeMigrationVersion": "8.0.0",
+  "updated_at": "2025-02-25T09:44:43.036Z",
+  "updated_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
+  "version": "WzU2NTM4Miw0MF0="
+}
