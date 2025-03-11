@@ -1,4 +1,9 @@
 # newer versions go on top
+- version: "1.6.0"
+  changes:
+    - description: Add Lambda functions logs parsing
+      type: enhancement
+      link: https://github.com/geoadmin/infra-elastic-integrations/pull/33
 - version: "1.5.0"
   changes:
     - description: Added apigateway custom logs kibana dashboard

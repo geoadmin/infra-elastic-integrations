@@ -1,0 +1,109 @@
+{
+    "expected": [
+        {
+            "@timestamp": "2025-02-11T12:31:13.344Z",
+            "aws": {
+                "lambda": {
+                    "level": "INFO",
+                    "message": "successfully processed 2 records"
+                }
+            }
+        },
+        {
+            "@timestamp": "2025-02-11T12:31:13.345Z",
+            "aws": {
+                "lambda": {
+                    "type": "platform.report",
+                    "record": {
+                        "request_id": "76a13eca-3bf9-4d5b-8acf-7fd293762c82",
+                        "metrics": {
+                            "duration_ms": 1.136,
+                            "billed_duration_ms": 2,
+                            "memory_size_mb": 128,
+                            "max_memory_used_mb": 45
+                        },
+                        "status": "success"
+                    }
+                }
+            }
+        },
+        {
+            "@timestamp": "2025-02-11T12:32:12.886Z",
+            "aws": {
+                "lambda": {
+                    "type": "platform.start",
+                    "record": {
+                        "request_id": "e0e2f406-9e5a-4567-938c-9ef3a43be9af",
+                        "version": "$LATEST"
+                    }
+                }
+            }
+        },
+        {
+            "@timestamp": "2025-02-11T12:32:12.896Z",
+            "aws": {
+                "lambda": {
+                    "level": "INFO",
+                    "message": "successfully processed 27 records"
+                }
+            }
+        },
+        {
+            "@timestamp": "2025-02-11T12:32:12.916Z",
+            "aws": {
+                "lambda": {
+                    "type": "platform.report",
+                    "record": {
+                        "request_id": "e0e2f406-9e5a-4567-938c-9ef3a43be9af",
+                        "metrics": {
+                            "duration_ms": 29.624,
+                            "billed_duration_ms": 30,
+                            "memory_size_mb": 128,
+                            "max_memory_used_mb": 45
+                        },
+                        "status": "success"
+                    }
+                }
+            }
+        },
+        {
+            "@timestamp": "2025-02-11T12:32:13.137Z",
+            "aws": {
+                "lambda": {
+                    "type": "platform.start",
+                    "record": {
+                        "request_id": "f6caf8bb-075f-4604-9ca4-2f73a1c1b6ac",
+                        "version": "$LATEST"
+                    }
+                }
+            }
+        },
+        {
+            "@timestamp": "2025-02-11T12:32:13.155Z",
+            "aws": {
+                "lambda": {
+                    "level": "INFO",
+                    "message": "successfully processed 27 records"
+                }
+            }
+        },
+        {
+            "@timestamp": "2025-02-11T12:32:13.156Z",
+            "aws": {
+                "lambda": {
+                    "type": "platform.report",
+                    "record": {
+                        "request_id": "f6caf8bb-075f-4604-9ca4-2f73a1c1b6ac",
+                        "metrics": {
+                            "duration_ms": 19.409,
+                            "billed_duration_ms": 20,
+                            "memory_size_mb": 128,
+                            "max_memory_used_mb": 45
+                        },
+                        "status": "success"
+                    }
+                }
+            }
+        }
+    ]
+}
