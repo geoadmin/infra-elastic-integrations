@@ -1132,17 +1132,12 @@
       "type": "index-pattern"
     },
     {
-      "id": "fleet-pkg-aws-default",
+      "id": "ppbgdi-fleet-pkg-aws-default",
       "name": "tag-ref-fleet-pkg-aws-default",
       "type": "tag"
     },
     {
-      "id": "fleet-pkg-ppbgdi-default",
-      "name": "tag-ref-fleet-pkg-ppbgdi-default",
-      "type": "tag"
-    },
-    {
-      "id": "cb696a82-3b44-48fd-b2e2-a3246524463e",
+      "id": "ppbgdi-cb696a82-3b44-48fd-b2e2-a3246524463e",
       "name": "tag-ref-cb696a82-3b44-48fd-b2e2-a3246524463e",
       "type": "tag"
     },
