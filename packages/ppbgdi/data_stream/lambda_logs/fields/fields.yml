@@ -1,0 +1,49 @@
+- name: aws.lambda
+  type: group
+  fields:
+    - name: request_id
+      type: keyword
+      description: ID of the Lambda request
+    - name: message
+      type: match_only_text
+    - name: type
+      type: keyword
+    - name: level
+      type: keyword
+    - name: requestId
+      type: keyword
+    - name: record
+      type: group
+      fields:
+        - name: request_id
+          type: keyword
+        - name: version
+          type: keyword
+        - name: initialization_type
+          type: keyword
+        - name: phase
+          type: keyword
+        - name: runtime_version
+          type: keyword
+        - name: runtime_version_arn
+          type: keyword
+        - name: function_name
+          type: keyword
+        - name: function_version
+          type: keyword
+        - name: instance_id
+          type: keyword
+        - name: instance_max_memory
+          type: integer
+        - name: metrics.duration_ms
+          type: long
+        - name: metrics.billed_duration_ms
+          type: integer
+        - name: metrics.memory_size_mb
+          type: integer
+        - name: metrics.max_memory_used_mb
+          type: integer
+        - name: metrics.init_duration_ms
+          type: long
+        - name: status
+          type: keyword
