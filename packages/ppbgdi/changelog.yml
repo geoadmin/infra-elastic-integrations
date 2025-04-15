@@ -1,4 +1,9 @@
 # newer versions go on top
+- version: "1.6.1"
+  changes:
+    - description: Add failure handling on lambda_logs data_stream
+      type: enhancement
+      link: https://github.com/geoadmin/infra-elastic-integrations/pull/41
 - version: "1.6.0"
   changes:
     - description: Add Lambda functions logs parsing
