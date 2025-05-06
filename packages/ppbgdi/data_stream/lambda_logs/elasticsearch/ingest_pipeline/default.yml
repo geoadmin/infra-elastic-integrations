@@ -2,110 +2,98 @@
 description: Pipeline for processing Lambda logs
 processors:
 - rename:
-    field: "time"
-    target_field: "timestamp"
-    description: "Normalize timestamp field name"
-    ignore_missing: true
-- date:
-    field: "timestamp"
-    formats: ["ISO8601"]
+    field: message
+    target_field: event.original
+    if: 'ctx.event?.original == null'
 - remove:
-    field: "timestamp"
-
+    field: message
+    ignore_missing: true
+    if: 'ctx.event?.original != null'
+- json:
+    field: event.original
+    target_field: aws.lambda
+    ignore_failure: true
+- date:
+    field: "aws.lambda.timestamp"
+    formats: ["ISO8601"]
+    ignore_failure: true
+    if: 'ctx.aws?.lambda?.timestamp != null'
+- date:
+    field: "aws.lambda.time"
+    formats: ["ISO8601"]
+    ignore_failure: true
+    if: 'ctx.aws?.lambda?.time != null'
+- remove:
+    field: "aws.lambda.timestamp"
+    ignore_missing: true
+- remove:
+    field: "aws.lambda.time"
+    ignore_missing: true
 - rename:
-    field: "message"
+    field: "aws.lambda.msg"
     target_field: "aws.lambda.message"
     ignore_missing: true
 - rename:
-    field: "msg"
-    target_field: "aws.lambda.message"
-    ignore_missing: true
-- rename:
-    field: "level"
-    target_field: "aws.lambda.level"
-    ignore_missing: true
-- rename:
-    field: "type"
-    target_field: "aws.lambda.type"
-    ignore_missing: true
-- rename:
-    field: "requestId"
+    field: "aws.lambda.requestId"
     target_field: "aws.lambda.request_id"
     ignore_missing: true
 
 # platform.initStart
 - rename:
-    field: "record.initializationType"
+    field: "aws.lambda.record.initializationType"
     target_field: "aws.lambda.record.initialization_type"
     ignore_missing: true
 - rename:
-    field: "record.phase"
-    target_field: "aws.lambda.record.phase"
-    ignore_missing: true
-- rename:
-    field: "record.runtimeVersion"
+    field: "aws.lambda.record.runtimeVersion"
     target_field: "aws.lambda.record.runtime_version"
     ignore_missing: true
 - rename:
-    field: "record.runtimeVersionArn"
+    field: "aws.lambda.record.runtimeVersionArn"
     target_field: "aws.lambda.record.runtime_version_arn"
     ignore_missing: true
 - rename:
-    field: "record.functionName"
+    field: "aws.lambda.record.functionName"
     target_field: "aws.lambda.record.function_name"
     ignore_missing: true
 - rename:
-    field: "record.functionVersion"
+    field: "aws.lambda.record.functionVersion"
     target_field: "aws.lambda.record.function_version"
     ignore_missing: true
 - rename:
-    field: "record.instanceId"
+    field: "aws.lambda.record.instanceId"
     target_field: "aws.lambda.record.instance_id"
     ignore_missing: true
 - rename:
-    field: "record.instanceMaxMemory"
+    field: "aws.lambda.record.instanceMaxMemory"
     target_field: "aws.lambda.record.instance_max_memory"
     ignore_missing: true
 
 # platform.start
 - rename:
-    field: "record.requestId"
+    field: "aws.lambda.record.requestId"
     target_field: "aws.lambda.record.request_id"
-    ignore_missing: true
-- rename:
-    field: "record.version"
-    target_field: "aws.lambda.record.version"
     ignore_missing: true
 
 # platform.metrics
 - rename:
-    field: "record.metrics.durationMs"
+    field: "aws.lambda.record.metrics.durationMs"
     target_field: "aws.lambda.record.metrics.duration_ms"
     ignore_missing: true
 - rename:
-    field: "record.metrics.billedDurationMs"
+    field: "aws.lambda.record.metrics.billedDurationMs"
     target_field: "aws.lambda.record.metrics.billed_duration_ms"
     ignore_missing: true
 - rename:
-    field: "record.metrics.memorySizeMB"
+    field: "aws.lambda.record.metrics.memorySizeMB"
     target_field: "aws.lambda.record.metrics.memory_size_mb"
     ignore_missing: true
 - rename:
-    field: "record.metrics.maxMemoryUsedMB"
+    field: "aws.lambda.record.metrics.maxMemoryUsedMB"
     target_field: "aws.lambda.record.metrics.max_memory_used_mb"
     ignore_missing: true
 - rename:
-    field: "record.metrics.initDurationMs"
+    field: "aws.lambda.record.metrics.initDurationMs"
     target_field: "aws.lambda.record.metrics.init_duration_ms"
-    ignore_missing: true
-- rename:
-    field: "record.status"
-    target_field: "aws.lambda.record.status"
-    ignore_missing: true
-
-# cleanup
-- remove:
-    field: "record"
     ignore_missing: true
 
 on_failure:
