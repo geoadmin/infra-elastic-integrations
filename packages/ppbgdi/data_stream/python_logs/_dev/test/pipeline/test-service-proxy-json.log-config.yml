@@ -9,6 +9,9 @@ fields:
       system: proxy
       service: service-proxy
       env: dev
+  service:
+    name: service-proxy
+    environment: dev
 dynamic_fields:
   'event.ingested': "^.*$"
   'data_stream.dataset': "^.*$"
