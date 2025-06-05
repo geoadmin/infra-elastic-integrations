@@ -11,7 +11,9 @@ fields:
       env: dev
     container:
       name: auth-bod
-  service.name: service-bod
+  service:
+    name: service-bod
+    environment: dev
 dynamic_fields:
   'event.ingested': "^.*$"
   'data_stream.dataset': "^.*$"

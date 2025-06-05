@@ -262,24 +262,24 @@ processors:
       ecs_compatibility: v1
       ignore_missing: true
   - set:
-      field: service
-      copy_from: temp.service
+      field: service.type
+      copy_from: temp.service.type
       ignore_empty_value: true
       override: true
   - remove:
       field: temp.service
       ignore_missing: true
-  - set:
-      field: service.name
-      copy_from: kubernetes.namespace_labels.service # Elastic-Agent
-      ignore_empty_value: true
-      override: true
-  - set:
-      description: OTEL service name
-      field: service.name
-      copy_from: k8s.namespace.labels.service # OTEL-Collector
-      ignore_empty_value: true
-      override: true
+#   - set:
+#       field: service.name
+#       copy_from: kubernetes.namespace_labels.service # Elastic-Agent
+#       ignore_empty_value: true
+#       override: true
+#   - set:
+#       description: OTEL service name
+#       field: service.name
+#       copy_from: resource.attributes.k8s.namespace.labels.service # OTEL-Collector
+#       ignore_empty_value: true
+#       override: true
   - rename:
       field: temp.ppbgdi.app.api
       target_field: ppbgdi.app.api

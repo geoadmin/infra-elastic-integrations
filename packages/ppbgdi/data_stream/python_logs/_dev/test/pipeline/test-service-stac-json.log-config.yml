@@ -9,6 +9,9 @@ fields:
       system: stac
       service: service-stac
       env: dev
+  service:
+    name: service-stac
+    environment: dev
 dynamic_fields:
   'event.ingested': "^.*$"
   'data_stream.dataset': "^.*$"
