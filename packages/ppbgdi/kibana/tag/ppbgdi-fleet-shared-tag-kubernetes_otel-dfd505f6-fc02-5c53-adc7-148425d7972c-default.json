@@ -1,0 +1,13 @@
+{
+    "attributes": {
+        "color": "#FFA500",
+        "description": "Tag defined in package-spec",
+        "name": "OpenTelemetry"
+    },
+    "coreMigrationVersion": "8.8.0",
+    "created_at": "2024-12-13T13:36:26.094Z",
+    "id": "ppbgdi-fleet-shared-tag-kubernetes_otel-dfd505f6-fc02-5c53-adc7-148425d7972c-default",
+    "references": [],
+    "type": "tag",
+    "typeMigrationVersion": "8.0.0"
+}

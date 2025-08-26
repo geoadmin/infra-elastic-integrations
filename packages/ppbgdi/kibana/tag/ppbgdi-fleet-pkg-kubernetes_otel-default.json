@@ -1,0 +1,13 @@
+{
+    "attributes": {
+        "color": "#4DD2CA",
+        "description": "",
+        "name": "Kubernetes OpenTelemetry Assets"
+    },
+    "coreMigrationVersion": "8.8.0",
+    "created_at": "2024-12-13T13:36:25.940Z",
+    "id": "ppbgdi-fleet-pkg-kubernetes_otel-default",
+    "references": [],
+    "type": "tag",
+    "typeMigrationVersion": "8.0.0"
+}

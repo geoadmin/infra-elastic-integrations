@@ -41,7 +41,7 @@ Dashboards which are created or edited can be exported to this package with the 
 # Observability dev cluster
 summon -p ssm -e bgdi-observability-dev elastic-package export dashboards --id <dashboard-id>
 
-# Observability dev cluster
+# Observability prod cluster
 summon -p ssm -e bgdi-observability-prod elastic-package export dashboards --id <dashboard-id>
 
 ```
@@ -75,7 +75,7 @@ Managed dashboards can not be edited. To make them editable, use the following c
 # Observability dev cluster
 summon -p ssm -e bgdi-observability-dev elastic-package edit dashboards --id <dashboard-id>
 
-# Observability dev cluster
+# Observability prod cluster
 summon -p ssm -e bgdi-observability-prod elastic-package edit dashboards --id <dashboard-id>
 
 ```
