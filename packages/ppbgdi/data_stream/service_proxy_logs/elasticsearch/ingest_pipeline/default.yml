@@ -5,6 +5,8 @@ processors:
       field: temp.ppbgdi.proxy
       target_field: ppbgdi.app.proxy
       description: Rename temp proxy field
+      ignore_missing: true
+
   - foreach:
       description: Lowercase all http request headers for easier handling
       field: ppbgdi.app.proxy.downstream.http.request.headers
