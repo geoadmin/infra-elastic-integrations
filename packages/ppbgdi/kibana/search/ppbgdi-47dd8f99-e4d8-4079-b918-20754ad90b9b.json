@@ -1,0 +1,124 @@
+{
+  "attributes": {
+    "columns": [],
+    "description": "",
+    "grid": {},
+    "hideChart": false,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": {
+        "query": {
+          "query": "",
+          "language": "kuery"
+        },
+        "filter": [
+          {
+            "": {
+              "store": "appState"
+            },
+            "meta": {
+              "alias": null,
+              "disabled": false,
+              "key": "data_stream.dataset",
+              "negate": false,
+              "params": {
+                "query": "aws.cloudtrail"
+              },
+              "type": "phrase",
+              "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index"
+            },
+            "query": {
+              "match_phrase": {
+                "data_stream.dataset": "aws.cloudtrail"
+              }
+            }
+          },
+          {
+            "": {
+              "store": "appState"
+            },
+            "meta": {
+              "alias": "Pre-signed API calls",
+              "disabled": true,
+              "negate": false,
+              "params": [
+                {
+                  "meta": {
+                    "disabled": false,
+                    "field": "aws.cloudtrail.additional_eventdata.text",
+                    "index": "logs-*",
+                    "key": "aws.cloudtrail.additional_eventdata.text",
+                    "negate": false,
+                    "params": {
+                      "query": "QueryString"
+                    },
+                    "type": "phrase"
+                  },
+                  "query": {
+                    "match_phrase": {
+                      "aws.cloudtrail.additional_eventdata.text": "QueryString"
+                    }
+                  }
+                },
+                {
+                  "meta": {
+                    "disabled": false,
+                    "field": "aws.cloudtrail.request_parameters.text",
+                    "index": "logs-*",
+                    "key": "aws.cloudtrail.request_parameters.text",
+                    "negate": false,
+                    "params": {
+                      "query": "X-Amz-Expires"
+                    },
+                    "type": "phrase"
+                  },
+                  "query": {
+                    "match_phrase": {
+                      "aws.cloudtrail.request_parameters.text": "X-Amz-Expires"
+                    }
+                  }
+                }
+              ],
+              "relation": "AND",
+              "type": "combined",
+              "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[1].meta.index"
+            },
+            "query": {}
+          }
+        ],
+        "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.index"
+      }
+    },
+    "sort": [
+      [
+        "@timestamp",
+        "desc"
+      ]
+    ],
+    "timeRestore": false,
+    "title": "S3 CloudTrail Logs"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "created_at": "2025-11-11T09:14:11.266Z",
+  "id": "ppbgdi-47dd8f99-e4d8-4079-b918-20754ad90b9b",
+  "managed": true,
+  "references": [
+    {
+      "id": "logs-*",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[1].meta.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.9.0"
+}
