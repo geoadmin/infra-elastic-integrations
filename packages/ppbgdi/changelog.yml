@@ -1,4 +1,9 @@
 # newer versions go on top
+- version: "1.8.0"
+  changes:
+    - description: Added S3 CloudTrail logs saved search
+      type: enhancement
+      link: https://github.com/geoadmin/infra-elastic-integrations/pull/46
 - version: "1.7.1"
   changes:
     - description: Fixed service-proxy logs
