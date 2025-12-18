@@ -1,0 +1,7 @@
+- name: span.id
+  type: keyword
+  description: Unique identifier of the span within the scope of its trace.
+
+- name: trace.id
+  type: keyword
+  description: Unique identifier of the trace.
