@@ -296,6 +296,22 @@ processors:
   # TODO: Set ip.address and or ip. domain.
   # TODO: Set related ip and related.domain
 
+  # OTEL
+  - rename:
+      field: temp.otelSpanID
+      target_field: span.id
+      ignore_missing: true
+  - rename:
+      field: temp.otelTraceID
+      target_field: trace.id
+      ignore_missing: true
+  - remove:
+      description: Remove OTEL fields
+      field:
+        - temp.otelTraceSampled # Not supported in ECS
+        - temp.otelServiceName # Not needed since already available
+      ignore_missing: true
+
   - remove:
       description: Remove deprecated fields (old field structure)
       field:
