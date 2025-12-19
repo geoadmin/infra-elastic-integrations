@@ -3,7 +3,7 @@
   changes:
     - description: Rename http.<request|response>.headers to http.<request|response>.header for OTEL compatibility
       type: enhancement
-      link: https://github.com/geoadmin/infra-elastic-integrations/pull/48
+      link: https://github.com/geoadmin/infra-elastic-integrations/pull/50
 - version: "1.9.0"
   changes:
     - description: Added tracing fields to logs

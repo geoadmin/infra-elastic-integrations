@@ -152,7 +152,9 @@ An example event for `python` looks as following:
 | data_stream.namespace | A user defined namespace. Namespaces are useful to allow grouping of data. Many users already organize their indices this way, and the data stream naming scheme now provides this best practice as a default. Many users will populate this field with `default`. If no value is used, it falls back to `default`. Beyond the Elasticsearch index naming criteria noted above, `namespace` value has the additional restrictions:   \* Must not contain `-`   \* No longer than 100 characters | constant_keyword |
 | data_stream.type | An overarching type for the data stream. Currently allowed values are "logs" and "metrics". We expect to also add "traces" and "synthetics" in the near future. | constant_keyword |
 | http.request.header.\* | Not yet but already in use ecs fields | keyword |
+| http.request.headers.\* | Not yet but already in use ecs fields (deprecated) | keyword |
 | http.response.header.\* | Not yet but already in use ecs fields | keyword |
+| http.response.headers.\* | Not yet but already in use ecs fields (deprecated) | keyword |
 | k8s.namespace.labels.env | Kubernetes namespace-label 'env' | keyword |
 | k8s.namespace.labels.service | Kubernetes namespace-label 'service' | keyword |
 | k8s.namespace.labels.system | Kubernetes namespace-label 'system' | keyword |
