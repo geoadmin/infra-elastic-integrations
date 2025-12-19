@@ -8,6 +8,6 @@
 - name: http.response.header.*
   type: keyword
   description: Not yet but already in use ecs fields
-- name: http.response.header.*
+- name: http.response.headers.*
   type: keyword
   description: Not yet but already in use ecs fields (deprecated)
