@@ -6,17 +6,26 @@ processors:
       target_field: ppbgdi.app.proxy
       description: Rename temp proxy field
       ignore_missing: true
-
+  - rename:
+      field: ppbgdi.app.proxy.downstream.http.request.headers
+      target_field: ppbgdi.app.proxy.downstream.http.request.header
+      description: Rename deprecated http.request.headers to http.request.header
+      ignore_missing: true
   - foreach:
       description: Lowercase all http request headers for easier handling
-      field: ppbgdi.app.proxy.downstream.http.request.headers
+      field: ppbgdi.app.proxy.downstream.http.request.header
       processor:
         lowercase:
           field: _ingest._key
       ignore_missing: true
+  - rename:
+      field: ppbgdi.app.proxy.downstream.http.response.headers
+      target_field: ppbgdi.app.proxy.downstream.http.response.header
+      description: Rename deprecated http.response.headers to http.response.header
+      ignore_missing: true
   - foreach:
       description: Lowercase all http response headers for easier handling
-      field: ppbgdi.app.proxy.downstream.http.response.headers
+      field: ppbgdi.app.proxy.downstream.http.response.header
       processor:
         lowercase:
           field: _ingest._key

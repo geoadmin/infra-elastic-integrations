@@ -47,16 +47,16 @@
                         "meta": {
                             "alias": null,
                             "disabled": true,
-                            "field": "http.request.headers.if-none-match",
+                            "field": "http.request.header.if-none-match",
                             "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[1].meta.index",
-                            "key": "http.request.headers.if-none-match",
+                            "key": "http.request.header.if-none-match",
                             "negate": false,
                             "type": "exists",
                             "value": "exists"
                         },
                         "query": {
                             "exists": {
-                                "field": "http.request.headers.if-none-match"
+                                "field": "http.request.header.if-none-match"
                             }
                         }
                     },

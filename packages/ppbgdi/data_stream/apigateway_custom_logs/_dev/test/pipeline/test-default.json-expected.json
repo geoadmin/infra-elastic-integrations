@@ -10,8 +10,8 @@
                         "authenticated": "false"
                     },
                     "data_processed": 146549,
-                    "domain_prefix": "05jus8nlxi",
                     "domain_name": "05jus8nlxi.execute-api.eu-central-1.amazonaws.com",
+                    "domain_prefix": "05jus8nlxi",
                     "http_method": "GET",
                     "identity": {
                         "source_ip": "1.128.0.0",

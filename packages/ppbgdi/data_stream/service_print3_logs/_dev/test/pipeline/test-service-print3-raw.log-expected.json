@@ -10,7 +10,7 @@
                 "version": "8.11.0"
             },
             "event": {
-                "ingested": "2025-02-14T15:10:30.439808307Z",
+                "ingested": "2025-12-19T10:22:54.378936717Z",
                 "kind": "event",
                 "original": "14-Feb-2025 12:33:01.895 INFO [GT authority factory disposer] org.geotools.referencing.factory.DeferredAuthorityFactory.disposeBackingStore Disposing class org.mapfish.print.map.CustomEPSGCodes backing store"
             },
@@ -48,7 +48,7 @@
                 "version": "8.11.0"
             },
             "event": {
-                "ingested": "2025-02-14T15:10:30.439828155Z",
+                "ingested": "2025-12-19T10:22:54.378948519Z",
                 "kind": "event",
                 "original": "WARNING: Illegal reflective access by net.sf.jasperreports.engine.util.ClassUtils (file:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/jasperreports-6.20.5.jar) to constructor com.sun.org.apache.xerces.internal.util.XMLGrammarPoolImpl()"
             },
@@ -82,7 +82,7 @@
                 "version": "8.11.0"
             },
             "event": {
-                "ingested": "2025-02-14T15:10:30.439834093Z",
+                "ingested": "2025-12-19T10:22:54.378950921Z",
                 "kind": "event",
                 "original": "java.base@11.0.20.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:176)"
             },
