@@ -88,14 +88,14 @@ processors:
       if: 'ctx?.url?.domain != null'
   - append:
       field: related.hosts
-      value: '{{ http.request.headers.host }}'
+      value: '{{ http.request.header.host }}'
       allow_duplicates: false
-      if: 'ctx?.http?.request?.headers?.host != null'
+      if: 'ctx?.http?.request?.header?.host != null'
   - append:
       field: related.hosts
-      value: '{{ http.request.headers.x-forwarded-host }}'
+      value: '{{ http.request.header.x-forwarded-host }}'
       allow_duplicates: false
-      if: 'ctx?.http?.request?.headers != null && ctx.http.request.headers.containsKey("x-forwarded-host")'
+      if: 'ctx?.http?.request?.header != null && ctx.http.request.header.containsKey("x-forwarded-host")'
   - set:
       field: service.environment
       copy_from: kubernetes.namespace_labels.env # Elastic-Agent

@@ -68,44 +68,49 @@ processors:
       field: temp.http
       target_field: http
       ignore_missing: true
-  - script:
-      description: lowercase http headers
-      source: |
-        if (ctx?.http?.request?.headers != null){
-            Map request_headers = new HashMap();
-            for (header in ctx.http.request.headers.entrySet()){
-            request_headers.put(header.getKey().toLowerCase(), header.getValue());
-            }
-            ctx.http.request.headers = request_headers;
-        }
-        if (ctx?.http?.response?.headers != null){
-            Map response_headers = new HashMap();
-            for (header in ctx.http.response.headers.entrySet()){
-            response_headers.put(header.getKey().toLowerCase(), header.getValue());
-            }
-            ctx.http.response.headers = response_headers;
-        }
+  - rename:
+      field: http.request.headers
+      target_field: http.request.header
+      ignore_missing: true
+  - rename:
+      field: http.response.headers
+      target_field: http.response.header
+      ignore_missing: true
+  - foreach:
+      description: Lowercase all http request headers for easier handling
+      field: http.request.header
+      processor:
+        lowercase:
+          field: _ingest._key
+      ignore_missing: true
+  - foreach:
+      description: Lowercase all http response headers for easier handling
+      field: http.response.header
+      processor:
+        lowercase:
+          field: _ingest._key
+      ignore_missing: true
   - convert:
       field: http.request.bytes
       type: long
       ignore_missing: true
   - user_agent:
-      field: http.request.headers.user-agent
+      field: http.request.header.user-agent
       extract_device_type: true
       ignore_missing: true
   - remove:
-      field: http.request.headers.user-agent
+      field: http.request.header.user-agent
       ignore_missing: true
   - user_agent:
       field: temp.user_agent.original
       extract_device_type: true
       ignore_missing: true
-      if: 'ctx?.http?.request?.headers != null && !ctx.http.request.headers.containsKey("user-agent")'
+      if: 'ctx?.http?.request?.header != null && !ctx.http.request.header.containsKey("user-agent")'
   - remove:
       field: temp.user_agent.original
       ignore_missing: true
   - rename:
-      field: http.response.headers.content-length
+      field: http.response.header.content-length
       target_field: http.response.bytes
       ignore_missing: true
   - convert:
@@ -117,7 +122,7 @@ processors:
       type: long
       ignore_missing: true
   - rename:
-      field: http.response.headers.content-type
+      field: http.response.header.content-type
       target_field: http.response.mime_type
       ignore_missing: true
   - convert:
@@ -228,13 +233,13 @@ processors:
   - set:
       description: Override event.id with request header if existing
       field: event.id
-      copy_from: http.request.headers.x-amz-cf-id
+      copy_from: http.request.header.x-amz-cf-id
       override: true
       ignore_empty_value: true
       if: 'ctx?.event?.id == null'
   - remove:
       description: Remove request header to avoid redundancy
-      field: http.request.headers.x-amz-cf-id
+      field: http.request.header.x-amz-cf-id
       ignore_missing: true
   - set:
       description: Set event.id from pidTid

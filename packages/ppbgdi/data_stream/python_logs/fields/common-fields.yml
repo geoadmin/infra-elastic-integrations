@@ -12,12 +12,18 @@
     - name: epsg
       type: long
       description: The projection type of the layer
+- name: http.request.header.*
+  type: keyword
+  description: Not yet but already in use ecs fields
 - name: http.request.headers.*
+  type: keyword
+  description: Not yet but already in use ecs fields (deprecated)
+- name: http.response.header.*
   type: keyword
   description: Not yet but already in use ecs fields
 - name: http.response.headers.*
   type: keyword
-  description: Not yet but already in use ecs fields
+  description: Not yet but already in use ecs fields (deprecated)
 - name: user_agent.device.type
   type: keyword
   description: ECS beta field

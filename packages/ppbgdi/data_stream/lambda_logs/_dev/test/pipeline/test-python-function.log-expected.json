@@ -4,17 +4,17 @@
             "@timestamp": "2025-01-14T16:43:46.647Z",
             "aws": {
                 "lambda": {
-                    "type": "platform.initStart",
                     "record": {
-                        "initialization_type": "on-demand",
-                        "phase": "init",
-                        "runtime_version": "nodejs:20.v51",
-                        "runtime_version_arn": "arn:aws:lambda:eu-central-1::runtime:cb6527bfb6726a080a367eca00e49765ca5abd8cd1a17783fbee683313121ece",
                         "function_name": "StacAPIDevAuthorizer",
                         "function_version": "$LATEST",
+                        "initialization_type": "on-demand",
                         "instance_id": "2025/01/14/StacAPIDevAuthorizer[$LATEST]58b9504738394dec883430ca49dd8b97",
-                        "instance_max_memory": 134217728
-                    }
+                        "instance_max_memory": 134217728,
+                        "phase": "init",
+                        "runtime_version": "nodejs:20.v51",
+                        "runtime_version_arn": "arn:aws:lambda:eu-central-1::runtime:cb6527bfb6726a080a367eca00e49765ca5abd8cd1a17783fbee683313121ece"
+                    },
+                    "type": "platform.initStart"
                 }
             },
             "event": {
@@ -25,11 +25,11 @@
             "@timestamp": "2025-01-14T16:43:46.819Z",
             "aws": {
                 "lambda": {
-                    "type": "platform.start",
                     "record": {
                         "request_id": "c616dc5e-26f8-4d1c-a412-425ec41fb1aa",
                         "version": "$LATEST"
-                    }
+                    },
+                    "type": "platform.start"
                 }
             },
             "event": {
@@ -54,8 +54,8 @@
             "aws": {
                 "lambda": {
                     "level": "INFO",
-                    "request_id": "c616dc5e-26f8-4d1c-a412-425ec41fb1aa",
-                    "message": "response: { isAuthorized: true, context: { authenticated: false, username: '' } }"
+                    "message": "response: { isAuthorized: true, context: { authenticated: false, username: '' } }",
+                    "request_id": "c616dc5e-26f8-4d1c-a412-425ec41fb1aa"
                 }
             },
             "event": {
@@ -66,18 +66,18 @@
             "@timestamp": "2025-01-14T16:43:46.943Z",
             "aws": {
                 "lambda": {
-                    "type": "platform.report",
                     "record": {
-                        "request_id": "c616dc5e-26f8-4d1c-a412-425ec41fb1aa",
                         "metrics": {
-                            "duration_ms": 122.964,
                             "billed_duration_ms": 123,
-                            "memory_size_mb": 128,
+                            "duration_ms": 122.964,
+                            "init_duration_ms": 169.892,
                             "max_memory_used_mb": 72,
-                            "init_duration_ms": 169.892
+                            "memory_size_mb": 128
                         },
+                        "request_id": "c616dc5e-26f8-4d1c-a412-425ec41fb1aa",
                         "status": "success"
-                    }
+                    },
+                    "type": "platform.report"
                 }
             },
             "event": {

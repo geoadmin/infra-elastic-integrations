@@ -1,9 +1,15 @@
-- name: ppbgdi.app.proxy.downstream.http.request.headers.*
+- name: ppbgdi.app.proxy.downstream.http.request.header.*
   type: keyword
   description: Service proxy downstream http request headers.
-- name: ppbgdi.app.proxy.downstream.http.response.headers.*
+- name: ppbgdi.app.proxy.downstream.http.request.headers.*
+  type: keyword
+  description: Service proxy downstream http request headers (deprecated).
+- name: ppbgdi.app.proxy.downstream.http.response.header.*
   type: keyword
   description: Service proxy downstream http response headers.
+- name: ppbgdi.app.proxy.downstream.http.response.headers.*
+  type: keyword
+  description: Service proxy downstream http response headers (deprecated).
 - name: ppbgdi.app.proxy.downstream.http.response.status_code
   type: long
   description: Service proxy downstream http response status code.

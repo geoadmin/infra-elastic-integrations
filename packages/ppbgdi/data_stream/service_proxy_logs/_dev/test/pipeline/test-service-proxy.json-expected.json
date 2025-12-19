@@ -65,7 +65,7 @@
                         "downstream": {
                             "http": {
                                 "response": {
-                                    "headers": {
+                                    "header": {
                                         "accept-ranges": "bytes",
                                         "cache-control": "public, max-age=10",
                                         "connection": "keep-alive",
