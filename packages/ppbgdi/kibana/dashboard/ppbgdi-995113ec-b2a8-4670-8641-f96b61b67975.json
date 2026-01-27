@@ -1,0 +1,4243 @@
+{
+  "attributes": {
+    "controlGroupInput": {
+      "chainingSystem": "HIERARCHICAL",
+      "controlStyle": "oneLine",
+      "ignoreParentSettingsJSON": {
+        "ignoreFilters": false,
+        "ignoreQuery": false,
+        "ignoreTimerange": false,
+        "ignoreValidations": false
+      },
+      "panelsJSON": {
+        "c7013a33-be63-47a4-83c6-54dd8ec0c9e2": {
+          "grow": false,
+          "order": 0,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "dataViewId": "metrics-*",
+            "fieldName": "aws.dimensions.DistributionId",
+            "title": "Filter by CloudFront Distribution",
+            "exclude": false,
+            "existsSelected": false,
+            "selectedOptions": [],
+            "searchTechnique": "prefix",
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        },
+        "1bb2ffad-f999-4170-9695-430cfec5afa5": {
+          "grow": false,
+          "order": 1,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "dataViewId": "metrics-*",
+            "fieldName": "aws.dimensions.FunctionName",
+            "title": "CloudFront Function",
+            "exclude": false,
+            "existsSelected": false,
+            "selectedOptions": [],
+            "searchTechnique": "prefix",
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        }
+      },
+      "showApplySelections": false
+    },
+    "description": "",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": {
+        "filter": [],
+        "query": {
+          "query": "",
+          "language": "kuery"
+        }
+      }
+    },
+    "optionsJSON": {
+      "useMargins": true,
+      "syncColors": false,
+      "syncCursor": true,
+      "syncTooltips": false,
+      "hidePanelTitles": false
+    },
+    "panelsJSON": [
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Requests Processed",
+          "description": "The total number of viewer requests received by CloudFront, for all HTTP methods and for both HTTP and HTTPS requests.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Requests",
+                          "dataType": "number",
+                          "operationType": "sum",
+                          "sourceField": "aws.cloudfront.metrics.Requests.sum",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": true
+                          },
+                          "customLabel": true
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "column",
+                              "columnId": "52644bd7-8b75-4660-bde0-520cd856160b"
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "5f1d79fe-aa6d-463d-8176-752bc7a7a124",
+        "gridData": {
+          "i": "5f1d79fe-aa6d-463d-8176-752bc7a7a124",
+          "y": 0,
+          "x": 0,
+          "w": 48,
+          "h": 10
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Data Downloaded",
+          "description": "The total number of bytes downloaded by viewers for GET, HEAD, and OPTIONS requests.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-7eb31e83-ff0b-478e-ae0f-751f02c0ea05"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "7eb31e83-ff0b-478e-ae0f-751f02c0ea05",
+                    "accessors": [
+                      "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b6d54653-262b-457c-821f-6697c5a81b96",
+                    "splitAccessor": "f94e913d-66d6-4127-ab2d-67e1abe2b20b"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "7eb31e83-ff0b-478e-ae0f-751f02c0ea05": {
+                      "columns": {
+                        "b6d54653-262b-457c-821f-6697c5a81b96": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1": {
+                          "label": "Bytes",
+                          "dataType": "number",
+                          "operationType": "sum",
+                          "sourceField": "aws.cloudfront.metrics.BytesDownloaded.sum",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": true,
+                            "format": {
+                              "id": "bytes",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "customLabel": true
+                        },
+                        "f94e913d-66d6-4127-ab2d-67e1abe2b20b": {
+                          "label": "Bytes Downloaded",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "column",
+                              "columnId": "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          },
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "f94e913d-66d6-4127-ab2d-67e1abe2b20b",
+                        "b6d54653-262b-457c-821f-6697c5a81b96",
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "d618a14f-9873-4e2a-ae56-8d161a48b4f7",
+        "gridData": {
+          "i": "d618a14f-9873-4e2a-ae56-8d161a48b4f7",
+          "y": 10,
+          "x": 0,
+          "w": 24,
+          "h": 11
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Data Uploaded",
+          "description": "The total number of bytes that viewers uploaded to your origin with CloudFront, using POST and PUT requests.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-7eb31e83-ff0b-478e-ae0f-751f02c0ea05"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "7eb31e83-ff0b-478e-ae0f-751f02c0ea05",
+                    "accessors": [
+                      "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b6d54653-262b-457c-821f-6697c5a81b96",
+                    "splitAccessor": "f94e913d-66d6-4127-ab2d-67e1abe2b20b"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "7eb31e83-ff0b-478e-ae0f-751f02c0ea05": {
+                      "columns": {
+                        "b6d54653-262b-457c-821f-6697c5a81b96": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1": {
+                          "label": "Bytes",
+                          "dataType": "number",
+                          "operationType": "sum",
+                          "sourceField": "aws.cloudfront.metrics.BytesUploaded.sum",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": true,
+                            "format": {
+                              "id": "bytes",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "customLabel": true
+                        },
+                        "f94e913d-66d6-4127-ab2d-67e1abe2b20b": {
+                          "label": "Bytes Downloaded",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "column",
+                              "columnId": "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          },
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "f94e913d-66d6-4127-ab2d-67e1abe2b20b",
+                        "b6d54653-262b-457c-821f-6697c5a81b96",
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "14b0bf04-a7ae-4a0f-9bd5-03f3e1918f2c",
+        "gridData": {
+          "i": "14b0bf04-a7ae-4a0f-9bd5-03f3e1918f2c",
+          "y": 10,
+          "x": 24,
+          "w": 24,
+          "h": 11
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Cache Hit Rate",
+          "description": "The percentage of all cacheable requests for which CloudFront served the content from its cache. HTTP POST and PUT requests, and errors, are not considered cacheable requests.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-7eb31e83-ff0b-478e-ae0f-751f02c0ea05"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "7eb31e83-ff0b-478e-ae0f-751f02c0ea05",
+                    "accessors": [
+                      "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b6d54653-262b-457c-821f-6697c5a81b96",
+                    "splitAccessor": "f94e913d-66d6-4127-ab2d-67e1abe2b20b"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "7eb31e83-ff0b-478e-ae0f-751f02c0ea05": {
+                      "columns": {
+                        "b6d54653-262b-457c-821f-6697c5a81b96": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1X0": {
+                          "label": "Part of Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.CacheHitRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1X1": {
+                          "label": "Part of Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "ddacf500-fd0d-4757-84f1-15cbcc673db1X0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.CacheHitRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "ddacf500-fd0d-4757-84f1-15cbcc673db1X0"
+                          ],
+                          "customLabel": true
+                        },
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1": {
+                          "label": "Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.CacheHitRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "ddacf500-fd0d-4757-84f1-15cbcc673db1X1"
+                          ],
+                          "customLabel": true
+                        },
+                        "f94e913d-66d6-4127-ab2d-67e1abe2b20b": {
+                          "label": "Bytes Downloaded",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          },
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "f94e913d-66d6-4127-ab2d-67e1abe2b20b",
+                        "b6d54653-262b-457c-821f-6697c5a81b96",
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1",
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1X0",
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1X1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "ba89701c-3b37-4349-990a-a313cd9601a8",
+        "gridData": {
+          "i": "ba89701c-3b37-4349-990a-a313cd9601a8",
+          "y": 21,
+          "x": 0,
+          "w": 24,
+          "h": 11
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Origin Latency",
+          "description": "The total time spent, in milliseconds, from when CloudFront receives a request to when it starts providing a response to the network (not the viewer), for requests that are served from the origin, not the CloudFront cache. This is also known as first byte latency, or time-to-first-byte.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-7eb31e83-ff0b-478e-ae0f-751f02c0ea05"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "7eb31e83-ff0b-478e-ae0f-751f02c0ea05",
+                    "accessors": [
+                      "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b6d54653-262b-457c-821f-6697c5a81b96",
+                    "splitAccessor": "f94e913d-66d6-4127-ab2d-67e1abe2b20b"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "7eb31e83-ff0b-478e-ae0f-751f02c0ea05": {
+                      "columns": {
+                        "b6d54653-262b-457c-821f-6697c5a81b96": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "f94e913d-66d6-4127-ab2d-67e1abe2b20b": {
+                          "label": "Bytes Downloaded",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "column",
+                              "columnId": "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          },
+                          "customLabel": true
+                        },
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1": {
+                          "label": "Latency",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.OriginLatency.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 0,
+                                "fromUnit": "milliseconds",
+                                "toUnit": "asMilliseconds",
+                                "suffix": "",
+                                "compact": true
+                              }
+                            },
+                            "emptyAsNull": true
+                          },
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "f94e913d-66d6-4127-ab2d-67e1abe2b20b",
+                        "b6d54653-262b-457c-821f-6697c5a81b96",
+                        "ddacf500-fd0d-4757-84f1-15cbcc673db1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "22ebfcad-f501-43df-8963-7c38fb7a42ad",
+        "gridData": {
+          "i": "22ebfcad-f501-43df-8963-7c38fb7a42ad",
+          "y": 21,
+          "x": 24,
+          "w": 24,
+          "h": 11
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "4xx Error Rate",
+          "description": "The percentage of all viewer requests for which the response's HTTP status code is 4xx.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.4xxErrorRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.4xxErrorRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                          ],
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Error Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.4xxErrorRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                          ],
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "9a68504e-e5ca-4763-b145-ec6198e4a62d",
+        "gridData": {
+          "i": "9a68504e-e5ca-4763-b145-ec6198e4a62d",
+          "y": 32,
+          "x": 0,
+          "w": 24,
+          "h": 9
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "5xx Error Rate",
+          "description": "The percentage of all viewer requests for which the response's HTTP status code is 5xx.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.5xxErrorRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.5xxErrorRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                          ],
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Error Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.5xxErrorRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                          ],
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "5b946eda-9c96-48cd-9dc2-a051bf0f53c4",
+        "gridData": {
+          "i": "5b946eda-9c96-48cd-9dc2-a051bf0f53c4",
+          "y": 32,
+          "x": 24,
+          "w": 24,
+          "h": 9
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "401 Error Rate",
+          "description": "The percentage of all viewer requests for which the response's HTTP status code is 401.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.401ErrorRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.401ErrorRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                          ],
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Error Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.401ErrorRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                          ],
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "102afc3b-dacc-4f87-bc7f-55003db569bf",
+        "gridData": {
+          "i": "102afc3b-dacc-4f87-bc7f-55003db569bf",
+          "y": 0,
+          "x": 0,
+          "w": 24,
+          "h": 9,
+          "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "403 Error Rate",
+          "description": "The percentage of all viewer requests for which the response's HTTP status code is 403.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.403ErrorRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.403ErrorRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                          ],
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Error Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.403ErrorRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                          ],
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "72666e00-dd90-40b5-9ba7-39f25d0faad5",
+        "gridData": {
+          "i": "72666e00-dd90-40b5-9ba7-39f25d0faad5",
+          "y": 0,
+          "x": 24,
+          "w": 24,
+          "h": 9,
+          "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "404 Error Rate",
+          "description": "The percentage of all viewer requests for which the response's HTTP status code is 404.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.404ErrorRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.404ErrorRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                          ],
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Error Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.404ErrorRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                          ],
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "d072bce1-f026-4633-aed5-e5e97f5237df",
+        "gridData": {
+          "i": "d072bce1-f026-4633-aed5-e5e97f5237df",
+          "y": 9,
+          "x": 0,
+          "w": 24,
+          "h": 9,
+          "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "502 Error Rate",
+          "description": "The percentage of all viewer requests for which the response's HTTP status code is 502.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.502ErrorRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.502ErrorRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                          ],
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Error Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.502ErrorRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                          ],
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "9c976afc-5571-44bc-af0b-0e32263256d4",
+        "gridData": {
+          "i": "9c976afc-5571-44bc-af0b-0e32263256d4",
+          "y": 9,
+          "x": 24,
+          "w": 24,
+          "h": 9,
+          "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "503 Error Rate",
+          "description": "The percentage of all viewer requests for which the response's HTTP status code is 503.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.503ErrorRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.503ErrorRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                          ],
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Error Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.503ErrorRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                          ],
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "8ebae791-46c5-4248-a1b3-eade00df7147",
+        "gridData": {
+          "i": "8ebae791-46c5-4248-a1b3-eade00df7147",
+          "y": 18,
+          "x": 0,
+          "w": 24,
+          "h": 9,
+          "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "504 Error Rate",
+          "description": "The percentage of all viewer requests for which the response's HTTP status code is 504.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area_stacked",
+                "layers": [
+                  {
+                    "layerId": "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                    "accessors": [
+                      "52644bd7-8b75-4660-bde0-520cd856160b"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                    "splitAccessor": "229a2839-e441-42ba-b515-487fed97eac6"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "ec72b600-2e45-4fbb-9cba-f6361c7ebbdc": {
+                      "columns": {
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "229a2839-e441-42ba-b515-487fed97eac6": {
+                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.DistributionId",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "alphabetical",
+                              "fallback": true
+                            },
+                            "orderDirection": "asc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.504ErrorRate.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1": {
+                          "label": "Part of Error Rate",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 52
+                              },
+                              "text": "average(aws.cloudfront.metrics.504ErrorRate.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX0"
+                          ],
+                          "customLabel": true
+                        },
+                        "52644bd7-8b75-4660-bde0-520cd856160b": {
+                          "label": "Error Rate",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.504ErrorRate.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [
+                            "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                          ],
+                          "customLabel": true
+                        }
+                      },
+                      "columnOrder": [
+                        "229a2839-e441-42ba-b515-487fed97eac6",
+                        "b0e75d0d-8a94-45c2-b7cb-a33e87e002c9",
+                        "52644bd7-8b75-4660-bde0-520cd856160b",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX0",
+                        "52644bd7-8b75-4660-bde0-520cd856160bX1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "697321af-3a64-44f0-98a5-dfea04aa64b3",
+        "gridData": {
+          "i": "697321af-3a64-44f0-98a5-dfea04aa64b3",
+          "y": 18,
+          "x": 24,
+          "w": 24,
+          "h": 9,
+          "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Invocations",
+          "description": "The number of times the function was started (invoked) in a given time period.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                    "accessors": [
+                      "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                    "splitAccessor": "cd7a076b-4090-46b2-82eb-fe616dcd5ada"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "db2157a6-ab2e-409c-bb5d-c347ccd52677": {
+                      "columns": {
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712": {
+                          "label": "Count",
+                          "dataType": "number",
+                          "operationType": "sum",
+                          "sourceField": "aws.cloudfront.metrics.FunctionInvocations.sum",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": true
+                          },
+                          "customLabel": true
+                        },
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada": {
+                          "label": "Top 10 values of aws.dimensions.FunctionName",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.FunctionName",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "custom"
+                            },
+                            "orderAgg": {
+                              "label": "Sum of aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "dataType": "number",
+                              "operationType": "sum",
+                              "sourceField": "aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "isBucketed": false,
+                              "params": {
+                                "emptyAsNull": true
+                              }
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        }
+                      },
+                      "columnOrder": [
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada",
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "51cd9997-8539-43b0-b8b7-824899d213d7",
+        "gridData": {
+          "i": "51cd9997-8539-43b0-b8b7-824899d213d7",
+          "y": 0,
+          "x": 0,
+          "w": 24,
+          "h": 9,
+          "sectionId": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Compute Utilization",
+          "description": "The amount of time (0-100) that the function took to run as a percentage of the maximum allowed time. For example, a value of 35 means that the function completed in 35% of the maximum allowed time.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                    "accessors": [
+                      "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                    "splitAccessor": "cd7a076b-4090-46b2-82eb-fe616dcd5ada"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "db2157a6-ab2e-409c-bb5d-c347ccd52677": {
+                      "columns": {
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712X0": {
+                          "label": "Part of Percent",
+                          "dataType": "number",
+                          "operationType": "average",
+                          "sourceField": "aws.cloudfront.metrics.FunctionComputeUtilization.avg",
+                          "isBucketed": false,
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "customLabel": true
+                        },
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712X1": {
+                          "label": "Part of Percent",
+                          "dataType": "number",
+                          "operationType": "math",
+                          "isBucketed": false,
+                          "params": {
+                            "tinymathAst": {
+                              "type": "function",
+                              "name": "divide",
+                              "args": [
+                                "6713f290-97e2-4dfe-a7bc-bfaa5051b712X0",
+                                100
+                              ],
+                              "location": {
+                                "min": 0,
+                                "max": 66
+                              },
+                              "text": "average(aws.cloudfront.metrics.FunctionComputeUtilization.avg)/100"
+                            }
+                          },
+                          "references": [
+                            "6713f290-97e2-4dfe-a7bc-bfaa5051b712X0"
+                          ],
+                          "customLabel": true
+                        },
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712": {
+                          "label": "Percent",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "average(aws.cloudfront.metrics.FunctionComputeUtilization.avg)/100",
+                            "isFormulaBroken": false,
+                            "format": {
+                              "id": "percent",
+                              "params": {
+                                "decimals": 0,
+                                "compact": false
+                              }
+                            }
+                          },
+                          "references": [
+                            "6713f290-97e2-4dfe-a7bc-bfaa5051b712X1"
+                          ],
+                          "customLabel": true
+                        },
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada": {
+                          "label": "Top 10 values of aws.dimensions.FunctionName",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.FunctionName",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "custom"
+                            },
+                            "orderAgg": {
+                              "label": "Sum of aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "dataType": "number",
+                              "operationType": "sum",
+                              "sourceField": "aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "isBucketed": false,
+                              "params": {
+                                "emptyAsNull": true
+                              }
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        }
+                      },
+                      "columnOrder": [
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada",
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712",
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712X0",
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712X1"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "c336cc13-c692-4fe4-aa3e-bafa52392d4c",
+        "gridData": {
+          "i": "c336cc13-c692-4fe4-aa3e-bafa52392d4c",
+          "y": 0,
+          "x": 24,
+          "w": 24,
+          "h": 9,
+          "sectionId": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Throttles",
+          "description": "The number of times that the function was throttled in a given time period.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                    "accessors": [
+                      "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                    "splitAccessor": "cd7a076b-4090-46b2-82eb-fe616dcd5ada"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "db2157a6-ab2e-409c-bb5d-c347ccd52677": {
+                      "columns": {
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712": {
+                          "label": "Count",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "sum(aws.cloudfront.metrics.FunctionThrottles.sum)",
+                            "isFormulaBroken": true,
+                            "format": {
+                              "id": "number",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          },
+                          "references": [],
+                          "customLabel": true
+                        },
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada": {
+                          "label": "Top 10 values of aws.dimensions.FunctionName",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.FunctionName",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "custom"
+                            },
+                            "orderAgg": {
+                              "label": "Sum of aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "dataType": "number",
+                              "operationType": "sum",
+                              "sourceField": "aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "isBucketed": false,
+                              "params": {
+                                "emptyAsNull": true
+                              }
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        }
+                      },
+                      "columnOrder": [
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada",
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "c669a1e0-adc9-4c9c-a648-80406e9ba3bc",
+        "gridData": {
+          "i": "c669a1e0-adc9-4c9c-a648-80406e9ba3bc",
+          "y": 9,
+          "x": 24,
+          "w": 24,
+          "h": 9,
+          "sectionId": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Execution Errors",
+          "description": "The number of execution errors that occurred in a given time period. Execution errors occur when the function fails to complete successfully.",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                    "accessors": [
+                      "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                    "splitAccessor": "cd7a076b-4090-46b2-82eb-fe616dcd5ada"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "db2157a6-ab2e-409c-bb5d-c347ccd52677": {
+                      "columns": {
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712": {
+                          "label": "Count",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "sum(aws.cloudfront.metrics.FunctionExecutionErrors.sum)",
+                            "isFormulaBroken": true
+                          },
+                          "references": [],
+                          "customLabel": true
+                        },
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada": {
+                          "label": "Top 10 values of aws.dimensions.FunctionName",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.FunctionName",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "custom"
+                            },
+                            "orderAgg": {
+                              "label": "Sum of aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "dataType": "number",
+                              "operationType": "sum",
+                              "sourceField": "aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "isBucketed": false,
+                              "params": {
+                                "emptyAsNull": true
+                              }
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        }
+                      },
+                      "columnOrder": [
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada",
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "4b0c3e69-f90c-444a-a4a2-32ff65caa013",
+        "gridData": {
+          "x": 0,
+          "y": 9,
+          "w": 24,
+          "h": 9,
+          "i": "4b0c3e69-f90c-444a-a4a2-32ff65caa013",
+          "sectionId": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3"
+        }
+      },
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "title": "Validation Errors",
+          "description": "The number of validation errors produced by the function in a given time period. Validation errors occur when the function runs successfully but returns invalid data (an invalid event object).",
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "metrics-*",
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "valueLabels": "hide",
+                "fittingFunction": "Linear",
+                "axisTitlesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "preferredSeriesType": "area",
+                "layers": [
+                  {
+                    "layerId": "db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                    "accessors": [
+                      "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                    ],
+                    "position": "top",
+                    "seriesType": "area",
+                    "showGridlines": false,
+                    "layerType": "data",
+                    "colorMapping": {
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ],
+                      "paletteId": "default",
+                      "colorMode": {
+                        "type": "categorical"
+                      }
+                    },
+                    "xAccessor": "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                    "splitAccessor": "cd7a076b-4090-46b2-82eb-fe616dcd5ada"
+                  }
+                ]
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "db2157a6-ab2e-409c-bb5d-c347ccd52677": {
+                      "columns": {
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066": {
+                          "label": "@timestamp",
+                          "dataType": "date",
+                          "operationType": "date_histogram",
+                          "sourceField": "@timestamp",
+                          "isBucketed": true,
+                          "params": {
+                            "interval": "auto",
+                            "includeEmptyRows": true,
+                            "dropPartials": false
+                          }
+                        },
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712": {
+                          "label": "Count",
+                          "dataType": "number",
+                          "operationType": "formula",
+                          "isBucketed": false,
+                          "params": {
+                            "formula": "sum(aws.cloudfront.metrics.FunctionValidationErrors.sum)",
+                            "isFormulaBroken": true
+                          },
+                          "references": [],
+                          "customLabel": true
+                        },
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada": {
+                          "label": "Top 10 values of aws.dimensions.FunctionName",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.dimensions.FunctionName",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "custom"
+                            },
+                            "orderAgg": {
+                              "label": "Sum of aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "dataType": "number",
+                              "operationType": "sum",
+                              "sourceField": "aws.cloudfront.metrics.FunctionInvocations.sum",
+                              "isBucketed": false,
+                              "params": {
+                                "emptyAsNull": true
+                              }
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        }
+                      },
+                      "columnOrder": [
+                        "cd7a076b-4090-46b2-82eb-fe616dcd5ada",
+                        "d03b8f01-b631-4780-ac8e-d5a4e54b8066",
+                        "6713f290-97e2-4dfe-a7bc-bfaa5051b712"
+                      ],
+                      "incompleteColumns": {},
+                      "sampling": 1,
+                      "indexPatternId": "metrics-*"
+                    }
+                  },
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "indexpattern": {
+                  "layers": {},
+                  "currentIndexPatternId": "metrics-*"
+                },
+                "textBased": {
+                  "layers": {},
+                  "indexPatternRefs": [
+                    {
+                      "id": "metrics-*",
+                      "title": "metrics-*",
+                      "timeField": "@timestamp"
+                    }
+                  ]
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "9051a1ec-0ac4-4b7f-95f1-935fa6ba0595",
+        "gridData": {
+          "x": 0,
+          "y": 18,
+          "w": 24,
+          "h": 9,
+          "i": "9051a1ec-0ac4-4b7f-95f1-935fa6ba0595",
+          "sectionId": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3"
+        }
+      }
+    ],
+    "sections": [
+      {
+        "collapsed": true,
+        "gridData": {
+          "i": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7",
+          "y": 41
+        },
+        "title": "Detailed Error Rates"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3",
+          "y": 42
+        },
+        "title": "CloudFront Functions Metrics"
+      }
+    ],
+    "timeRestore": false,
+    "title": "[Metrics PPBGDI] CloudFront overview",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "created_at": "2026-01-20T09:03:20.535Z",
+  "created_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
+  "id": "995113ec-b2a8-4670-8641-f96b61b67975",
+  "managed": false,
+  "references": [
+    {
+      "id": "metrics-*",
+      "name": "5f1d79fe-aa6d-463d-8176-752bc7a7a124:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "d618a14f-9873-4e2a-ae56-8d161a48b4f7:indexpattern-datasource-layer-7eb31e83-ff0b-478e-ae0f-751f02c0ea05",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "14b0bf04-a7ae-4a0f-9bd5-03f3e1918f2c:indexpattern-datasource-layer-7eb31e83-ff0b-478e-ae0f-751f02c0ea05",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "ba89701c-3b37-4349-990a-a313cd9601a8:indexpattern-datasource-layer-7eb31e83-ff0b-478e-ae0f-751f02c0ea05",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "22ebfcad-f501-43df-8963-7c38fb7a42ad:indexpattern-datasource-layer-7eb31e83-ff0b-478e-ae0f-751f02c0ea05",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "9a68504e-e5ca-4763-b145-ec6198e4a62d:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "5b946eda-9c96-48cd-9dc2-a051bf0f53c4:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "102afc3b-dacc-4f87-bc7f-55003db569bf:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "72666e00-dd90-40b5-9ba7-39f25d0faad5:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "d072bce1-f026-4633-aed5-e5e97f5237df:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "9c976afc-5571-44bc-af0b-0e32263256d4:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "8ebae791-46c5-4248-a1b3-eade00df7147:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "697321af-3a64-44f0-98a5-dfea04aa64b3:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "51cd9997-8539-43b0-b8b7-824899d213d7:indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "c336cc13-c692-4fe4-aa3e-bafa52392d4c:indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "c669a1e0-adc9-4c9c-a648-80406e9ba3bc:indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "4b0c3e69-f90c-444a-a4a2-32ff65caa013:indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "9051a1ec-0ac4-4b7f-95f1-935fa6ba0595:indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_c7013a33-be63-47a4-83c6-54dd8ec0c9e2:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_1bb2ffad-f999-4170-9695-430cfec5afa5:optionsListDataView",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.3.0",
+  "updated_at": "2026-01-27T09:08:17.730Z",
+  "updated_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
+  "version": "WzY1MjA0LDU2XQ=="
+}
