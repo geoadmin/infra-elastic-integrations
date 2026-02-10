@@ -1,4 +1,9 @@
 # newer versions go on top
+- version: "2.2.0"
+  changes:
+    - description: CloudFront metrics dashboard id
+      type: enhancement
+      link: https://github.com/geoadmin/infra-elastic-integrations/pull/53
 - version: "2.1.1"
   changes:
     - description: Fix CloudFront metrics dashboard id
