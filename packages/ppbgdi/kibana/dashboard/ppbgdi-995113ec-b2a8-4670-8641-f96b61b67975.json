@@ -1,4 +1,8 @@
 {
+  "accessControl": {
+    "accessMode": "default",
+    "owner": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0"
+  },
   "attributes": {
     "controlGroupInput": {
       "chainingSystem": "HIERARCHICAL",
@@ -17,8 +21,8 @@
           "width": "medium",
           "explicitInput": {
             "dataViewId": "metrics-*",
-            "fieldName": "aws.dimensions.DistributionId",
-            "title": "Filter by CloudFront Distribution",
+            "fieldName": "service.node.name",
+            "title": "Filter by System",
             "exclude": false,
             "existsSelected": false,
             "selectedOptions": [],
@@ -29,9 +33,28 @@
             }
           }
         },
-        "1bb2ffad-f999-4170-9695-430cfec5afa5": {
+        "faba42ad-f754-4bad-9469-5c910dcffdb9": {
           "grow": false,
           "order": 1,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "dataViewId": "metrics-*",
+            "fieldName": "service.environment",
+            "title": "Environment",
+            "exclude": false,
+            "existsSelected": false,
+            "selectedOptions": [],
+            "searchTechnique": "exact",
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        },
+        "1bb2ffad-f999-4170-9695-430cfec5afa5": {
+          "grow": false,
+          "order": 2,
           "type": "optionsListControl",
           "width": "medium",
           "explicitInput": {
@@ -54,7 +77,52 @@
     "description": "",
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": {
-        "filter": [],
+        "filter": [
+          {
+            "meta": {
+              "disabled": false,
+              "negate": false,
+              "alias": null,
+              "key": "data_stream.dataset",
+              "field": "data_stream.dataset",
+              "params": {
+                "query": "aws.cloudwatch_metrics"
+              },
+              "type": "phrase",
+              "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index"
+            },
+            "query": {
+              "match_phrase": {
+                "data_stream.dataset": "aws.cloudwatch_metrics"
+              }
+            },
+            "$state": {
+              "store": "appState"
+            }
+          },
+          {
+            "meta": {
+              "disabled": false,
+              "negate": false,
+              "alias": null,
+              "key": "aws.cloudwatch.namespace",
+              "field": "aws.cloudwatch.namespace",
+              "params": {
+                "query": "AWS/CloudFront"
+              },
+              "type": "phrase",
+              "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[1].meta.index"
+            },
+            "query": {
+              "match_phrase": {
+                "aws.cloudwatch.namespace": "AWS/CloudFront"
+              }
+            },
+            "$state": {
+              "store": "appState"
+            }
+          }
+        ],
         "query": {
           "query": "",
           "language": "kuery"
@@ -62,11 +130,11 @@
       }
     },
     "optionsJSON": {
+      "hidePanelTitles": false,
       "useMargins": true,
       "syncColors": false,
       "syncCursor": true,
-      "syncTooltips": false,
-      "hidePanelTitles": false
+      "syncTooltips": false
     },
     "panelsJSON": [
       {
@@ -196,10 +264,10 @@
                           "customLabel": true
                         },
                         "229a2839-e441-42ba-b515-487fed97eac6": {
-                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "label": "Top 10 values of service.node.name",
                           "dataType": "string",
                           "operationType": "terms",
-                          "sourceField": "aws.dimensions.DistributionId",
+                          "sourceField": "service.node.name",
                           "isBucketed": true,
                           "params": {
                             "size": 10,
@@ -216,7 +284,8 @@
                             "include": [],
                             "exclude": [],
                             "includeIsRegex": false,
-                            "excludeIsRegex": false
+                            "excludeIsRegex": false,
+                            "secondaryFields": []
                           }
                         }
                       },
@@ -255,11 +324,11 @@
         },
         "panelIndex": "5f1d79fe-aa6d-463d-8176-752bc7a7a124",
         "gridData": {
-          "i": "5f1d79fe-aa6d-463d-8176-752bc7a7a124",
           "y": 0,
           "x": 0,
           "w": 48,
-          "h": 10
+          "h": 10,
+          "i": "5f1d79fe-aa6d-463d-8176-752bc7a7a124"
         }
       },
       {
@@ -398,7 +467,7 @@
                           "label": "Bytes Downloaded",
                           "dataType": "string",
                           "operationType": "terms",
-                          "sourceField": "aws.dimensions.DistributionId",
+                          "sourceField": "service.node.name",
                           "isBucketed": true,
                           "params": {
                             "size": 10,
@@ -415,7 +484,8 @@
                             "include": [],
                             "exclude": [],
                             "includeIsRegex": false,
-                            "excludeIsRegex": false
+                            "excludeIsRegex": false,
+                            "secondaryFields": []
                           },
                           "customLabel": true
                         }
@@ -455,11 +525,11 @@
         },
         "panelIndex": "d618a14f-9873-4e2a-ae56-8d161a48b4f7",
         "gridData": {
-          "i": "d618a14f-9873-4e2a-ae56-8d161a48b4f7",
           "y": 10,
           "x": 0,
           "w": 24,
-          "h": 11
+          "h": 11,
+          "i": "d618a14f-9873-4e2a-ae56-8d161a48b4f7"
         }
       },
       {
@@ -598,7 +668,7 @@
                           "label": "Bytes Downloaded",
                           "dataType": "string",
                           "operationType": "terms",
-                          "sourceField": "aws.dimensions.DistributionId",
+                          "sourceField": "service.node.name",
                           "isBucketed": true,
                           "params": {
                             "size": 10,
@@ -615,7 +685,8 @@
                             "include": [],
                             "exclude": [],
                             "includeIsRegex": false,
-                            "excludeIsRegex": false
+                            "excludeIsRegex": false,
+                            "secondaryFields": []
                           },
                           "customLabel": true
                         }
@@ -655,11 +726,11 @@
         },
         "panelIndex": "14b0bf04-a7ae-4a0f-9bd5-03f3e1918f2c",
         "gridData": {
-          "i": "14b0bf04-a7ae-4a0f-9bd5-03f3e1918f2c",
           "y": 10,
           "x": 24,
           "w": 24,
-          "h": 11
+          "h": 11,
+          "i": "14b0bf04-a7ae-4a0f-9bd5-03f3e1918f2c"
         }
       },
       {
@@ -837,7 +908,7 @@
                           "label": "Bytes Downloaded",
                           "dataType": "string",
                           "operationType": "terms",
-                          "sourceField": "aws.dimensions.DistributionId",
+                          "sourceField": "service.node.name",
                           "isBucketed": true,
                           "params": {
                             "size": 10,
@@ -854,7 +925,8 @@
                             "include": [],
                             "exclude": [],
                             "includeIsRegex": false,
-                            "excludeIsRegex": false
+                            "excludeIsRegex": false,
+                            "secondaryFields": []
                           },
                           "customLabel": true
                         }
@@ -896,11 +968,11 @@
         },
         "panelIndex": "ba89701c-3b37-4349-990a-a313cd9601a8",
         "gridData": {
-          "i": "ba89701c-3b37-4349-990a-a313cd9601a8",
           "y": 21,
           "x": 0,
           "w": 24,
-          "h": 11
+          "h": 11,
+          "i": "ba89701c-3b37-4349-990a-a313cd9601a8"
         }
       },
       {
@@ -1022,7 +1094,7 @@
                           "label": "Bytes Downloaded",
                           "dataType": "string",
                           "operationType": "terms",
-                          "sourceField": "aws.dimensions.DistributionId",
+                          "sourceField": "service.node.name",
                           "isBucketed": true,
                           "params": {
                             "size": 10,
@@ -1039,7 +1111,8 @@
                             "include": [],
                             "exclude": [],
                             "includeIsRegex": false,
-                            "excludeIsRegex": false
+                            "excludeIsRegex": false,
+                            "secondaryFields": []
                           },
                           "customLabel": true
                         },
@@ -1100,11 +1173,11 @@
         },
         "panelIndex": "22ebfcad-f501-43df-8963-7c38fb7a42ad",
         "gridData": {
-          "i": "22ebfcad-f501-43df-8963-7c38fb7a42ad",
           "y": 21,
           "x": 24,
           "w": 24,
-          "h": 11
+          "h": 11,
+          "i": "22ebfcad-f501-43df-8963-7c38fb7a42ad"
         }
       },
       {
@@ -1223,10 +1296,10 @@
                           }
                         },
                         "229a2839-e441-42ba-b515-487fed97eac6": {
-                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "label": "Top 10 values of service.node.name",
                           "dataType": "string",
                           "operationType": "terms",
-                          "sourceField": "aws.dimensions.DistributionId",
+                          "sourceField": "service.node.name",
                           "isBucketed": true,
                           "params": {
                             "size": 10,
@@ -1243,7 +1316,8 @@
                             "include": [],
                             "exclude": [],
                             "includeIsRegex": false,
-                            "excludeIsRegex": false
+                            "excludeIsRegex": false,
+                            "secondaryFields": []
                           }
                         },
                         "52644bd7-8b75-4660-bde0-520cd856160bX0": {
@@ -1340,11 +1414,11 @@
         },
         "panelIndex": "9a68504e-e5ca-4763-b145-ec6198e4a62d",
         "gridData": {
-          "i": "9a68504e-e5ca-4763-b145-ec6198e4a62d",
           "y": 32,
           "x": 0,
           "w": 24,
-          "h": 9
+          "h": 9,
+          "i": "9a68504e-e5ca-4763-b145-ec6198e4a62d"
         }
       },
       {
@@ -1463,10 +1537,10 @@
                           }
                         },
                         "229a2839-e441-42ba-b515-487fed97eac6": {
-                          "label": "Top 10 values of aws.dimensions.DistributionId",
+                          "label": "Top 10 values of service.node.name",
                           "dataType": "string",
                           "operationType": "terms",
-                          "sourceField": "aws.dimensions.DistributionId",
+                          "sourceField": "service.node.name",
                           "isBucketed": true,
                           "params": {
                             "size": 10,
@@ -1483,7 +1557,8 @@
                             "include": [],
                             "exclude": [],
                             "includeIsRegex": false,
-                            "excludeIsRegex": false
+                            "excludeIsRegex": false,
+                            "secondaryFields": []
                           }
                         },
                         "52644bd7-8b75-4660-bde0-520cd856160bX0": {
@@ -1580,11 +1655,11 @@
         },
         "panelIndex": "5b946eda-9c96-48cd-9dc2-a051bf0f53c4",
         "gridData": {
-          "i": "5b946eda-9c96-48cd-9dc2-a051bf0f53c4",
           "y": 32,
           "x": 24,
           "w": 24,
-          "h": 9
+          "h": 9,
+          "i": "5b946eda-9c96-48cd-9dc2-a051bf0f53c4"
         }
       },
       {
@@ -1611,9 +1686,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -1820,11 +1895,11 @@
         },
         "panelIndex": "102afc3b-dacc-4f87-bc7f-55003db569bf",
         "gridData": {
-          "i": "102afc3b-dacc-4f87-bc7f-55003db569bf",
           "y": 0,
           "x": 0,
           "w": 24,
           "h": 9,
+          "i": "102afc3b-dacc-4f87-bc7f-55003db569bf",
           "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
         }
       },
@@ -1852,9 +1927,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -2061,11 +2136,11 @@
         },
         "panelIndex": "72666e00-dd90-40b5-9ba7-39f25d0faad5",
         "gridData": {
-          "i": "72666e00-dd90-40b5-9ba7-39f25d0faad5",
           "y": 0,
           "x": 24,
           "w": 24,
           "h": 9,
+          "i": "72666e00-dd90-40b5-9ba7-39f25d0faad5",
           "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
         }
       },
@@ -2093,9 +2168,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -2302,11 +2377,11 @@
         },
         "panelIndex": "d072bce1-f026-4633-aed5-e5e97f5237df",
         "gridData": {
-          "i": "d072bce1-f026-4633-aed5-e5e97f5237df",
           "y": 9,
           "x": 0,
           "w": 24,
           "h": 9,
+          "i": "d072bce1-f026-4633-aed5-e5e97f5237df",
           "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
         }
       },
@@ -2334,9 +2409,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -2543,11 +2618,11 @@
         },
         "panelIndex": "9c976afc-5571-44bc-af0b-0e32263256d4",
         "gridData": {
-          "i": "9c976afc-5571-44bc-af0b-0e32263256d4",
           "y": 9,
           "x": 24,
           "w": 24,
           "h": 9,
+          "i": "9c976afc-5571-44bc-af0b-0e32263256d4",
           "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
         }
       },
@@ -2575,9 +2650,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -2784,11 +2859,11 @@
         },
         "panelIndex": "8ebae791-46c5-4248-a1b3-eade00df7147",
         "gridData": {
-          "i": "8ebae791-46c5-4248-a1b3-eade00df7147",
           "y": 18,
           "x": 0,
           "w": 24,
           "h": 9,
+          "i": "8ebae791-46c5-4248-a1b3-eade00df7147",
           "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
         }
       },
@@ -2816,9 +2891,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc"
+                "name": "indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -3025,11 +3100,11 @@
         },
         "panelIndex": "697321af-3a64-44f0-98a5-dfea04aa64b3",
         "gridData": {
-          "i": "697321af-3a64-44f0-98a5-dfea04aa64b3",
           "y": 18,
           "x": 24,
           "w": 24,
           "h": 9,
+          "i": "697321af-3a64-44f0-98a5-dfea04aa64b3",
           "sectionId": "fd98ca04-7177-4f41-9f87-5a6cf31d72f7"
         }
       },
@@ -3057,9 +3132,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -3228,11 +3303,11 @@
         },
         "panelIndex": "51cd9997-8539-43b0-b8b7-824899d213d7",
         "gridData": {
-          "i": "51cd9997-8539-43b0-b8b7-824899d213d7",
           "y": 0,
           "x": 0,
           "w": 24,
           "h": 9,
+          "i": "51cd9997-8539-43b0-b8b7-824899d213d7",
           "sectionId": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3"
         }
       },
@@ -3260,9 +3335,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -3438,7 +3513,8 @@
                             "include": [],
                             "exclude": [],
                             "includeIsRegex": false,
-                            "excludeIsRegex": false
+                            "excludeIsRegex": false,
+                            "secondaryFields": []
                           }
                         }
                       },
@@ -3479,11 +3555,11 @@
         },
         "panelIndex": "c336cc13-c692-4fe4-aa3e-bafa52392d4c",
         "gridData": {
-          "i": "c336cc13-c692-4fe4-aa3e-bafa52392d4c",
           "y": 0,
           "x": 24,
           "w": 24,
           "h": 9,
+          "i": "c336cc13-c692-4fe4-aa3e-bafa52392d4c",
           "sectionId": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3"
         }
       },
@@ -3511,9 +3587,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -3689,11 +3765,11 @@
         },
         "panelIndex": "c669a1e0-adc9-4c9c-a648-80406e9ba3bc",
         "gridData": {
-          "i": "c669a1e0-adc9-4c9c-a648-80406e9ba3bc",
           "y": 9,
           "x": 24,
           "w": 24,
           "h": 9,
+          "i": "c669a1e0-adc9-4c9c-a648-80406e9ba3bc",
           "sectionId": "0db5b74f-c9bb-4d2d-aaf2-4b30e4557ab3"
         }
       },
@@ -3721,9 +3797,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -3925,9 +4001,9 @@
             "type": "lens",
             "references": [
               {
-                "type": "index-pattern",
                 "id": "metrics-*",
-                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677"
+                "name": "indexpattern-datasource-layer-db2157a6-ab2e-409c-bb5d-c347ccd52677",
+                "type": "index-pattern"
               }
             ],
             "state": {
@@ -4125,15 +4201,29 @@
       }
     ],
     "timeRestore": false,
-    "title": "[Metrics PPBGDI] CloudFront overview",
-    "version": 1
+    "title": "[Metrics PPBGDI] CloudFront overview"
   },
   "coreMigrationVersion": "8.8.0",
-  "created_at": "2026-01-20T09:03:20.535Z",
+  "created_at": "2026-03-17T13:09:19.771Z",
   "created_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
   "id": "ppbgdi-995113ec-b2a8-4670-8641-f96b61b67975",
   "managed": false,
   "references": [
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_c7013a33-be63-47a4-83c6-54dd8ec0c9e2:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_faba42ad-f754-4bad-9469-5c910dcffdb9:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_1bb2ffad-f999-4170-9695-430cfec5afa5:optionsListDataView",
+      "type": "index-pattern"
+    },
     {
       "id": "metrics-*",
       "name": "5f1d79fe-aa6d-463d-8176-752bc7a7a124:indexpattern-datasource-layer-ec72b600-2e45-4fbb-9cba-f6361c7ebbdc",
@@ -4226,18 +4316,18 @@
     },
     {
       "id": "metrics-*",
-      "name": "controlGroup_c7013a33-be63-47a4-83c6-54dd8ec0c9e2:optionsListDataView",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
       "type": "index-pattern"
     },
     {
       "id": "metrics-*",
-      "name": "controlGroup_1bb2ffad-f999-4170-9695-430cfec5afa5:optionsListDataView",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[1].meta.index",
       "type": "index-pattern"
     }
   ],
   "type": "dashboard",
   "typeMigrationVersion": "10.3.0",
-  "updated_at": "2026-01-27T09:08:17.730Z",
+  "updated_at": "2026-03-17T13:12:17.097Z",
   "updated_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
-  "version": "WzY1MjA0LDU2XQ=="
+  "version": "WzgxNDk3LDgzXQ=="
 }
