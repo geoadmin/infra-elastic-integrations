@@ -49,3 +49,7 @@
 - name: k8s.namespace.labels.system
   type: keyword
   description: Kubernetes namespace-label 'system'
+- name: service.namespace
+  type: keyword
+  description: Service namespace (The system or domain the service belongs to, e.g. 'wmts')
+
