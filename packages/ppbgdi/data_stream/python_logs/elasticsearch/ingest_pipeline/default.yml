@@ -20,12 +20,16 @@ processors:
       value: empty_message
       if: 'ctx?.message != null && ctx?.message == ""'
   - set:
-      field: ppbgdi.app.system
+      field: service.namespace
       copy_from: kubernetes.namespace_labels.system # Elastic-Agent
       ignore_empty_value: true
   - set:
-      field: ppbgdi.app.system
+      field: service.namespace
       copy_from: k8s.namespace.labels.system # OTEL-Collector
+      ignore_empty_value: true
+  - set:
+      field: ppbgdi.app.system
+      copy_from: service.namespace
       ignore_empty_value: true
   - rename:
       field: message
