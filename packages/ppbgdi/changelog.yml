@@ -1,5 +1,5 @@
 # newer versions go on top
-- version: "2.2.1"
+- version: "2.2.0"
   changes:
     - description: Added service namespace field to ppbgdi.app.system for better OTEL compatibility
       type: enhancement
