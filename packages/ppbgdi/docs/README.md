@@ -181,6 +181,7 @@ An example event for `python` looks as following:
 | ppbgdi.app.layer.time | The publication time of the resource | keyword |
 | ppbgdi.app.layer.zoom | The zoom level of the tile | long |
 | ppbgdi.app.system | The BGDI system | keyword |
+| service.namespace | Service namespace (The system or domain the service belongs to, e.g. 'wmts') | keyword |
 | span.id | Unique identifier of the span within the scope of its trace. | keyword |
 | temp | temp field. To be processed by specific service data_stream pipelines | flattened |
 | trace.id | Unique identifier of the trace. | keyword |
