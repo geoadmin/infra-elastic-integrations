@@ -1,4 +1,9 @@
 # newer versions go on top
+- version: "2.3.0"
+  changes:
+    - description: Update cloudfront metrics dashboard with system name
+      type: enhancement
+      link: https://github.com/geoadmin/infra-elastic-integrations/pull/54
 - version: "2.2.0"
   changes:
     - description: Added service namespace field to ppbgdi.app.system for better OTEL compatibility
