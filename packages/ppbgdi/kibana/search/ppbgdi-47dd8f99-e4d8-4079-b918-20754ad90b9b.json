@@ -16,7 +16,7 @@
           "language": "kuery"
         },
         "filter": [],
-        "indexRefName": "tab_bf06c152-1e6d-498d-ab84-5149d01f0304.kibanaSavedObjectMeta.searchSourceJSON.index"
+        "indexRefName": "tkibanaSavedObjectMeta.searchSourceJSON.index"
       }
     },
     "sort": [
@@ -43,7 +43,7 @@
                 "language": "kuery"
               },
               "filter": [],
-              "indexRefName": "tab_bf06c152-1e6d-498d-ab84-5149d01f0304.kibanaSavedObjectMeta.searchSourceJSON.index"
+              "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.index"
             }
           },
           "sort": [
@@ -69,7 +69,7 @@
   "references": [
     {
       "id": "logs-*",
-      "name": "tab_bf06c152-1e6d-498d-ab84-5149d01f0304.kibanaSavedObjectMeta.searchSourceJSON.index",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
       "type": "index-pattern"
     }
   ],
