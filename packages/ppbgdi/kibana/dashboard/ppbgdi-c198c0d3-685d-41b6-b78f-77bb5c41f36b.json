@@ -1,0 +1,518 @@
+{
+  "accessControl": {
+    "accessMode": "default",
+    "owner": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0"
+  },
+  "attributes": {
+    "controlGroupInput": {
+      "chainingSystem": "HIERARCHICAL",
+      "controlStyle": "oneLine",
+      "ignoreParentSettingsJSON": {
+        "ignoreFilters": false,
+        "ignoreQuery": false,
+        "ignoreTimerange": false,
+        "ignoreValidations": false
+      },
+      "panelsJSON": {
+        "1b7713f2-f9cc-4ef4-a859-5a21d8214b3b": {
+          "grow": false,
+          "order": 0,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "dataViewId": "logs-*",
+            "fieldName": "aws.cloudtrail.s3.bucket_name",
+            "title": "S3 Bucket",
+            "exclude": false,
+            "existsSelected": false,
+            "selectedOptions": [],
+            "searchTechnique": "prefix",
+            "singleSelect": true,
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        },
+        "2aeaee51-0ba2-464d-83bc-68d25695f272": {
+          "grow": false,
+          "order": 1,
+          "type": "optionsListControl",
+          "width": "medium",
+          "explicitInput": {
+            "dataViewId": "logs-*",
+            "fieldName": "event.action",
+            "title": "API call action",
+            "exclude": false,
+            "existsSelected": false,
+            "selectedOptions": [],
+            "searchTechnique": "exact",
+            "singleSelect": true,
+            "sort": {
+              "by": "_count",
+              "direction": "desc"
+            }
+          }
+        }
+      },
+      "showApplySelections": false
+    },
+    "description": "",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": {
+        "filter": [
+          {
+            "meta": {
+              "type": "custom",
+              "disabled": true,
+              "negate": false,
+              "alias": "Pre-Signed URLs only",
+              "key": "query",
+              "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index"
+            },
+            "query": {
+              "bool": {
+                "must": [],
+                "filter": [
+                  {
+                    "match_phrase": {
+                      "aws.cloudtrail.additional_eventdata.text": "QueryString"
+                    }
+                  },
+                  {
+                    "match_phrase": {
+                      "aws.cloudtrail.request_parameters.text": "X-Amz-Expires"
+                    }
+                  }
+                ],
+                "should": [],
+                "must_not": []
+              }
+            },
+            "": {
+              "store": "appState"
+            }
+          },
+          {
+            "meta": {
+              "disabled": false,
+              "negate": false,
+              "alias": "CloudTrail logs",
+              "key": "data_stream.dataset",
+              "field": "data_stream.dataset",
+              "params": {
+                "query": "aws.cloudtrail"
+              },
+              "type": "phrase",
+              "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[1].meta.index"
+            },
+            "query": {
+              "match_phrase": {
+                "data_stream.dataset": "aws.cloudtrail"
+              }
+            },
+            "": {
+              "store": "appState"
+            }
+          }
+        ],
+        "query": {
+          "query": "",
+          "language": "kuery"
+        }
+      }
+    },
+    "optionsJSON": {
+      "hidePanelTitles": false,
+      "useMargins": true,
+      "syncColors": false,
+      "syncCursor": true,
+      "syncTooltips": false
+    },
+    "panelsJSON": [
+      {
+        "type": "lens",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "syncColors": false,
+          "syncCursor": true,
+          "syncTooltips": false,
+          "filters": [
+            {
+              "meta": {
+                "alias": null,
+                "disabled": false,
+                "index": "logs-*",
+                "key": "data_stream.dataset",
+                "negate": false,
+                "params": {
+                  "query": "aws.cloudtrail"
+                },
+                "type": "phrase"
+              },
+              "query": {
+                "match_phrase": {
+                  "data_stream.dataset": "aws.cloudtrail"
+                }
+              },
+              "$state": {
+                "store": "appState"
+              }
+            },
+            {
+              "meta": {
+                "alias": "Pre-signed API calls",
+                "disabled": true,
+                "index": "logs-*",
+                "negate": false,
+                "params": [
+                  {
+                    "meta": {
+                      "disabled": false,
+                      "field": "aws.cloudtrail.additional_eventdata.text",
+                      "index": "logs-*",
+                      "key": "aws.cloudtrail.additional_eventdata.text",
+                      "negate": false,
+                      "params": {
+                        "query": "QueryString"
+                      },
+                      "type": "phrase"
+                    },
+                    "query": {
+                      "match_phrase": {
+                        "aws.cloudtrail.additional_eventdata.text": "QueryString"
+                      }
+                    }
+                  },
+                  {
+                    "meta": {
+                      "disabled": false,
+                      "field": "aws.cloudtrail.request_parameters.text",
+                      "index": "logs-*",
+                      "key": "aws.cloudtrail.request_parameters.text",
+                      "negate": false,
+                      "params": {
+                        "query": "X-Amz-Expires"
+                      },
+                      "type": "phrase"
+                    },
+                    "query": {
+                      "match_phrase": {
+                        "aws.cloudtrail.request_parameters.text": "X-Amz-Expires"
+                      }
+                    }
+                  }
+                ],
+                "relation": "AND",
+                "type": "combined"
+              },
+              "query": {},
+              "$state": {
+                "store": "appState"
+              }
+            }
+          ],
+          "query": {
+            "query": "",
+            "language": "kuery"
+          },
+          "attributes": {
+            "title": "S3 cloudtrail logs",
+            "description": "",
+            "visualizationType": "lnsXY",
+            "type": "lens",
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "logs-*",
+                "name": "indexpattern-datasource-layer-unifiedHistogram"
+              }
+            ],
+            "state": {
+              "visualization": {
+                "layers": [
+                  {
+                    "accessors": [
+                      "count_column"
+                    ],
+                    "layerId": "unifiedHistogram",
+                    "layerType": "data",
+                    "seriesType": "bar_stacked",
+                    "xAccessor": "date_column",
+                    "yConfig": [
+                      {
+                        "forAccessor": "count_column"
+                      }
+                    ],
+                    "splitAccessor": "440df695-518e-415e-8125-c0c22b7c9a8f"
+                  }
+                ],
+                "legend": {
+                  "isVisible": true,
+                  "position": "right",
+                  "legendSize": "xlarge",
+                  "shouldTruncate": false
+                },
+                "preferredSeriesType": "bar_stacked",
+                "valueLabels": "hide",
+                "fittingFunction": "None",
+                "minBarHeight": 2,
+                "showCurrentTimeMarker": true,
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": false
+                },
+                "gridlinesVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": false
+                },
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": false
+                }
+              },
+              "query": {
+                "query": "",
+                "language": "kuery"
+              },
+              "filters": [
+                {
+                  "meta": {
+                    "alias": null,
+                    "disabled": false,
+                    "index": "logs-*",
+                    "key": "data_stream.dataset",
+                    "negate": false,
+                    "params": {
+                      "query": "aws.cloudtrail"
+                    },
+                    "type": "phrase"
+                  },
+                  "query": {
+                    "match_phrase": {
+                      "data_stream.dataset": "aws.cloudtrail"
+                    }
+                  },
+                  "$state": {
+                    "store": "appState"
+                  }
+                },
+                {
+                  "meta": {
+                    "alias": "Pre-signed API calls",
+                    "disabled": true,
+                    "index": "logs-*",
+                    "negate": false,
+                    "params": [
+                      {
+                        "meta": {
+                          "disabled": false,
+                          "field": "aws.cloudtrail.additional_eventdata.text",
+                          "index": "logs-*",
+                          "key": "aws.cloudtrail.additional_eventdata.text",
+                          "negate": false,
+                          "params": {
+                            "query": "QueryString"
+                          },
+                          "type": "phrase"
+                        },
+                        "query": {
+                          "match_phrase": {
+                            "aws.cloudtrail.additional_eventdata.text": "QueryString"
+                          }
+                        }
+                      },
+                      {
+                        "meta": {
+                          "disabled": false,
+                          "field": "aws.cloudtrail.request_parameters.text",
+                          "index": "logs-*",
+                          "key": "aws.cloudtrail.request_parameters.text",
+                          "negate": false,
+                          "params": {
+                            "query": "X-Amz-Expires"
+                          },
+                          "type": "phrase"
+                        },
+                        "query": {
+                          "match_phrase": {
+                            "aws.cloudtrail.request_parameters.text": "X-Amz-Expires"
+                          }
+                        }
+                      }
+                    ],
+                    "relation": "AND",
+                    "type": "combined"
+                  },
+                  "query": {},
+                  "$state": {
+                    "store": "appState"
+                  }
+                }
+              ],
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "unifiedHistogram": {
+                      "columnOrder": [
+                        "440df695-518e-415e-8125-c0c22b7c9a8f",
+                        "date_column",
+                        "count_column"
+                      ],
+                      "columns": {
+                        "date_column": {
+                          "dataType": "date",
+                          "isBucketed": true,
+                          "label": "@timestamp",
+                          "operationType": "date_histogram",
+                          "scale": "interval",
+                          "sourceField": "@timestamp",
+                          "params": {
+                            "interval": "auto"
+                          }
+                        },
+                        "count_column": {
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Count of records",
+                          "operationType": "count",
+                          "scale": "ratio",
+                          "sourceField": "___records___",
+                          "params": {
+                            "format": {
+                              "id": "number",
+                              "params": {
+                                "decimals": 0
+                              }
+                            }
+                          }
+                        },
+                        "440df695-518e-415e-8125-c0c22b7c9a8f": {
+                          "label": "Top 10 values of aws.cloudtrail.s3.bucket_name",
+                          "dataType": "string",
+                          "operationType": "terms",
+                          "sourceField": "aws.cloudtrail.s3.bucket_name",
+                          "isBucketed": true,
+                          "params": {
+                            "size": 10,
+                            "orderBy": {
+                              "type": "column",
+                              "columnId": "count_column"
+                            },
+                            "orderDirection": "desc",
+                            "otherBucket": true,
+                            "missingBucket": false,
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "include": [],
+                            "exclude": [],
+                            "includeIsRegex": false,
+                            "excludeIsRegex": false
+                          }
+                        }
+                      },
+                      "incompleteColumns": {},
+                      "indexPatternId": "logs-*"
+                    }
+                  },
+                  "currentIndexPatternId": "logs-*"
+                }
+              },
+              "internalReferences": [],
+              "adHocDataViews": {}
+            },
+            "version": 1
+          }
+        },
+        "panelIndex": "5faa4cb5-fba7-4274-96be-f7153c5168c7",
+        "gridData": {
+          "y": 0,
+          "x": 0,
+          "w": 48,
+          "h": 17,
+          "i": "5faa4cb5-fba7-4274-96be-f7153c5168c7"
+        }
+      },
+      {
+        "type": "search",
+        "embeddableConfig": {
+          "enhancements": {
+            "dynamicActions": {
+              "events": []
+            }
+          },
+          "grid": {
+            "columns": {
+              "s3_bucket_name": {
+                "width": 293
+              },
+              "event.action": {
+                "width": 271
+              }
+            }
+          }
+        },
+        "panelIndex": "84203002-f694-46f3-a18a-3137f25a54a4",
+        "gridData": {
+          "y": 17,
+          "x": 0,
+          "w": 48,
+          "h": 32,
+          "i": "84203002-f694-46f3-a18a-3137f25a54a4"
+        }
+      }
+    ],
+    "timeRestore": false,
+    "title": "S3 Access Logs"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "created_at": "2026-04-07T13:35:12.603Z",
+  "created_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
+  "id": "ppbgdi-c198c0d3-685d-41b6-b78f-77bb5c41f36b",
+  "managed": false,
+  "references": [
+    {
+      "id": "logs-*",
+      "name": "controlGroup_1b7713f2-f9cc-4ef4-a859-5a21d8214b3b:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "controlGroup_2aeaee51-0ba2-464d-83bc-68d25695f272:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "5faa4cb5-fba7-4274-96be-f7153c5168c7:indexpattern-datasource-layer-unifiedHistogram",
+      "type": "index-pattern"
+    },
+    {
+      "id": "ppbgdi-47dd8f99-e4d8-4079-b918-20754ad90b9b",
+      "name": "84203002-f694-46f3-a18a-3137f25a54a4:savedObjectRef",
+      "type": "search"
+    },
+    {
+      "id": "logs-*",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+      "type": "index-pattern"
+    },
+    {
+      "id": "logs-*",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[1].meta.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.3.0",
+  "updated_at": "2026-04-20T12:41:26.946Z",
+  "updated_by": "u_iNKwjm8SLlUc2MYVzW8-ZccduVX0bI2Y4ltYVm6cTwQ_0",
+  "version": "WzY3NTU1LDYyXQ=="
+}
