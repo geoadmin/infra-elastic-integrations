@@ -57,10 +57,6 @@ processors:
       description: Layer object pipeline
       if: ctx?.temp?.ppbgdi?.app?.layer != null
       name: '{{ IngestPipeline "entity-layer" }}'
-  - pipeline:
-      description: auth-bod object pipeline
-      if: ctx.first_char == '{' &&  ctx?.kubernetes?.container?.name == 'auth-bod'
-      name: '{{ IngestPipeline "entity-auth-bod" }}'
   - remove:
       field:
         - first_char
