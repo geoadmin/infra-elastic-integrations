@@ -7,41 +7,6 @@
       namespace:
         - "{{data_stream.namespace}}"
         - default
-    - target_dataset: ppbgdi.service_alti_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-alti'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_atom_inspire_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-atom-inspire'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_bod_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-bod'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_feedback_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-feedback'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_icons_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-icons'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_kml_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-kml'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_qrcode_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-qrcode'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
     - target_dataset: ppbgdi.service_proxy_logs
       if: ctx?.service?.name != null && ctx?.service?.name == 'service-proxy'
       namespace:
@@ -52,28 +17,8 @@
       namespace:
         - "{{data_stream.namespace}}"
         - default
-    - target_dataset: ppbgdi.service_shortlink_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-shortlink'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
     - target_dataset: ppbgdi.service_stac_logs
       if: ctx?.service?.name != null && ctx?.service?.name == 'service-stac'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_template_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-template'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_wmts_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-wmts'
-      namespace:
-        - "{{data_stream.namespace}}"
-        - default
-    - target_dataset: ppbgdi.service_control_logs
-      if: ctx?.service?.name != null && ctx?.service?.name == 'service-control'
       namespace:
         - "{{data_stream.namespace}}"
         - default
